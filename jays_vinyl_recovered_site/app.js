@@ -3770,6 +3770,14 @@
         <p class="modal-edition">${escapeHTML(record.edition)}</p>
         ${modalTags.length ? `<div class="modal-badges">${modalTags.map((tag) => `<span>${escapeHTML(tag)}</span>`).join("")}</div>` : ""}
       </header>
+      ${!record.wishlist && !record.setup ? `<section class="pressing-inspector" aria-label="Interactive vinyl inspection">
+        <div class="pressing-inspector-heading"><strong>Inspect your pressing</strong><span>Illustrated disc · colour and finish based on edition details, not an exact photo</span></div>
+        <button class="pressing-inspector-stage" type="button" data-inspect-disc aria-pressed="false" aria-label="Pull the vinyl record out of its sleeve">
+          <span class="pressing-inspector-disc">${discMarkup(record, "pressing-disc pressing-disc--inspector")}</span>
+          <span class="pressing-inspector-sleeve">${record.image ? `<img src="${escapeAttr(record.image)}" alt="" loading="lazy">` : ""}</span>
+        </button>
+        <button type="button" class="pressing-inspector-toggle" data-inspect-disc-toggle>Pull disc out ↗</button>
+      </section>` : ""}
       <div class="modal-visual">
         <div class="modal-image-frame">
           <span class="modal-fallback">${escapeHTML(displayTitle(record))}</span>
@@ -3832,6 +3840,17 @@
       if (Math.abs(delta) > 45) setGalleryImage(delta < 0 ? 1 : -1);
       touchStartX = null;
     }, { passive: true });
+    const inspector = modalPanel.querySelector("[data-inspect-disc]");
+    const inspectorToggle = modalPanel.querySelector("[data-inspect-disc-toggle]");
+    const toggleInspector = () => {
+      if (!inspector) return;
+      const isOut = inspector.classList.toggle("is-disc-out");
+      inspector.setAttribute("aria-pressed", String(isOut));
+      inspector.setAttribute("aria-label", isOut ? "Slide vinyl back into its sleeve" : "Pull the vinyl record out of its sleeve");
+      if (inspectorToggle) inspectorToggle.textContent = isOut ? "Slide disc back ↙" : "Pull disc out ↗";
+    };
+    inspector?.addEventListener("click", toggleInspector);
+    inspectorToggle?.addEventListener("click", toggleInspector);
     modalPanel.querySelector("[data-share-record]")?.addEventListener("click", () => shareRecord(record));
     modalPanel.querySelector("[data-preview-toggle]")?.addEventListener("click", (event) => {
       event.preventDefault();
