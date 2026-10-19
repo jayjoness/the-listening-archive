@@ -7,6 +7,8 @@ on:
       - 'jays_vinyl_recovered_site/**'
       - 'scripts/recover_artwork.py'
       - '.github/workflows/pages.yml'
+  schedule:
+    - cron: '17,47 * * * *'
   workflow_dispatch:
 
 permissions:
@@ -37,6 +39,21 @@ jobs:
         run: python3 -m pip install --quiet Pillow
       - name: Recover official-store artwork where available
         run: python3 scripts/recover_artwork.py
+      - name: Checkout development preview separately
+        uses: actions/checkout@v4
+        with:
+          ref: vinyl-artwork-rebuild-20261019
+          path: preview-source
+      - name: Build development preview
+        run: |
+          cd preview-source
+          node --check jays_vinyl_recovered_site/app.js
+          python3 scripts/recover_artwork.py
+          python3 scripts/extract_verified_pressings.py
+          node --check _site/app.js
+          mkdir -p ../_site/preview
+          cp -a _site/. ../_site/preview/
+          echo "Preview prepared at /preview/"
       - name: Upload website files
         uses: actions/upload-pages-artifact@v3
         with:
