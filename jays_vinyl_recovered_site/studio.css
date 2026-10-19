@@ -3474,3 +3474,13 @@ body.modal-open .now-spinning-bar { display:none; }
 .listening-milestones strong { font-size:1rem; color:#392b24; line-height:1.25; }
 .listening-milestones span { font-size:.75rem; line-height:1.5; color:#806e61; }
 @media(max-width:700px){.listening-milestones { grid-template-columns:1fr; }.listening-milestones > div { min-height:0; }}
+
+/* Shelf spacing and integrity: original pressing artwork only, no simulated discs. */
+.shelf-rail { gap:22px!important; padding:30px 28px 37px!important; min-height:290px; align-items:flex-end; }
+.shelf-record { flex:0 0 clamp(174px,19vw,226px)!important; width:clamp(174px,19vw,226px)!important; margin-right:0!important; padding:0!important; }
+.shelf-object { width:100%; aspect-ratio:1; }
+.shelf-sleeve { inset:0; width:100%; height:100%; }
+.shelf-sleeve img { width:100%; height:100%; object-fit:contain; }
+.shelf-record:hover,.shelf-record:focus-visible { transform:translateY(-11px) scale(1.025); }
+.shelf-record .shelf-disc { display:none!important; }
+@media(max-width:650px) { .shelf-rail { gap:15px!important; padding:22px 16px 33px!important; }.shelf-record { flex-basis:170px!important; width:170px!important; } }
