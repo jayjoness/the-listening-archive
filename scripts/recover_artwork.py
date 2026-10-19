@@ -56,8 +56,8 @@ for asset, page in pairs.items():
         img, ctype = get(image_url)
         if not ctype.startswith("image/"): continue
         # The filename extension must match the bytes format for browsers.
-        if asset.lower().endswith(".png") and not img.startswith(b"\\x89PNG"): continue
-        if asset.lower().endswith((".jpg",".jpeg")) and not img.startswith(b"\\xff\\xd8"): continue
+        if asset.lower().endswith(".png") and not img.startswith(b"\x89PNG"): continue
+        if asset.lower().endswith((".jpg",".jpeg")) and not img.startswith(b"\xff\xd8"): continue
         if asset.lower().endswith(".webp") and not (img[:4] == b"RIFF" and img[8:12] == b"WEBP"): continue
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_bytes(img)
