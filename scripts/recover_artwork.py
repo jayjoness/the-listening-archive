@@ -32,7 +32,7 @@ def get(url, maxbytes=9000000):
         return data, response.headers.get("Content-Type", "")
 
 pairs = {}
-pattern = re.compile(r'image:\\s*"(assets/[^"]+\\.(?:png|jpe?g|webp))"[\\s\\S]{0,550}?source:\\s*"(https://[^"]+)"', re.I)
+pattern = re.compile(r'image:\s*"(assets/[^"]+\.(?:png|jpe?g|webp))"[\s\S]{0,550}?source:\s*"(https://[^"]+)"', re.I)
 for match in pattern.finditer(app):
     asset, source = match.groups()
     if asset not in pairs: pairs[asset] = source
