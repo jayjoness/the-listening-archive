@@ -3564,3 +3564,37 @@ body.modal-open .now-spinning-bar { display:none; }
 @media (prefers-reduced-motion:reduce) {
   .shelf-record--has-disc.is-spinning .shelf-disc-photo > img { animation-duration:10s!important; }
 }
+
+
+/* Petal Bad World: the approved V6 radio-state prototype. Isolated to one pressing. */
+.petal-v6 { position:relative!important; display:flex!important; flex-direction:column; align-items:center; width:clamp(220px,24vw,290px)!important; min-width:220px; height:auto!important; padding:8px 6px 12px!important; border:0!important; background:transparent!important; overflow:visible!important; cursor:default!important; transform:none!important; }
+.petal-v6-state { position:absolute; width:1px; height:1px; opacity:0; }
+.petal-v6-stage { position:relative; width:100%; aspect-ratio:1; display:grid; place-items:center; overflow:visible; }
+.petal-v6-art { position:relative; width:72%; aspect-ratio:1; transform:translateX(-18%); }
+.petal-v6-vinyl { position:absolute; z-index:1; inset:3%; border-radius:50%; filter:drop-shadow(6px 7px 8px #0007); transition:transform .75s cubic-bezier(.16,.75,.18,1); }
+.petal-v6-vinyl-art { display:block; width:100%; height:100%; transform-origin:center center; }
+.petal-v6-vinyl img,.petal-v6-sleeve img { display:block; width:100%; height:100%; object-fit:contain; }
+.petal-v6-sleeve { position:absolute; z-index:2; inset:0; box-shadow:5px 9px 18px #0008; }
+.petal-v6-sleeve img { object-fit:cover; }
+.petal-v6-sleeve-label { display:none; position:absolute; inset:0; cursor:pointer; -webkit-tap-highlight-color:transparent; }
+.petal-v6-state[id^="petal-in-"]:checked ~ .petal-v6-stage .petal-v6-open { display:block; }
+.petal-v6-state[id^="petal-out-"]:checked ~ .petal-v6-stage .petal-v6-close,
+.petal-v6-state[id^="petal-playing-"]:checked ~ .petal-v6-stage .petal-v6-close { display:block; }
+.petal-v6-state[id^="petal-out-"]:checked ~ .petal-v6-stage .petal-v6-vinyl,
+.petal-v6-state[id^="petal-playing-"]:checked ~ .petal-v6-stage .petal-v6-vinyl { transform:translateX(79%); }
+.petal-v6-state[id^="petal-playing-"]:checked ~ .petal-v6-stage .petal-v6-vinyl-art { animation:petal-v6-rotate 2.1s linear infinite; }
+@keyframes petal-v6-rotate { to { transform:rotate(360deg); } }
+.petal-v6-hotspot { display:none; position:absolute; z-index:5; cursor:pointer; left:66%; top:50%; transform:translateY(-50%); width:28%; height:55%; border-radius:50%; }
+.petal-v6-state[id^="petal-out-"]:checked ~ .petal-v6-stage .petal-v6-start,
+.petal-v6-state[id^="petal-playing-"]:checked ~ .petal-v6-stage .petal-v6-stop { display:block; }
+.petal-v6-actions { display:flex; justify-content:center; flex-wrap:wrap; gap:5px; margin:6px auto; position:relative; z-index:6; }
+.petal-v6-action { display:none; padding:6px 9px; border:1px solid currentColor; border-radius:7px; font-size:11px; cursor:pointer; color:inherit; }
+.petal-v6-state[id^="petal-in-"]:checked ~ .petal-v6-actions .petal-v6-pull,
+.petal-v6-state[id^="petal-out-"]:checked ~ .petal-v6-actions .petal-v6-put,
+.petal-v6-state[id^="petal-playing-"]:checked ~ .petal-v6-actions .petal-v6-put,
+.petal-v6-state[id^="petal-out-"]:checked ~ .petal-v6-actions .petal-v6-spin,
+.petal-v6-state[id^="petal-playing-"]:checked ~ .petal-v6-actions .petal-v6-halt { display:inline-flex; }
+.petal-v6-details { padding:6px 9px; border:1px solid #b59c82; border-radius:7px; background:transparent; color:inherit; font:inherit; font-size:11px; cursor:pointer; }
+.petal-v6 .shelf-caption { display:block!important; position:static!important; margin-top:3px; text-align:center; opacity:1!important; transform:none!important; pointer-events:none; }
+@media(max-width:600px) { .petal-v6 { min-width:200px; width:220px!important; } .petal-v6-hotspot { left:66%; width:28%; } }
+@media(prefers-reduced-motion:reduce) { .petal-v6-vinyl { transition-duration:.01ms; } .petal-v6-vinyl-art { animation-duration:10s!important; } }
