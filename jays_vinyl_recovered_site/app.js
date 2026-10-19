@@ -3464,8 +3464,25 @@
   function imageMarkup(record, type) {
     const imageClass = type === "modal" ? "modal-image" : "card-image";
     if (!record.image) return "";
-    return `<img class="${imageClass}" src="${escapeAttr(record.image)}" alt="${escapeAttr(`${record.title} — ${record.edition}`)}" ${type === "card" ? 'loading="lazy"' : ""}>`;
+    const alternate = record.imageSource && record.imageSource !== record.image ? record.imageSource : "";
+    return `<img class="${imageClass}" src="${escapeAttr(record.image)}" alt="${escapeAttr(`${record.title} — ${record.edition}`)}" ${alternate ? `data-artwork-alternate="${escapeAttr(alternate)}"` : ""} ${type === "card" ? 'loading="lazy"' : ""}>`;
   }
+
+  // Preserve the exact pressing artwork: try its original alternate image, if any.
+  // If neither image loads, reveal the existing title fallback instead of a broken icon.
+  document.addEventListener("error", (event) => {
+    const img = event.target;
+    if (!(img instanceof HTMLImageElement) || !img.matches(".card-image, .modal-image")) return;
+    const alternate = img.dataset.artworkAlternate;
+    if (alternate && !img.dataset.artworkRetried) {
+      img.dataset.artworkRetried = "true";
+      img.src = alternate;
+      return;
+    }
+    img.style.display = "none";
+    const fallback = img.parentElement?.querySelector(".card-fallback");
+    if (fallback) fallback.style.display = "";
+  }, true);
 
   function cardTags(record) {
     const tags = [];
