@@ -3639,16 +3639,31 @@
     }).join("");
     sectionsNode.innerHTML = collectionIntro + wishlistIntro + setupIntro + collectionMode + listings;
 
+    // A photographed disc has three states: sleeved, pulled out, spinning.
+    // Closing the sleeve resets both the animation and the state.
     sectionsNode.querySelectorAll(".shelf-record--has-disc").forEach((card) => {
+      const disc = card.querySelector(".shelf-disc-photo");
+      const sleeve = card.querySelector(".shelf-sleeve");
+      const setState = (next) => {
+        card.dataset.vinylState = next;
+        card.classList.toggle("is-pulled", next !== "sleeved");
+        card.classList.toggle("is-spinning", next === "spinning");
+        card.setAttribute("aria-label", next === "sleeved" ? "Pull out vinyl" : "Put vinyl back into sleeve");
+        card.setAttribute("aria-pressed", String(next !== "sleeved"));
+      };
+      setState("sleeved");
+      // Stop the button's default record-details action; this is an interactive shelf.
       card.addEventListener("click", (event) => {
-        if (!card.classList.contains("is-pulled")) {
-          event.preventDefault();
-          card.classList.add("is-pulled");
-          card.setAttribute("aria-pressed", "true");
-          card.setAttribute("aria-label", "Open record details");
-          return;
+        event.preventDefault();
+        event.stopPropagation();
+        const current = card.dataset.vinylState;
+        const bounds = sleeve.getBoundingClientRect();
+        const clickedExposedDisc = current !== "sleeved" && event.clientX > bounds.right;
+        if (clickedExposedDisc && disc) {
+          setState(current === "spinning" ? "pulled" : "spinning");
+        } else {
+          setState(current === "sleeved" ? "pulled" : "sleeved");
         }
-        openRecord(card.dataset.recordId);
       });
     });
     sectionsNode.querySelectorAll(".vinyl-card").forEach((card) => {
