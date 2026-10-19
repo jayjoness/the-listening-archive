@@ -3527,3 +3527,14 @@ body.modal-open .now-spinning-bar { display:none; }
 .modal-listening-disc:has(.pressing-disc-unverified) { display:none; }
 .shelf-record--has-disc .shelf-sleeve { box-shadow:0 12px 28px rgba(22,16,13,.17); }
 .shelf-record--has-disc:focus-visible { outline:2px solid currentColor; outline-offset:7px; }
+
+/* Preview hotfix: keep the modal's audio preview readable at all widths. */
+.record-preview--modal { display:flex!important; flex-direction:column!important; width:100%; min-width:0; gap:10px; }
+.record-preview--modal .preview-toggle { display:flex!important; align-items:center!important; gap:14px!important; width:100%!important; min-width:0!important; padding:14px 16px!important; text-align:left!important; }
+.record-preview--modal .preview-toggle > span:last-child { display:flex!important; flex:1 1 auto!important; flex-direction:column!important; align-items:flex-start!important; min-width:0!important; width:auto!important; gap:4px!important; }
+.record-preview--modal .preview-toggle small { display:block!important; font-size:10px!important; line-height:1.5!important; letter-spacing:.07em!important; }
+.record-preview--modal .preview-toggle strong { display:block!important; font-size:15px!important; line-height:1.4!important; overflow-wrap:anywhere; }
+.record-preview--modal .preview-toggle em { display:block!important; font-size:12px!important; line-height:1.4!important; }
+.record-preview--modal .preview-icon { display:grid!important; flex:0 0 38px!important; width:38px!important; height:38px!important; }
+.record-preview--modal .preview-status { display:block!important; font-size:11px!important; line-height:1.5!important; text-align:left!important; }
+.shelf-record--has-disc .shelf-sleeve img { width:100%!important; height:100%!important; object-fit:contain!important; object-position:center!important; transform:none!important; }
