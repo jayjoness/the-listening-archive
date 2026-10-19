@@ -3388,17 +3388,17 @@
           <label class="petal-v6-action petal-v6-put" for="petal-in-${id}">Put vinyl back</label>
           <label class="petal-v6-action petal-v6-spin" for="petal-playing-${id}">Spin vinyl</label>
           <label class="petal-v6-action petal-v6-halt" for="petal-out-${id}">Stop spinning</label>
-          <button type="button" class="petal-v6-details" data-petal-details="${id}">Details</button>
+          <button type="button" class="petal-v6-details" data-petal-details="${id}">See details</button>
         </div>
-        <span class="shelf-caption"><b>Petal</b><small>Bad World · Flower-filled</small></span>
+
       </div>`;
   }
 
   function collectionModeContent(groups, visibleRecords) {
     if (state.collectionMode === "gallery") return "";
     if (state.collectionMode === "shelf") return groups.map((group) => `
-      <section class="archive-category shelf-category"><header class="category-head"><div><h2 class="category-title">${escapeHTML(group.name)}</h2><p class="shelf-hint">Tap to pull out a disc · tap again for details</p></div><span>${group.records.length} ${group.records.length === 1 ? "record" : "records"}</span></header>
-        <div class="shelf-rail" role="list" aria-label="${escapeAttr(group.name)} record shelf">${group.records.map((record) => record === badWorldPetal ? petalInteractiveMarkup(record) : `<button class="shelf-record${record.rare || record.extremelyRare ? " shelf-record--rare" : ""}${(record.discImage || /^assets\/tour-.*-white-background-2026\.jpeg$/.test(record.image)) ? " shelf-record--has-disc" : ""}" type="button" data-record-id="${escapeAttr(record.id)}" aria-label="Open ${escapeAttr(displayTitle(record))} by ${escapeAttr(record.artist)}"><span class="shelf-object">${record.discImage ? `<span class="shelf-disc-photo">${discMarkup(record, "pressing-disc shelf-disc-verified")}</span>` : /^assets\/tour-.*-white-background-2026\.jpeg$/.test(record.image) ? `<span class="shelf-disc-photo shelf-disc-cropped"><img src="${escapeAttr(record.image)}" alt="" loading="lazy"></span>` : ""}<span class="shelf-sleeve">${(record.sleeveImage || record.image) ? `<img src="${escapeAttr(record.sleeveImage || record.image)}" alt="" loading="lazy">` : ""}</span></span><span class="shelf-caption"><b>${escapeHTML(displayTitle(record))}</b><small>${escapeHTML(record.edition)}</small></span></button>`).join("")}</div>
+      <section class="archive-category shelf-category"><header class="category-head"><div><h2 class="category-title">${escapeHTML(group.name)}</h2><p class="shelf-hint">Tap a sleeve to pull out the record · tap the exposed disc to spin</p></div><span>${group.records.length} ${group.records.length === 1 ? "record" : "records"}</span></header>
+        <div class="shelf-rail" role="list" aria-label="${escapeAttr(group.name)} record shelf">${group.records.map((record) => record === badWorldPetal ? petalInteractiveMarkup(record) : `<button class="shelf-record${record.rare || record.extremelyRare ? " shelf-record--rare" : ""}${(record.discImage || /^assets\/tour-.*-white-background-2026\.jpeg$/.test(record.image)) ? " shelf-record--has-disc" : ""}" type="button" data-record-id="${escapeAttr(record.id)}" aria-label="Open ${escapeAttr(displayTitle(record))} by ${escapeAttr(record.artist)}"><span class="shelf-details-control" aria-hidden="true">See details</span><span class="shelf-object">${record.discImage ? `<span class="shelf-disc-photo">${discMarkup(record, "pressing-disc shelf-disc-verified")}</span>` : /^assets\/tour-.*-white-background-2026\.jpeg$/.test(record.image) ? `<span class="shelf-disc-photo shelf-disc-cropped"><img src="${escapeAttr(record.image)}" alt="" loading="lazy"></span>` : ""}<span class="shelf-sleeve">${(record.sleeveImage || record.image) ? `<img src="${escapeAttr(record.sleeveImage || record.image)}" alt="" loading="lazy">` : ""}</span></span></button>`).join("")}</div>
       </section>`).join("");
     if (state.collectionMode === "stories") {
       const tourRecords = allRecords.filter((record) => /Eternal Sunshine Tour exclusive/i.test(record.edition));
@@ -3676,6 +3676,17 @@
     });
     // A photographed disc has three states: sleeved, pulled out, spinning.
     // Closing the sleeve resets both the animation and the state.
+    // Details is intentionally a separate control above each sleeve.
+    sectionsNode.querySelectorAll(".shelf-record:not(.petal-v6)").forEach((card) => {
+      card.addEventListener("click", (event) => {
+        const details = event.target.closest(".shelf-details-control");
+        if (details) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          openRecord(card.dataset.recordId);
+        }
+      }, true);
+    });
     sectionsNode.querySelectorAll(".shelf-record--has-disc").forEach((card) => {
       const disc = card.querySelector(".shelf-disc-photo");
       const sleeve = card.querySelector(".shelf-sleeve");
@@ -3704,7 +3715,7 @@
     sectionsNode.querySelectorAll(".vinyl-card").forEach((card) => {
       card.addEventListener("click", () => openRecord(card.dataset.recordId));
     });
-    sectionsNode.querySelectorAll(".jewel-card, .journal-entry, .wishlist-priority-card, .timeline-record, .story-gaps button, .shelf-record, .vault-feature:not(.vault-feature--spinning)").forEach((card) => {
+    sectionsNode.querySelectorAll(".jewel-card, .journal-entry, .wishlist-priority-card, .timeline-record, .story-gaps button, .vault-feature:not(.vault-feature--spinning)").forEach((card) => {
       card.addEventListener("click", () => openRecord(card.dataset.recordId));
     });
     sectionsNode.querySelectorAll("[data-family-key]").forEach((button) => button.addEventListener("click", () => {
