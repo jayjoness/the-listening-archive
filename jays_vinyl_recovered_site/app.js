@@ -905,8 +905,8 @@
       extremelyRare: true,
       outOfStock: true,
       description: "Ariana Grande’s first live album, issued as a Record Store Day 2021 exclusive triple-LP set. The pressing was limited to 7,500 copies and documents the Sweetener World Tour.",
-      image: "assets/wishlist-k-bye.jpg",
-      imageSource: "assets/wishlist-k-bye.jpg",
+      image: "https://dcdn-us.mitiendanube.com/stores/001/610/409/products/image-e18fe763c24b3ee96e16259619362790-480-0.webp",
+      imageSource: "https://dcdn-us.mitiendanube.com/stores/001/610/409/products/image-e18fe763c24b3ee96e16259619362790-480-0.webp",
       source: "https://recordstoreday.com/SpecialRelease/13670",
       category: "Wishlist",
       facts: [
@@ -926,8 +926,8 @@
       wishlist: true,
       extremelyRare: true,
       description: "Limited 2019 seven-inch single edition of Boyfriend by Ariana Grande and Social House, presented in the original photographic picture sleeve.",
-      image: "assets/wishlist-boyfriend-7.jpeg",
-      imageSource: "assets/wishlist-boyfriend-7.jpeg",
+      image: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/46/06/a2/4606a277-f7d0-5e34-e8e7-e81d2f40b56a/19UMGIM68896.rgb.jpg/1200x630wp-60.jpg",
+      imageSource: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/46/06/a2/4606a277-f7d0-5e34-e8e7-e81d2f40b56a/19UMGIM68896.rgb.jpg/1200x630wp-60.jpg",
       source: "https://www.discogs.com/release/14556437-Ariana-Grande-Social-House-Boyfriend",
       category: "Wishlist",
       facts: [
@@ -947,8 +947,8 @@
       wishlist: true,
       extremelyRare: true,
       description: "Limited seven-inch single pressing of 7 rings on clear vinyl, issued in 2019 with the original pink door artwork.",
-      image: "assets/wishlist-7-rings.jpeg",
-      imageSource: "assets/wishlist-7-rings.jpeg",
+      image: "https://i.ebayimg.com/images/g/0c4AAOSwP2VffhSB/s-l1200.jpg",
+      imageSource: "https://i.ebayimg.com/images/g/0c4AAOSwP2VffhSB/s-l1200.jpg",
       source: "https://www.discogs.com/release/13449313-Ariana-Grande-7-Rings",
       category: "Wishlist",
       facts: [
