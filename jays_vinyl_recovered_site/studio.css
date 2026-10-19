@@ -3484,3 +3484,22 @@ body.modal-open .now-spinning-bar { display:none; }
 .shelf-record:hover,.shelf-record:focus-visible { transform:translateY(-11px) scale(1.025); }
 .shelf-record .shelf-disc { display:none!important; }
 @media(max-width:650px) { .shelf-rail { gap:15px!important; padding:22px 16px 33px!important; }.shelf-record { flex-basis:170px!important; width:170px!important; } }
+
+/* Verified pressing policy: an unknown disc is never represented by a fake label. */
+.pressing-disc-unverified {
+  display:block;
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  background:repeating-radial-gradient(circle at center,#1b1a1b 0 2px,#282628 3px 4px,#1b1a1b 5px 6px);
+  opacity:.25;
+}
+.now-deck-platter .pressing-disc-unverified { opacity:.12; }
+.pressing-disc--photographed {
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  border-radius:50%;
+}
+.modal-listening-disc .pressing-disc-unverified { opacity:.12; }
