@@ -3812,3 +3812,24 @@ body.modal-open .now-spinning-bar { display:none; }
 /* Make the complete exposed disc clickable, even outside its sleeve button. */
 .shelf-category .shelf-record--has-disc:not(.petal-v6) .shelf-disc-photo { pointer-events:auto!important; cursor:pointer; }
 .shelf-category .shelf-record--has-disc:not(.petal-v6) .shelf-disc-photo > * { pointer-events:none; }
+
+/* Fix the sharp vertical cut at the original card boundary on expanded discs.
+   Keep the sleeve above the disc, but let the entire circular disc paint outside
+   the button, object, and image wrappers. */
+.shelf-category .shelf-record--has-disc:not(.petal-v6),
+.shelf-category .shelf-record--has-disc:not(.petal-v6) .shelf-object,
+.shelf-category .shelf-record--has-disc:not(.petal-v6) .shelf-disc-photo,
+.shelf-category .shelf-record--has-disc:not(.petal-v6) .shelf-disc-photo img {
+  overflow:visible!important;
+  clip-path:none!important;
+  mask:none!important;
+}
+.shelf-category .shelf-record--has-disc:not(.petal-v6) .shelf-disc-photo {
+  z-index:1!important;
+}
+.shelf-category .shelf-record--has-disc:not(.petal-v6) .shelf-sleeve {
+  z-index:2!important;
+}
+.shelf-category .shelf-record--has-disc:not(.petal-v6).is-pulled {
+  z-index:12!important;
+}
