@@ -29,6 +29,8 @@ jobs:
         uses: actions/checkout@v4
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
+      - name: Install artwork image converter
+        run: python3 -m pip install --quiet Pillow
       - name: Recover official-store artwork where available
         run: python3 scripts/recover_artwork.py
       - name: Upload website files
