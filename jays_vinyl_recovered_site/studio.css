@@ -3451,3 +3451,19 @@ body.modal-open .now-spinning-bar { display:none; }
 .shelf-record:hover,.shelf-record:focus-visible { z-index:5; transform:translateY(-15px) scale(1.06); }
 .shelf-record:hover .shelf-disc,.shelf-record:focus-visible .shelf-disc { transform:translateX(45%); }
 .shelf-rail::after { z-index:6; pointer-events:none; }
+
+/* Physical pressing inspector: cover and disc are separate layers. */
+.pressing-inspector { padding:22px 24px 16px; background:linear-gradient(145deg,#f5f0e8,#e9dfd2); border-bottom:1px solid #dfd0bd; }
+.pressing-inspector-heading { display:flex; align-items:baseline; flex-wrap:wrap; justify-content:space-between; gap:8px; color:#37291e; margin-bottom:12px; }
+.pressing-inspector-heading strong { font-size:.88rem; }
+.pressing-inspector-heading span { font-size:.65rem; color:#7a6858; max-width:340px; }
+.pressing-inspector-stage { position:relative; display:block; width:min(100%,440px); height:clamp(230px,36vw,340px); margin:0 auto; padding:0; border:0; background:radial-gradient(ellipse,#fff8ee 0%,#dfd2c3 100%); border-radius:12px; overflow:hidden; cursor:pointer; isolation:isolate; }
+.pressing-inspector-sleeve { position:absolute; z-index:2; width:min(62%,260px); aspect-ratio:1; top:50%; left:17%; transform:translateY(-50%); background:#faf7f1; box-shadow:6px 13px 24px #31231655; border:1px solid #bcae9e; transition:transform .55s cubic-bezier(.2,.75,.2,1); }
+.pressing-inspector-sleeve img { width:100%; height:100%; object-fit:contain; display:block; }
+.pressing-inspector-disc { position:absolute; z-index:1; display:block; width:min(59%,250px); aspect-ratio:1; top:50%; left:19%; transform:translateY(-50%); transition:transform .65s cubic-bezier(.2,.75,.2,1); }
+.pressing-inspector-disc .pressing-disc { width:100%; height:100%; }
+.pressing-inspector-stage.is-disc-out .pressing-inspector-disc { transform:translate(72%,-50%); z-index:3; }
+.pressing-inspector-stage.is-disc-out .pressing-inspector-sleeve { transform:translate(-14%,-50%); }
+.pressing-inspector-toggle { display:block; margin:12px auto 0; border:1px solid #a98c71; border-radius:999px; padding:9px 18px; color:#3a2b20; background:transparent; cursor:pointer; font-weight:700; font-size:.75rem; }
+.pressing-inspector-toggle:hover { background:#e9d9c7; }
+@media(max-width:500px){.pressing-inspector { padding:16px 12px; }.pressing-inspector-stage { height:240px; }.pressing-inspector-stage.is-disc-out .pressing-inspector-disc { transform:translate(48%,-50%); }}
