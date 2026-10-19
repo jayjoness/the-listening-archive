@@ -3362,11 +3362,43 @@
     return records.map((record, index) => cardMarkup(record, index)).join("");
   }
 
+  // The approved Petal V6 prototype, adapted without changing its three-radio state machine.
+  // All images are the exact two photographs supplied in chat and embedded as SVG image assets.
+  function petalInteractiveMarkup(record) {
+    const id = escapeAttr(record.id);
+    return `
+      <div class="shelf-record shelf-record--rare petal-v6" data-record-id="${id}" role="group" aria-label="Bad World Petal interactive vinyl">
+        <input class="petal-v6-state" type="radio" name="petal-v6-${id}" id="petal-in-${id}" checked>
+        <input class="petal-v6-state" type="radio" name="petal-v6-${id}" id="petal-out-${id}">
+        <input class="petal-v6-state" type="radio" name="petal-v6-${id}" id="petal-playing-${id}">
+        <div class="petal-v6-stage">
+          <div class="petal-v6-art">
+            <div class="petal-v6-vinyl"><div class="petal-v6-vinyl-art"><img src="assets/petal-bad-world-disc-original.svg" alt="Real Bad World Petal flower-filled disc" loading="lazy"></div></div>
+            <div class="petal-v6-sleeve">
+              <img src="assets/petal-bad-world-sleeve-original.svg" alt="Petal Bad World sleeve" loading="lazy">
+              <label class="petal-v6-sleeve-label petal-v6-open" for="petal-out-${id}" aria-label="Pull vinyl out"></label>
+              <label class="petal-v6-sleeve-label petal-v6-close" for="petal-in-${id}" aria-label="Put vinyl back and stop spinning"></label>
+            </div>
+          </div>
+          <label class="petal-v6-hotspot petal-v6-start" for="petal-playing-${id}" aria-label="Spin the vinyl"></label>
+          <label class="petal-v6-hotspot petal-v6-stop" for="petal-out-${id}" aria-label="Stop spinning"></label>
+        </div>
+        <div class="petal-v6-actions">
+          <label class="petal-v6-action petal-v6-pull" for="petal-out-${id}">Pull out vinyl</label>
+          <label class="petal-v6-action petal-v6-put" for="petal-in-${id}">Put vinyl back</label>
+          <label class="petal-v6-action petal-v6-spin" for="petal-playing-${id}">Spin vinyl</label>
+          <label class="petal-v6-action petal-v6-halt" for="petal-out-${id}">Stop spinning</label>
+          <button type="button" class="petal-v6-details" data-petal-details="${id}">Details</button>
+        </div>
+        <span class="shelf-caption"><b>Petal</b><small>Bad World · Flower-filled</small></span>
+      </div>`;
+  }
+
   function collectionModeContent(groups, visibleRecords) {
     if (state.collectionMode === "gallery") return "";
     if (state.collectionMode === "shelf") return groups.map((group) => `
       <section class="archive-category shelf-category"><header class="category-head"><div><h2 class="category-title">${escapeHTML(group.name)}</h2><p class="shelf-hint">Tap to pull out a disc · tap again for details</p></div><span>${group.records.length} ${group.records.length === 1 ? "record" : "records"}</span></header>
-        <div class="shelf-rail" role="list" aria-label="${escapeAttr(group.name)} record shelf">${group.records.map((record) => `<button class="shelf-record${record.rare || record.extremelyRare ? " shelf-record--rare" : ""}${(record.discImage || /^assets\/tour-.*-white-background-2026\.jpeg$/.test(record.image)) ? " shelf-record--has-disc" : ""}" type="button" data-record-id="${escapeAttr(record.id)}" aria-label="Open ${escapeAttr(displayTitle(record))} by ${escapeAttr(record.artist)}"><span class="shelf-object">${record.discImage ? `<span class="shelf-disc-photo">${discMarkup(record, "pressing-disc shelf-disc-verified")}</span>` : /^assets\/tour-.*-white-background-2026\.jpeg$/.test(record.image) ? `<span class="shelf-disc-photo shelf-disc-cropped"><img src="${escapeAttr(record.image)}" alt="" loading="lazy"></span>` : ""}<span class="shelf-sleeve">${(record.sleeveImage || record.image) ? `<img src="${escapeAttr(record.sleeveImage || record.image)}" alt="" loading="lazy">` : ""}</span></span><span class="shelf-caption"><b>${escapeHTML(displayTitle(record))}</b><small>${escapeHTML(record.edition)}</small></span></button>`).join("")}</div>
+        <div class="shelf-rail" role="list" aria-label="${escapeAttr(group.name)} record shelf">${group.records.map((record) => record === badWorldPetal ? petalInteractiveMarkup(record) : `<button class="shelf-record${record.rare || record.extremelyRare ? " shelf-record--rare" : ""}${(record.discImage || /^assets\/tour-.*-white-background-2026\.jpeg$/.test(record.image)) ? " shelf-record--has-disc" : ""}" type="button" data-record-id="${escapeAttr(record.id)}" aria-label="Open ${escapeAttr(displayTitle(record))} by ${escapeAttr(record.artist)}"><span class="shelf-object">${record.discImage ? `<span class="shelf-disc-photo">${discMarkup(record, "pressing-disc shelf-disc-verified")}</span>` : /^assets\/tour-.*-white-background-2026\.jpeg$/.test(record.image) ? `<span class="shelf-disc-photo shelf-disc-cropped"><img src="${escapeAttr(record.image)}" alt="" loading="lazy"></span>` : ""}<span class="shelf-sleeve">${(record.sleeveImage || record.image) ? `<img src="${escapeAttr(record.sleeveImage || record.image)}" alt="" loading="lazy">` : ""}</span></span><span class="shelf-caption"><b>${escapeHTML(displayTitle(record))}</b><small>${escapeHTML(record.edition)}</small></span></button>`).join("")}</div>
       </section>`).join("");
     if (state.collectionMode === "stories") {
       const tourRecords = allRecords.filter((record) => /Eternal Sunshine Tour exclusive/i.test(record.edition));
@@ -3639,6 +3671,9 @@
     }).join("");
     sectionsNode.innerHTML = collectionIntro + wishlistIntro + setupIntro + collectionMode + listings;
 
+    sectionsNode.querySelectorAll("[data-petal-details]").forEach((button) => {
+      button.addEventListener("click", () => openRecord(button.dataset.petalDetails));
+    });
     // A photographed disc has three states: sleeved, pulled out, spinning.
     // Closing the sleeve resets both the animation and the state.
     sectionsNode.querySelectorAll(".shelf-record--has-disc").forEach((card) => {
