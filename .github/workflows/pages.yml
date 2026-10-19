@@ -6,6 +6,7 @@ on:
     paths:
       - 'jays_vinyl_recovered_site/**'
       - 'scripts/recover_artwork.py'
+      - 'scripts/extract_verified_pressings.py'
       - '.github/workflows/pages.yml'
   workflow_dispatch:
 
@@ -37,6 +38,10 @@ jobs:
         run: python3 -m pip install --quiet Pillow
       - name: Recover official-store artwork where available
         run: python3 scripts/recover_artwork.py
+      - name: Extract photographed pressings where verified
+        run: python3 scripts/extract_verified_pressings.py
+      - name: Validate built website JavaScript
+        run: node --check _site/app.js
       - name: Upload website files
         uses: actions/upload-pages-artifact@v3
         with:
