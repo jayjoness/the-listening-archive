@@ -3702,6 +3702,17 @@
         card.setAttribute("aria-pressed", String(next !== "sleeved"));
       };
       setState("sleeved");
+      // The pulled-out disc extends beyond the sleeve button's original box.
+      // Listen on the disc itself so its whole exposed surface can start/stop rotation.
+      if (disc) {
+        disc.addEventListener("click", (event) => {
+          if (card.dataset.vinylState === "sleeved") return;
+          event.preventDefault();
+          event.stopPropagation();
+          const current = card.dataset.vinylState;
+          setState(current === "spinning" ? "pulled" : "spinning");
+        });
+      }
       // Stop the button's default record-details action; this is an interactive shelf.
       card.addEventListener("click", (event) => {
         event.preventDefault();
