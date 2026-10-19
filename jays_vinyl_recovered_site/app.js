@@ -3702,6 +3702,13 @@
         card.setAttribute("aria-pressed", String(next !== "sleeved"));
       };
       setState("sleeved");
+      // Hovering over the exposed edge finishes pulling the record out.
+      // Clicking the exposed disc remains reserved for starting/stopping spin.
+      if (disc && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+        disc.addEventListener("mouseenter", () => {
+          if (card.dataset.vinylState === "sleeved") setState("pulled");
+        });
+      }
       // The pulled-out disc extends beyond the sleeve button's original box.
       // Listen on the disc itself so its whole exposed surface can start/stop rotation.
       if (disc) {
