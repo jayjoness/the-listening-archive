@@ -3538,3 +3538,12 @@ body.modal-open .now-spinning-bar { display:none; }
 .record-preview--modal .preview-icon { display:grid!important; flex:0 0 38px!important; width:38px!important; height:38px!important; }
 .record-preview--modal .preview-status { display:block!important; font-size:11px!important; line-height:1.5!important; text-align:left!important; }
 .shelf-record--has-disc .shelf-sleeve img { width:100%!important; height:100%!important; object-fit:contain!important; object-position:center!important; transform:none!important; }
+
+/* First tap actually pulls the photographed disc out on touch devices. */
+.shelf-record--has-disc.is-pulled { z-index:7!important; }
+.shelf-record--has-disc.is-pulled .shelf-disc-photo { transform:translateX(53%)!important; }
+.shelf-record--has-disc .shelf-object { overflow:visible!important; }
+.shelf-record--has-disc .shelf-disc-cropped { overflow:hidden; border-radius:50%; background:#fff; }
+.shelf-record--has-disc .shelf-disc-cropped img { position:absolute!important; display:block!important; max-width:none!important; width:200%!important; height:100%!important; left:-100%!important; top:0!important; object-fit:fill!important; transform:none!important; }
+.shelf-record--has-disc:not(:has(.shelf-sleeve img[src*="verified-extract"])) .shelf-sleeve img[src*="tour-"] { width:200%!important; max-width:none!important; height:100%!important; object-fit:fill!important; object-position:left!important; transform:none!important; }
+@media(hover:none) { .shelf-record--has-disc:hover:not(.is-pulled) .shelf-disc-photo { transform:none!important; } }
