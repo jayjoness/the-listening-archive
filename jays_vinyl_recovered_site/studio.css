@@ -3520,3 +3520,10 @@ body.modal-open .now-spinning-bar { display:none; }
  .shelf-record--has-disc:active .shelf-disc-photo { transform:translateX(40%); }
 }
 @media(prefers-reduced-motion:reduce) { .shelf-record .shelf-disc-photo { transition:none; } }
+
+/* An unverified pressing is an empty turntable, not a fictional vinyl. */
+.pressing-disc-unverified { background:none!important; border:1px dashed rgba(140,117,100,.35); opacity:.25!important; }
+.now-deck-platter .pressing-disc-unverified { border:0; opacity:0!important; }
+.modal-listening-disc:has(.pressing-disc-unverified) { display:none; }
+.shelf-record--has-disc .shelf-sleeve { box-shadow:0 12px 28px rgba(22,16,13,.17); }
+.shelf-record--has-disc:focus-visible { outline:2px solid currentColor; outline-offset:7px; }
