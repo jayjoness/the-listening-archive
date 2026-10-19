@@ -3547,3 +3547,20 @@ body.modal-open .now-spinning-bar { display:none; }
 .shelf-record--has-disc .shelf-disc-cropped img { position:absolute!important; display:block!important; max-width:none!important; width:200%!important; height:100%!important; left:-100%!important; top:0!important; object-fit:fill!important; transform:none!important; }
 .shelf-record--has-disc:not(:has(.shelf-sleeve img[src*="verified-extract"])) .shelf-sleeve img[src*="tour-"] { width:200%!important; max-width:none!important; height:100%!important; object-fit:fill!important; object-position:left!important; transform:none!important; }
 @media(hover:none) { .shelf-record--has-disc:hover:not(.is-pulled) .shelf-disc-photo { transform:none!important; } }
+
+/* Verified vinyl interaction: independent slide and rotation, with reset on sleeve close. */
+.shelf-record--has-disc .shelf-disc-photo { transition:transform .7s cubic-bezier(.16,.75,.18,1)!important; }
+.shelf-record--has-disc .shelf-disc-photo > img,
+.shelf-record--has-disc .shelf-disc-photo > .pressing-disc { transform-origin:center center; }
+.shelf-record--has-disc.is-spinning .shelf-disc-photo > img,
+.shelf-record--has-disc.is-spinning .shelf-disc-photo > .pressing-disc {
+  animation:archive-disc-spin 2.1s linear infinite!important;
+}
+@keyframes archive-disc-spin { from { rotate:0deg; } to { rotate:360deg; } }
+.shelf-record--has-disc.is-pulled .shelf-disc-photo { transform:translateX(79%)!important; }
+@media (hover:none) {
+  .shelf-record--has-disc:not(.is-pulled):hover .shelf-disc-photo { transform:none!important; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .shelf-record--has-disc.is-spinning .shelf-disc-photo > img { animation-duration:10s!important; }
+}
