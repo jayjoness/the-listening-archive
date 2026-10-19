@@ -2578,10 +2578,15 @@
   }
 
   function discMarkup(record, className = "pressing-disc") {
-    // Render the physical pressing, never the square jacket artwork inside a disc.
-    const disc = discDescriptor(record);
-    return `<span class="${escapeAttr(className)} pressing-disc--${escapeAttr(disc.pattern)}" style="--disc-base:${escapeAttr(disc.base)};--disc-accent:${escapeAttr(disc.accent)};--disc-accent-2:${escapeAttr(disc.accent2)}" aria-hidden="true"><i>${escapeHTML(disc.label)}</i></span>`;
+    // Never manufacture a disc or centre label. Only display a separately
+    // verified photograph of this exact pressing, when one is available.
+    const image = record.discImage;
+    if (!image || !/^assets\/[a-z0-9_./-]+\.(?:png|webp|jpe?g)$/i.test(image)) {
+      return '<span class="pressing-disc-unverified" aria-hidden="true"></span>';
+    }
+    return `<img class="${escapeAttr(className)} pressing-disc--photographed" src="${escapeAttr(image)}" alt="" loading="lazy">`;
   }
+
   const albumFamilies = Array.from(new Map(collectionAndWatches.map((record) => {
     const descriptor = familyDescriptor(record);
     return [`${descriptor.artist}::${descriptor.title}`, { key: `${descriptor.artist}::${descriptor.title}`, artist: descriptor.artist, title: descriptor.title, records: [] }];
