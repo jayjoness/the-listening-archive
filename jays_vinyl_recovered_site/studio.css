@@ -3754,3 +3754,49 @@ body.modal-open .now-spinning-bar { display:none; }
   .shelf-category .shelf-record:not(.petal-v6) { flex-basis:185px!important; width:185px!important; }
   .shelf-category .petal-v6 { flex-basis:220px!important; width:220px!important; height:240px!important; }
 }
+
+
+/* V3 spacing correction: reserve the full open-disc footprint for every sleeve.
+   One shelf slot includes a record PLUS its pull-out travel, so neighbours never overlap. */
+.shelf-category .shelf-rail {
+  gap:clamp(100px,12vw,165px)!important;
+  padding-left:58px!important;
+  padding-right:150px!important;
+  padding-top:76px!important;
+  min-height:390px!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+}
+.shelf-category .shelf-record:not(.petal-v6) {
+  flex:0 0 clamp(200px,21vw,240px)!important;
+  width:clamp(200px,21vw,240px)!important;
+}
+.shelf-category .petal-v6 {
+  flex:0 0 clamp(230px,24vw,270px)!important;
+  width:clamp(230px,24vw,270px)!important;
+  min-width:230px!important;
+  height:clamp(250px,26vw,290px)!important;
+}
+.shelf-category .petal-v6-actions {
+  width:max-content!important;
+  max-width:310px!important;
+  bottom:calc(100% + 12px)!important;
+  flex-wrap:nowrap!important;
+}
+.shelf-category .petal-v6-action,
+.shelf-category .petal-v6-details { white-space:nowrap!important; }
+.shelf-category .shelf-record:not(.petal-v6) .shelf-details-control {
+  bottom:calc(100% + 17px)!important;
+}
+@media(max-width:650px) {
+  .shelf-category .shelf-rail {
+    gap:115px!important;
+    padding-left:34px!important;
+    padding-right:125px!important;
+    padding-top:82px!important;
+    min-height:350px!important;
+  }
+  .shelf-category .shelf-record:not(.petal-v6) { flex-basis:190px!important; width:190px!important; }
+  .shelf-category .petal-v6 { flex-basis:230px!important; width:230px!important; height:250px!important; }
+  .shelf-category .petal-v6-actions { max-width:280px!important; }
+}
