@@ -3800,3 +3800,11 @@ body.modal-open .now-spinning-bar { display:none; }
   .shelf-category .petal-v6 { flex-basis:230px!important; width:230px!important; height:250px!important; }
   .shelf-category .petal-v6-actions { max-width:280px!important; }
 }
+
+/* Petal sleeve hover: keep the entire extracted disc visible while pointer returns to cover. */
+@media (hover:hover) and (pointer:fine) {
+  .shelf-category .shelf-record--has-disc:not(.petal-v6):hover,
+  .shelf-category .shelf-record--has-disc:not(.petal-v6):focus-visible { z-index:9!important; }
+  .shelf-category .shelf-record--has-disc:not(.petal-v6):hover .shelf-disc-photo,
+  .shelf-category .shelf-record--has-disc:not(.petal-v6):focus-visible .shelf-disc-photo { transform:translateX(89%)!important; }
+}
