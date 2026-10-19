@@ -82,6 +82,7 @@
         description: clean(record.querySelector(".description")?.textContent),
         image: visualImage?.src || imageLink?.href || backgroundURL(tile),
         imageSource: imageLink?.href || "",
+        referenceImage: imageLink?.href || backgroundURL(tile) || "",
         source: sourceLink?.href || "",
         facts
       };
@@ -3464,7 +3465,7 @@
   function imageMarkup(record, type) {
     const imageClass = type === "modal" ? "modal-image" : "card-image";
     if (!record.image) return "";
-    const alternate = record.imageSource && record.imageSource !== record.image ? record.imageSource : "";
+    const alternate = [record.imageSource, record.referenceImage].find((url) => url && url !== record.image) || "";
     return `<img class="${imageClass}" src="${escapeAttr(record.image)}" alt="${escapeAttr(`${record.title} — ${record.edition}`)}" ${alternate ? `data-artwork-alternate="${escapeAttr(alternate)}"` : ""} ${type === "card" ? 'loading="lazy"' : ""}>`;
   }
 
