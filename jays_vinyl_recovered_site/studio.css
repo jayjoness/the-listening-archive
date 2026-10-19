@@ -3503,3 +3503,20 @@ body.modal-open .now-spinning-bar { display:none; }
   border-radius:50%;
 }
 .modal-listening-disc .pressing-disc-unverified { opacity:.12; }
+
+/* Verified photograph shelf: never slide a synthetic disc from a product photo. */
+.shelf-rail { display:flex; gap:clamp(22px,3.8vw,48px)!important; overflow-x:auto; overflow-y:visible; scroll-snap-type:x proximity; scroll-padding:24px; padding:36px clamp(20px,3vw,48px) 44px!important; }
+.shelf-record { flex:0 0 clamp(178px,19vw,240px)!important; width:clamp(178px,19vw,240px)!important; margin-right:0!important; scroll-snap-align:start; }
+.shelf-record .shelf-object { position:relative; display:block; isolation:isolate; aspect-ratio:1; }
+.shelf-record .shelf-sleeve { position:absolute; inset:0; z-index:2; overflow:hidden; }
+.shelf-record .shelf-sleeve img { object-fit:contain; }
+.shelf-record .shelf-disc-photo { position:absolute; width:84%; aspect-ratio:1; right:8%; top:8%; z-index:1; transform:translateX(0); transition:transform .55s cubic-bezier(.2,.75,.2,1); pointer-events:none; }
+.shelf-record .shelf-disc-photo img { width:100%; height:100%; object-fit:contain; }
+.shelf-record--has-disc:hover .shelf-disc-photo,.shelf-record--has-disc:focus-visible .shelf-disc-photo { transform:translateX(48%); }
+.shelf-record--has-disc:hover,.shelf-record--has-disc:focus-visible { z-index:4; }
+@media(max-width:650px) {
+ .shelf-rail { gap:24px!important; padding:25px 24px 38px!important; }
+ .shelf-record { flex:0 0 185px!important; width:185px!important; }
+ .shelf-record--has-disc:active .shelf-disc-photo { transform:translateX(40%); }
+}
+@media(prefers-reduced-motion:reduce) { .shelf-record .shelf-disc-photo { transition:none; } }
