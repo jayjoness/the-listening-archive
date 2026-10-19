@@ -3844,3 +3844,40 @@ body.modal-open .now-spinning-bar { display:none; }
     transform:translateX(89%)!important;
   }
 }
+
+/* The photographed vinyl is now a sibling of the sleeve, not its child.
+   Keep its complete circular image in the card's unclipped paint layer. */
+.shelf-category .shelf-record--has-disc:not(.petal-v6) {
+  position:relative!important;
+  overflow:visible!important;
+  isolation:isolate;
+}
+.shelf-category .shelf-record--has-disc:not(.petal-v6) > .shelf-disc-photo {
+  position:absolute!important;
+  width:95%!important;
+  height:95%!important;
+  aspect-ratio:1!important;
+  left:2.5%!important;
+  right:auto!important;
+  top:2.5%!important;
+  z-index:1!important;
+  overflow:visible!important;
+  clip-path:none!important;
+  pointer-events:auto!important;
+}
+.shelf-category .shelf-record--has-disc:not(.petal-v6) > .shelf-object {
+  position:relative!important;
+  z-index:2!important;
+  pointer-events:none;
+}
+.shelf-category .shelf-record--has-disc:not(.petal-v6) > .shelf-object > .shelf-sleeve {
+  pointer-events:auto;
+}
+.shelf-category .shelf-record--has-disc:not(.petal-v6).is-pulled > .shelf-disc-photo {
+  transform:translateX(70%)!important;
+}
+@media(hover:hover) and (pointer:fine) {
+  .shelf-category .shelf-record--has-disc:not(.petal-v6):not(.is-pulled):hover > .shelf-disc-photo {
+    transform:translateX(45%)!important;
+  }
+}
