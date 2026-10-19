@@ -24,7 +24,7 @@
 
   const stylesheet = document.createElement("link");
   stylesheet.rel = "stylesheet";
-  stylesheet.href = "studio.css";
+  stylesheet.href = "studio.css?v=petal-shelf-layout-20261019b";
   document.head.appendChild(stylesheet);
 
   const clean = (value) => (value || "").replace(/\s+/g, " ").trim();
@@ -3397,7 +3397,7 @@
   function collectionModeContent(groups, visibleRecords) {
     if (state.collectionMode === "gallery") return "";
     if (state.collectionMode === "shelf") return groups.map((group) => `
-      <section class="archive-category shelf-category"><header class="category-head"><div><h2 class="category-title">${escapeHTML(group.name)}</h2><p class="shelf-hint">Tap a sleeve to pull out the record · tap the exposed disc to spin</p></div><span>${group.records.length} ${group.records.length === 1 ? "record" : "records"}</span></header>
+      <section class="archive-category shelf-category"><header class="category-head"><div><h2 class="category-title">${escapeHTML(group.name)}</h2><p class="shelf-hint">Tap a sleeve to pull out the record · tap the exposed disc to spin · Shelf layout V2</p></div><span>${group.records.length} ${group.records.length === 1 ? "record" : "records"}</span></header>
         <div class="shelf-rail" role="list" aria-label="${escapeAttr(group.name)} record shelf">${group.records.map((record) => record === badWorldPetal ? petalInteractiveMarkup(record) : `<button class="shelf-record${record.rare || record.extremelyRare ? " shelf-record--rare" : ""}${(record.discImage || /^assets\/tour-.*-white-background-2026\.jpeg$/.test(record.image)) ? " shelf-record--has-disc" : ""}" type="button" data-record-id="${escapeAttr(record.id)}" aria-label="Open ${escapeAttr(displayTitle(record))} by ${escapeAttr(record.artist)}"><span class="shelf-details-control" aria-hidden="true">See details</span><span class="shelf-object">${record.discImage ? `<span class="shelf-disc-photo">${discMarkup(record, "pressing-disc shelf-disc-verified")}</span>` : /^assets\/tour-.*-white-background-2026\.jpeg$/.test(record.image) ? `<span class="shelf-disc-photo shelf-disc-cropped"><img src="${escapeAttr(record.image)}" alt="" loading="lazy"></span>` : ""}<span class="shelf-sleeve">${(record.sleeveImage || record.image) ? `<img src="${escapeAttr(record.sleeveImage || record.image)}" alt="" loading="lazy">` : ""}</span></span></button>`).join("")}</div>
       </section>`).join("");
     if (state.collectionMode === "stories") {
