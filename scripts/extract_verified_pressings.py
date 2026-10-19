@@ -36,7 +36,7 @@ def extract(path):
         w,h = src.size
         if w < 420 or h < 200: return None
         # Avoid mixed/stacked shots; only landscape side-by-side photography.
-        if not 1.45 <= w/h <= 3.6: return None
+        if not .95 <= w/h <= 3.6: return None
         gap = int(w * .025)
         left = src.crop((0,0,w//2-gap,h))
         right = src.crop((w//2+gap,0,w,h))
@@ -55,7 +55,7 @@ def extract(path):
         # Check that all four outer corners of disc's bbox are near white.
         for x,y in ((2,2),(dw-3,2),(2,dh-3),(dw-3,dh-3)):
             if max(disc.getpixel((x,y))[:3]) < 220: return None
-        # Preserve original pixels within a circle; outside becomes transparent.
+        # A photographed circular record must reach the midpoints of its bounds.\n        # This helps reject a second square jacket or an unrelated promo tile.\n        for x,y in ((dw//2,2),(dw//2,dh-3),(2,dh//2),(dw-3,dh//2)):\n            rgb=disc.getpixel((x,y))[:3]\n            if min(rgb) > 247: return None\n        # Preserve original pixels within a circle; outside becomes transparent.
         from PIL import ImageDraw
         alpha=Image.new("L",(dw,dh),0)
         draw=ImageDraw.Draw(alpha)
