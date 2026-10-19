@@ -1,0 +1,14 @@
+JAY’S VINYL COLLECTION — BROWSER RECOVERY
+
+Recovered from the user’s Chrome Network HAR export on 19 October 2026.
+
+Start with index.html, app.js, studio.css, and assets/.
+The captured_external_assets/ folder contains third-party image responses saved for reference. Their original URLs are still used in the site, so those images may require an internet connection.
+
+This is a reconstruction of the public browser-delivered frontend, NOT an export of the original editable ChatGPT Sites project. Server-only logic and resources not loaded during the capture are not included. Audio files were not captured. Some artwork may be referenced remotely.
+
+IMPORTANT: app.js may contain client-side PIN logic and data. Do not publish the archive or source repository publicly without reviewing it and changing any sensitive PINs. Client-side PIN locks are visual privacy, not secure authentication.
+
+The HAR's request headers/cookies were deliberately not included in this ZIP.
+
+For Replit: import the files as a static web project, serve index.html from the root, and test the collection, player, images and navigation.

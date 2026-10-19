@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">Jay’s Vinyl Collection</title>
+  <desc id="desc">A black vinyl record with a bronze centre label and stylus on a warm cream background.</desc>
+  <defs>
+    <radialGradient id="disc" cx="38%" cy="30%" r="72%">
+      <stop offset="0" stop-color="#343437"/>
+      <stop offset="0.48" stop-color="#17181b"/>
+      <stop offset="1" stop-color="#08090b"/>
+    </radialGradient>
+    <radialGradient id="label" cx="38%" cy="32%" r="70%">
+      <stop offset="0" stop-color="#e1c7aa"/>
+      <stop offset="1" stop-color="#9a6a43"/>
+    </radialGradient>
+    <filter id="shadow" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#2d2118" flood-opacity="0.24"/>
+    </filter>
+  </defs>
+  <rect width="1024" height="1024" rx="210" fill="#f4f3ef"/>
+  <g filter="url(#shadow)">
+    <circle cx="500" cy="512" r="346" fill="url(#disc)" stroke="#765236" stroke-width="12"/>
+    <g fill="none" stroke="#58585b" stroke-width="5" opacity="0.58">
+      <circle cx="500" cy="512" r="303"/>
+      <circle cx="500" cy="512" r="268"/>
+      <circle cx="500" cy="512" r="233"/>
+      <circle cx="500" cy="512" r="198"/>
+    </g>
+    <path d="M296 308c58-62 130-94 216-96" fill="none" stroke="#ffffff" stroke-width="19" stroke-linecap="round" opacity="0.16"/>
+    <circle cx="500" cy="512" r="116" fill="url(#label)" stroke="#f2eae1" stroke-width="8"/>
+    <circle cx="500" cy="512" r="19" fill="#f4f3ef" stroke="#503620" stroke-width="8"/>
+  </g>
+  <g fill="none" stroke="#765236" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M780 238c51 66 74 141 66 227-7 72-32 138-75 198" stroke-width="28"/>
+    <path d="M772 236l54-54" stroke-width="34"/>
+  </g>
+  <g transform="translate(733 642) rotate(31)">
+    <rect x="0" y="0" width="106" height="58" rx="16" fill="#503620"/>
+    <rect x="74" y="12" width="48" height="34" rx="8" fill="#cbb59f"/>
+    <path d="M119 29h50" stroke="#111318" stroke-width="10" stroke-linecap="round"/>
+  </g>
+</svg>
