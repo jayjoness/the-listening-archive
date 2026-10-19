@@ -3712,6 +3712,13 @@
         }
       });
     });
+    sectionsNode.querySelectorAll(".shelf-record:not(.shelf-record--has-disc):not(.petal-v6)").forEach((card) => {
+      card.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        card.classList.toggle("is-pulled");
+      });
+    });
     sectionsNode.querySelectorAll(".vinyl-card").forEach((card) => {
       card.addEventListener("click", () => openRecord(card.dataset.recordId));
     });
