@@ -2546,7 +2546,12 @@
   function discDescriptor(record) {
     const text = `${displayTitle(record)} ${record.edition}`.toLowerCase();
     let base = "#171412", accent = "#aa7c58", accent2 = "#e7d6c8", pattern = "solid";
-    if (/coke bottle/.test(text)) [base, accent, accent2, pattern] = ["#bddcc7", "#559976", "#eaf6ee", "clear"];
+    if (/manchild.*(clear|transparent)|(clear|transparent).*manchild/.test(text)) [base, accent, accent2, pattern] = ["#f0f3f0", "#c5d4d0", "#ffffff", "clear"];
+    else if (/pepper yellow/.test(text)) [base, accent, accent2, pattern] = ["#eddb6e", "#f4ecad", "#c8a638", "solid"];
+    else if (/black (7-inch|vinyl|lp)|standard black/.test(text)) [base, accent, accent2, pattern] = ["#1a181b", "#3b333a", "#686269", "solid"];
+    else if (/pink & orange (swirl|burst)/.test(text)) [base, accent, accent2, pattern] = ["#ef9bb2", "#ef7e51", "#ffd6a8", "burst"];
+    else if (/glow.in.the.dark/.test(text)) [base, accent, accent2, pattern] = ["#dce5c7", "#9fb879", "#f3f8df", "glow"];
+    else if (/coke bottle/.test(text)) [base, accent, accent2, pattern] = ["#bddcc7", "#559976", "#eaf6ee", "clear"];
     else if (/purple in clear/.test(text)) [base, accent, accent2, pattern] = ["#e4dcf0", "#8d48b5", "#c878d8", "clear"];
     else if (/pink & cream/.test(text)) [base, accent, accent2, pattern] = ["#efb9cc", "#f5e6cf", "#d677a0", "marble"];
     else if (/baby pink black wave/.test(text)) [base, accent, accent2, pattern] = ["#e7aabd", "#242024", "#f3d5df", "wave"];
