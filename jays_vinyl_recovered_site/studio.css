@@ -3833,3 +3833,14 @@ body.modal-open .now-spinning-bar { display:none; }
 .shelf-category .shelf-record--has-disc:not(.petal-v6).is-pulled {
   z-index:12!important;
 }
+
+/* Two-stage desktop interaction: sleeve hover peeks; exposed-disc hover fully ejects. */
+@media (hover:hover) and (pointer:fine) {
+  .shelf-category .shelf-record--has-disc:not(.petal-v6):not(.is-pulled):hover .shelf-disc-photo,
+  .shelf-category .shelf-record--has-disc:not(.petal-v6):not(.is-pulled):focus-visible .shelf-disc-photo {
+    transform:translateX(45%)!important;
+  }
+  .shelf-category .shelf-record--has-disc:not(.petal-v6).is-pulled .shelf-disc-photo {
+    transform:translateX(89%)!important;
+  }
+}
