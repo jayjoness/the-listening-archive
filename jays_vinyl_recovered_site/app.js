@@ -947,8 +947,8 @@
       wishlist: true,
       extremelyRare: true,
       description: "Limited seven-inch single pressing of 7 rings on clear vinyl, issued in 2019 with the original pink door artwork.",
-      image: "https://i.ebayimg.com/images/g/0c4AAOSwP2VffhSB/s-l1200.jpg",
-      imageSource: "https://i.ebayimg.com/images/g/0c4AAOSwP2VffhSB/s-l1200.jpg",
+      image: "https://pbs.twimg.com/media/FxXnTchWYAE10ok.jpg",
+      imageSource: "https://pbs.twimg.com/media/FxXnTchWYAE10ok.jpg",
       source: "https://www.discogs.com/release/13449313-Ariana-Grande-7-Rings",
       category: "Wishlist",
       facts: [
