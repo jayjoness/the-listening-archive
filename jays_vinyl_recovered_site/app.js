@@ -3365,8 +3365,8 @@
   function collectionModeContent(groups, visibleRecords) {
     if (state.collectionMode === "gallery") return "";
     if (state.collectionMode === "shelf") return groups.map((group) => `
-      <section class="archive-category shelf-category"><header class="category-head"><div><h2 class="category-title">${escapeHTML(group.name)}</h2><p class="shelf-hint">Tap a sleeve to inspect your pressing</p></div><span>${group.records.length} ${group.records.length === 1 ? "record" : "records"}</span></header>
-        <div class="shelf-rail" role="list" aria-label="${escapeAttr(group.name)} record shelf">${group.records.map((record) => `<button class="shelf-record${record.rare || record.extremelyRare ? " shelf-record--rare" : ""}${record.discImage ? " shelf-record--has-disc" : ""}" type="button" data-record-id="${escapeAttr(record.id)}" aria-label="Open ${escapeAttr(displayTitle(record))} by ${escapeAttr(record.artist)}"><span class="shelf-object">${record.discImage ? `<span class="shelf-disc-photo">${discMarkup(record, "pressing-disc shelf-disc-verified")}</span>` : ""}<span class="shelf-sleeve">${(record.sleeveImage || record.image) ? `<img src="${escapeAttr(record.sleeveImage || record.image)}" alt="" loading="lazy">` : ""}</span></span><span class="shelf-caption"><b>${escapeHTML(displayTitle(record))}</b><small>${escapeHTML(record.edition)}</small></span></button>`).join("")}</div>
+      <section class="archive-category shelf-category"><header class="category-head"><div><h2 class="category-title">${escapeHTML(group.name)}</h2><p class="shelf-hint">Tap to pull out a disc · tap again for details</p></div><span>${group.records.length} ${group.records.length === 1 ? "record" : "records"}</span></header>
+        <div class="shelf-rail" role="list" aria-label="${escapeAttr(group.name)} record shelf">${group.records.map((record) => `<button class="shelf-record${record.rare || record.extremelyRare ? " shelf-record--rare" : ""}${(record.discImage || /^assets\/tour-.*-white-background-2026\.jpeg$/.test(record.image)) ? " shelf-record--has-disc" : ""}" type="button" data-record-id="${escapeAttr(record.id)}" aria-label="Open ${escapeAttr(displayTitle(record))} by ${escapeAttr(record.artist)}"><span class="shelf-object">${record.discImage ? `<span class="shelf-disc-photo">${discMarkup(record, "pressing-disc shelf-disc-verified")}</span>` : /^assets\/tour-.*-white-background-2026\.jpeg$/.test(record.image) ? `<span class="shelf-disc-photo shelf-disc-cropped"><img src="${escapeAttr(record.image)}" alt="" loading="lazy"></span>` : ""}<span class="shelf-sleeve">${(record.sleeveImage || record.image) ? `<img src="${escapeAttr(record.sleeveImage || record.image)}" alt="" loading="lazy">` : ""}</span></span><span class="shelf-caption"><b>${escapeHTML(displayTitle(record))}</b><small>${escapeHTML(record.edition)}</small></span></button>`).join("")}</div>
       </section>`).join("");
     if (state.collectionMode === "stories") {
       const tourRecords = allRecords.filter((record) => /Eternal Sunshine Tour exclusive/i.test(record.edition));
@@ -3639,6 +3639,18 @@
     }).join("");
     sectionsNode.innerHTML = collectionIntro + wishlistIntro + setupIntro + collectionMode + listings;
 
+    sectionsNode.querySelectorAll(".shelf-record--has-disc").forEach((card) => {
+      card.addEventListener("click", (event) => {
+        if (!card.classList.contains("is-pulled")) {
+          event.preventDefault();
+          card.classList.add("is-pulled");
+          card.setAttribute("aria-pressed", "true");
+          card.setAttribute("aria-label", "Open record details");
+          return;
+        }
+        openRecord(card.dataset.recordId);
+      });
+    });
     sectionsNode.querySelectorAll(".vinyl-card").forEach((card) => {
       card.addEventListener("click", () => openRecord(card.dataset.recordId));
     });
