@@ -3467,3 +3467,10 @@ body.modal-open .now-spinning-bar { display:none; }
 .pressing-inspector-toggle { display:block; margin:12px auto 0; border:1px solid #a98c71; border-radius:999px; padding:9px 18px; color:#3a2b20; background:transparent; cursor:pointer; font-weight:700; font-size:.75rem; }
 .pressing-inspector-toggle:hover { background:#e9d9c7; }
 @media(max-width:500px){.pressing-inspector { padding:16px 12px; }.pressing-inspector-stage { height:240px; }.pressing-inspector-stage.is-disc-out .pressing-inspector-disc { transform:translate(48%,-50%); }}
+
+.listening-milestones { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin:20px 0; }
+.listening-milestones > div { display:flex; flex-direction:column; gap:9px; min-height:140px; padding:20px; border:1px solid rgba(137,103,76,.26); border-radius:13px; background:rgba(255,255,255,.48); }
+.listening-milestones small { font-size:.66rem; letter-spacing:.08em; text-transform:uppercase; color:#a06d4e; font-weight:750; }
+.listening-milestones strong { font-size:1rem; color:#392b24; line-height:1.25; }
+.listening-milestones span { font-size:.75rem; line-height:1.5; color:#806e61; }
+@media(max-width:700px){.listening-milestones { grid-template-columns:1fr; }.listening-milestones > div { min-height:0; }}
