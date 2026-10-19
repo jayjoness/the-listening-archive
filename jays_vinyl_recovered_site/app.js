@@ -926,8 +926,8 @@
       wishlist: true,
       extremelyRare: true,
       description: "Limited 2019 seven-inch single edition of Boyfriend by Ariana Grande and Social House, presented in the original photographic picture sleeve.",
-      image: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/46/06/a2/4606a277-f7d0-5e34-e8e7-e81d2f40b56a/19UMGIM68896.rgb.jpg/1200x630wp-60.jpg",
-      imageSource: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/46/06/a2/4606a277-f7d0-5e34-e8e7-e81d2f40b56a/19UMGIM68896.rgb.jpg/1200x630wp-60.jpg",
+      image: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/46/06/a2/4606a277-f7d0-5e34-e8e7-e81d2f40b56a/19UMGIM68896.rgb.jpg/1200x1200bb.jpg",
+      imageSource: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/46/06/a2/4606a277-f7d0-5e34-e8e7-e81d2f40b56a/19UMGIM68896.rgb.jpg/1200x1200bb.jpg",
       source: "https://www.discogs.com/release/14556437-Ariana-Grande-Social-House-Boyfriend",
       category: "Wishlist",
       facts: [
