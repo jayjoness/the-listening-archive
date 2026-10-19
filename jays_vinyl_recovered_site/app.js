@@ -3572,13 +3572,14 @@
     const setupIntro = state.view === "setup" ? `
       <section class="setup-studio" aria-label="Dream listening room plan">
         <div class="setup-studio-head">
-          <div><span class="setup-plan-kicker">The Listening Room · build planner</span><h2>A system built around the records.</h2><p class="setup-subtitle">See what you have now, shape the dream system, and keep your plan moving.</p></div>
+          <div><span class="setup-plan-kicker">The Listening Room · listening system</span><h2>Build the sound. Keep the feeling.</h2><p class="setup-subtitle">Your real system, the equipment you want, and the next useful upgrade. No imaginary purchases.</p></div>
           <div class="setup-budget"><small>${state.setupMode === "current" ? "Planned system" : "Dream system total"}</small><strong>${escapeHTML(money(setupTotal))}</strong><span>${completedSetupCount} of ${setupItems.length} marked bought · ${escapeHTML(money(remainingSetupCost))} still planned on this device</span></div>
         </div>
         <div class="setup-mode-switch" role="tablist" aria-label="Setup view"><button type="button" role="tab" data-setup-mode="current" aria-selected="${state.setupMode === "current"}">Current setup</button><button type="button" role="tab" data-setup-mode="dream" aria-selected="${state.setupMode === "dream"}">Dream setup</button></div>
         ${state.setupMode === "current" ? currentSetupMarkup : ""}
         ${state.setupMode === "dream" ? `
         <div class="planner-progress-note">Plan progress is stored in this browser only. Marking a piece bought here does not add it to the owned collection automatically.</div>
+        <div class="listening-milestones"><div><small>01 · Your current sound</small><strong>Crosley suitcase</strong><span>Keep as the reference point until your upgrade is ready.</span></div><div><small>02 · The next upgrade</small><strong>${escapeHTML(setupItems.find((item) => !setupProgress[item.id])?.title || "All planned items marked bought")}</strong><span>${escapeHTML(money(remainingSetupCost))} remaining in your equipment plan.</span></div><div><small>03 · Your destination</small><strong>Proper stereo listening</strong><span>Turntable, separate speakers and a cabinet built around the records.</span></div></div>
         <div class="setup-plan-grid">${setupItems.map((item, index) => `<article class="setup-plan-item${setupProgress[item.id] ? " is-complete" : ""}"><span>${String(index + 1).padStart(2, "0")}</span><div><small>${setupProgress[item.id] ? "Marked bought · planner only" : "Planned component"}</small><strong>${escapeHTML(item.title)}</strong><em>${escapeHTML(money(item.price))}</em></div><button type="button" data-setup-toggle="${escapeAttr(item.id)}" aria-pressed="${Boolean(setupProgress[item.id] || false)}">${setupProgress[item.id] ? "Bought ✓" : "Mark bought"}</button></article>`).join("")}</div>
         ` : ""}
         <div class="signal-path" aria-label="Recommended signal path">
@@ -3593,12 +3594,7 @@
           <p><strong>Placement:</strong> deck on the Jaxon cabinet, speakers on the desk. Separate surfaces keep bass vibration away from the stylus.</p>
           <p><strong>Upgrade path:</strong> buy the cabinet and turntable first, add the YU4 pair, then swap to the green elliptical stylus once the system is settled.</p>
         </div>
-        <div class="setup-checks" aria-label="Setup compatibility checks">
-          <span><i>✓</i> Turntable fits cabinet top</span>
-          <span><i>✓</i> Built-in phono preamp</span>
-          <span><i>✓</i> Direct wired speaker path</span>
-          <span><i>✓</i> Stylus upgrade is compatible</span>
-        </div>
+        <div class="setup-notes"><p><strong>Before buying:</strong> confirm cabinet dimensions, speaker placement, phono/line settings and stylus compatibility against the exact model manuals. This plan is a guide, not a guarantee of compatibility.</p></div>
         <div class="setup-roadmap" aria-label="Recommended buying order">
           <span>Buy order</span>
           <ol>
