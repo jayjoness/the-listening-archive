@@ -5,10 +5,11 @@ from pathlib import Path
 from urllib.request import Request, urlopen
 from urllib.parse import urljoin, urlparse, urlunparse
 from html.parser import HTMLParser
-import re, sys, shutil, io, json
+import re, sys, shutil, io, json, time
 from PIL import Image
 
 root = Path("jays_vinyl_recovered_site")
+recovery_deadline = time.monotonic() + 35  # Never hold up Pages deployment for shop sites
 out = Path("_site")
 if out.exists():
     shutil.rmtree(out)
@@ -27,7 +28,7 @@ class Metadata(HTMLParser):
 
 def get(url, maxbytes=9000000):
     req = Request(url, headers={"User-Agent":"Mozilla/5.0 (compatible; VinylArchiveArtwork/1.0)"})
-    with urlopen(req, timeout=12) as response:
+    with urlopen(req, timeout=3) as response:
         data = response.read(maxbytes + 1)
         if len(data) > maxbytes: raise ValueError("image too large")
         return data, response.headers.get("Content-Type", "")
@@ -44,6 +45,9 @@ allowed = ("shop.arianagrande.com","shopuk.arianagrande.com","shopus.officialsie
            "www.recordstoreday.co.uk","recordstoreday.com","www.djkit.com")
 count = 0
 for asset, page in pairs.items():
+    if time.monotonic() >= recovery_deadline:
+        print("Artwork recovery time budget reached; publishing existing images now.")
+        break
     target = out / asset
     if target.exists(): continue
     if urlparse(page).hostname not in allowed: continue
