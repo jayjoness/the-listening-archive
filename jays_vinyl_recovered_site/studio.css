@@ -3808,3 +3808,7 @@ body.modal-open .now-spinning-bar { display:none; }
   .shelf-category .shelf-record--has-disc:not(.petal-v6):hover .shelf-disc-photo,
   .shelf-category .shelf-record--has-disc:not(.petal-v6):focus-visible .shelf-disc-photo { transform:translateX(89%)!important; }
 }
+
+/* Make the complete exposed disc clickable, even outside its sleeve button. */
+.shelf-category .shelf-record--has-disc:not(.petal-v6) .shelf-disc-photo { pointer-events:auto!important; cursor:pointer; }
+.shelf-category .shelf-record--has-disc:not(.petal-v6) .shelf-disc-photo > * { pointer-events:none; }
