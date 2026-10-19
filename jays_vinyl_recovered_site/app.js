@@ -534,7 +534,7 @@
       description: "Official-store 7-inch edition of Petal, pressed on Dandelion White vinyl. The paid order total, including delivery, has been divided across the two Petal 7-inch colour variants in the same order.",
       image: "assets/petal-dandelion-white.webp",
       imageSource: "assets/petal-dandelion-white.webp",
-      source: "https://shopuk.arianagrande.com/",
+      source: "https://shopuk.arianagrande.com/products/petal-dandelion-white-7",
       facts: [
         { label: "Edition", value: "Official-store 7-inch single" },
         { label: "Record", value: "7-inch · Dandelion White" },
@@ -550,7 +550,7 @@
       description: "Official-store 7-inch edition of Petal, pressed on Pepper Yellow vinyl. The paid order total, including delivery, has been divided across the two Petal 7-inch colour variants in the same order.",
       image: "assets/petal-pepper-yellow.webp",
       imageSource: "assets/petal-pepper-yellow.webp",
-      source: "https://shopuk.arianagrande.com/",
+      source: "https://shopuk.arianagrande.com/products/petal-pepper-yellow-7",
       facts: [
         { label: "Edition", value: "Official-store 7-inch single" },
         { label: "Record", value: "7-inch · Pepper Yellow" },
