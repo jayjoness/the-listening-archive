@@ -2516,25 +2516,31 @@
   const collectionAndWatches = allRecords.concat(wishlistRecords);
   function familyDescriptor(record) {
     const name = displayTitle(record);
-    const text = name.toLowerCase();
-    if (record.title === "Wicked: The Soundtrack") return { artist: "Wicked", title: "Wicked: The Soundtrack" };
-    if (record.title === "Wicked: The Score") return { artist: "Wicked", title: "Wicked: The Score" };
-    if (record.title === "Wicked: For Good — The Soundtrack") return { artist: "Wicked", title: "Wicked: For Good" };
-    if (record.title === "Wicked: One Wonderful Night") return { artist: "Wicked", title: "Wicked: One Wonderful Night" };
-    if (record.artist === "Ariana Grande") {
-      if (/positions|34\+35/.test(text)) return { artist: record.artist, title: "Positions" };
-      if (/thank u, next|7 rings|break up with your girlfriend/.test(text)) return { artist: record.artist, title: "thank u, next" };
-      if (/my everything|problem|break free|love me harder|one last time/.test(text)) return { artist: record.artist, title: "My Everything" };
-      if (/sweetener|no tears left to cry|god is a woman|breathin/.test(text)) return { artist: record.artist, title: "Sweetener" };
-      if (/dangerous woman|into you|side to side/.test(text)) return { artist: record.artist, title: "Dangerous Woman" };
-      if (/yours truly|honeymoon avenue|the way/.test(text)) return { artist: record.artist, title: "Yours Truly" };
-      if (/eternal sunshine|brighter days ahead|hampstead|yes, and\?|we can.t be friends|supernatural|the boy is mine|twilight zone/.test(text)) return { artist: record.artist, title: "Eternal Sunshine · Brighter Days Ahead" };
-      if (/christmas & chill|santa tell me/.test(text)) return { artist: record.artist, title: "Christmas & Chill" };
-      if (/petal|dandelion|hate that i made you love me/.test(text)) return { artist: record.artist, title: "Petal" };
-      if (/k bye for now/.test(text)) return { artist: record.artist, title: "Sweetener World Tour" };
+    const text = (name + " " + record.edition).toLowerCase();
+    const artist = record.artist;
+    if (artist === "Wicked" || /^wicked:/i.test(record.title)) return { artist: "Wicked", title: "The Wicked Collection" };
+    if (artist === "Olivia Dean") return { artist, title: "Olivia Dean · Complete Collection" };
+    if (artist === "Ariana Grande") {
+      if (/dandelion/.test(text) && !/petal/.test(record.title.toLowerCase())) return { artist, title: "Eternal Sunshine · Brighter Days Ahead" };
+      if (/positions|34\\+35/.test(text)) return { artist, title: "Positions" };
+      if (/thank u, next|7 rings|break up with your girlfriend/.test(text)) return { artist, title: "thank u, next" };
+      if (/my everything|problem|break free|love me harder|one last time/.test(text)) return { artist, title: "My Everything" };
+      if (/sweetener|no tears left to cry|god is a woman|breathin/.test(text)) return { artist, title: "Sweetener" };
+      if (/dangerous woman|into you|side to side/.test(text)) return { artist, title: "Dangerous Woman" };
+      if (/yours truly|honeymoon avenue|the way/.test(text)) return { artist, title: "Yours Truly" };
+      if (/eternal sunshine|brighter days ahead|hampstead|yes, and\\?|we can.t be friends|supernatural|the boy is mine|twilight zone/.test(text)) return { artist, title: "Eternal Sunshine · Brighter Days Ahead" };
+      if (/christmas & chill|santa tell me/.test(text)) return { artist, title: "Christmas & Chill" };
+      if (/petal|hate that i made you love me/.test(text)) return { artist, title: "Petal" };
+      if (/k bye for now/.test(text)) return { artist, title: "Sweetener World Tour" };
     }
-    if (record.artist === "Sienna Spiro" && /visitor/.test(text)) return { artist: record.artist, title: "The Visitor" };
-    return { artist: record.artist, title: name };
+    if (artist === "Sabrina Carpenter") {
+      if (/manchild|tears|house tour|man's best friend|mans best friend/.test(text)) return { artist, title: "Man's Best Friend" };
+      if (/espresso|please please please|taste|bed chem|short n. sweet/.test(text)) return { artist, title: "Short n' Sweet" };
+      if (/nonsense|feather|emails i can.t send/.test(text)) return { artist, title: "emails i can't send" };
+      if (/fruitcake|a nonsense christmas/.test(text)) return { artist, title: "fruitcake" };
+    }
+    if (artist === "Sienna Spiro" && /visitor/.test(text)) return { artist, title: "The Visitor" };
+    return { artist, title: name };
   }
 
   function discDescriptor(record) {
@@ -2567,7 +2573,7 @@
   }
 
   function discMarkup(record, className = "pressing-disc") {
-    if (record.image) return `<span class="${escapeAttr(className)} pressing-disc--actual" aria-hidden="true"><img src="${escapeAttr(record.image)}" alt=""></span>`;
+    // Render the physical pressing, never the square jacket artwork inside a disc.
     const disc = discDescriptor(record);
     return `<span class="${escapeAttr(className)} pressing-disc--${escapeAttr(disc.pattern)}" style="--disc-base:${escapeAttr(disc.base)};--disc-accent:${escapeAttr(disc.accent)};--disc-accent-2:${escapeAttr(disc.accent2)}" aria-hidden="true"><i>${escapeHTML(disc.label)}</i></span>`;
   }
