@@ -3,9 +3,10 @@
 Never overwrites supplied local artwork or substitutes a different product."""
 from pathlib import Path
 from urllib.request import Request, urlopen
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urljoin, urlparse, urlunparse
 from html.parser import HTMLParser
-import re, sys, shutil
+import re, sys, shutil, io, json
+from PIL import Image
 
 root = Path("jays_vinyl_recovered_site")
 out = Path("_site")
@@ -37,7 +38,7 @@ for match in pattern.finditer(app):
     asset, source = match.groups()
     if asset not in pairs: pairs[asset] = source
 
-allowed = ("shop.arianagrande.com","shopuk.arianagrande.com","store.sabrinacarpenter.com",
+allowed = ("shop.arianagrande.com","shopuk.arianagrande.com","shopus.officialsiennaspiro.com","shop.oliviadeano.com","store.sabrinacarpenter.com",
            "shopuk.sabrinacarpenter.com","shopuk.officialsiennaspiro.com",
            "store.skyenewman.com","store.warnermusic.com","www.banquetrecords.com",
            "www.recordstoreday.co.uk","recordstoreday.com","www.djkit.com")
@@ -47,20 +48,43 @@ for asset, page in pairs.items():
     if target.exists(): continue
     if urlparse(page).hostname not in allowed: continue
     try:
-        html, _ = get(page, 1200000)
-        metadata = Metadata()
-        metadata.feed(html.decode("utf-8", errors="replace"))
-        if not metadata.images: continue
-        image_url = urljoin(page, metadata.images[0])
+        # Use Shopify's exact product endpoint when available, then page metadata.
+        # Do not use store homepages, whose artwork is unrelated to a record.
+        parsed = urlparse(page)
+        if "/products/" not in parsed.path: continue
+        image_url = None
+        try:
+            clean = urlunparse((parsed.scheme, parsed.netloc, parsed.path, "", "", ""))
+            product, _ = get(clean + ".js", 3000000)
+            info = json.loads(product)
+            images = info.get("images") or []
+            if images:
+                first = images[0]
+                image_url = first.get("src") if isinstance(first, dict) else first
+        except Exception:
+            pass
+        if not image_url:
+            html, _ = get(page, 1200000)
+            metadata = Metadata()
+            metadata.feed(html.decode("utf-8", errors="replace"))
+            if metadata.images: image_url = metadata.images[0]
+        if not image_url: continue
+        image_url = urljoin(page, image_url)
         if urlparse(image_url).scheme != "https": continue
         img, ctype = get(image_url)
         if not ctype.startswith("image/"): continue
-        # The filename extension must match the bytes format for browsers.
-        if asset.lower().endswith(".png") and not img.startswith(b"\x89PNG"): continue
-        if asset.lower().endswith((".jpg",".jpeg")) and not img.startswith(b"\xff\xd8"): continue
-        if asset.lower().endswith(".webp") and not (img[:4] == b"RIFF" and img[8:12] == b"WEBP"): continue
-        target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_bytes(img)
+        # Convert downloaded artwork to the format expected by existing HTML.
+        with Image.open(io.BytesIO(img)) as original:
+            image = original.convert("RGBA" if original.mode in ("RGBA", "LA", "P") else "RGB")
+            target.parent.mkdir(parents=True, exist_ok=True)
+            buffer = io.BytesIO()
+            if asset.lower().endswith(".png"):
+                image.save(buffer, format="PNG", optimize=True)
+            elif asset.lower().endswith(".webp"):
+                image.save(buffer, format="WEBP", quality=90)
+            else:
+                image.convert("RGB").save(buffer, format="JPEG", quality=90)
+            target.write_bytes(buffer.getvalue())
         count += 1
         print("Recovered:", asset)
     except Exception as exc:
