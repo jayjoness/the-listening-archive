@@ -3598,3 +3598,159 @@ body.modal-open .now-spinning-bar { display:none; }
 .petal-v6 .shelf-caption { display:block!important; position:static!important; margin-top:3px; text-align:center; opacity:1!important; transform:none!important; pointer-events:none; }
 @media(max-width:600px) { .petal-v6 { min-width:200px; width:220px!important; } .petal-v6-hotspot { left:66%; width:28%; } }
 @media(prefers-reduced-motion:reduce) { .petal-v6-vinyl { transition-duration:.01ms; } .petal-v6-vinyl-art { animation-duration:10s!important; } }
+
+
+/* Shelf presentation revision: records sit on a visible brass-edged shelf. */
+.shelf-category .shelf-rail {
+  display:flex!important;
+  align-items:flex-end!important;
+  gap:clamp(34px,5vw,76px)!important;
+  padding:55px 42px 25px!important;
+  min-height:360px!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  scroll-padding-inline:35px;
+  isolation:isolate;
+  background:linear-gradient(180deg,#32271f 0%,#211914 88%,#1b1410 100%)!important;
+  border-radius:12px!important;
+}
+.shelf-category .shelf-rail::after {
+  display:block!important;
+  position:absolute!important;
+  left:0!important; right:0!important; bottom:0!important;
+  height:25px!important;
+  border-top:5px solid #c99a5a!important;
+  border-bottom:3px solid #2d1b0f!important;
+  background:linear-gradient(180deg,#c39a62 0%,#886039 22%,#57351d 58%,#2b1b11 100%)!important;
+  box-shadow:inset 0 2px 1px #f3d5a177,0 -4px 14px #0b090780,0 7px 12px #0007!important;
+  content:""!important;
+  z-index:5!important;
+  pointer-events:none!important;
+}
+.shelf-category .shelf-record:not(.petal-v6) {
+  flex:0 0 clamp(185px,20vw,238px)!important;
+  width:clamp(185px,20vw,238px)!important;
+  min-width:185px!important;
+  margin:0!important;
+  padding:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:flex-end!important;
+  align-self:flex-end!important;
+  position:relative!important;
+  transform:none!important;
+  overflow:visible!important;
+  background:transparent!important;
+  border:0!important;
+  z-index:2;
+}
+.shelf-category .shelf-record:not(.petal-v6):hover { z-index:4; }
+.shelf-category .shelf-record:not(.petal-v6) .shelf-object {
+  width:100%!important;
+  aspect-ratio:1!important;
+  display:block!important;
+  position:relative!important;
+  overflow:visible!important;
+  transform:translateX(0);
+  transition:transform .65s cubic-bezier(.16,.75,.18,1)!important;
+}
+.shelf-category .shelf-record:not(.petal-v6).is-pulled .shelf-object {
+  transform:translateX(-19%)!important;
+}
+.shelf-category .shelf-record:not(.petal-v6) .shelf-sleeve {
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  overflow:hidden!important;
+}
+.shelf-category .shelf-record:not(.petal-v6) .shelf-sleeve img {
+  width:100%!important;
+  height:100%!important;
+  max-width:100%!important;
+  object-fit:cover!important;
+  object-position:center!important;
+  transform:none!important;
+}
+.shelf-category .shelf-record:not(.petal-v6) .shelf-disc-photo {
+  width:95%!important;
+  height:95%!important;
+  top:2.5%!important;
+  left:2.5%!important;
+  right:auto!important;
+  z-index:0!important;
+}
+.shelf-category .shelf-record:not(.petal-v6).is-pulled .shelf-disc-photo {
+  transform:translateX(89%)!important;
+}
+.shelf-category .shelf-record:not(.petal-v6) .shelf-caption,
+.shelf-category .petal-v6 .shelf-caption { display:none!important; }
+.shelf-category .shelf-record:not(.petal-v6) .shelf-details-control {
+  position:absolute!important;
+  display:block!important;
+  bottom:calc(100% + 11px)!important;
+  left:50%!important;
+  transform:translateX(-50%)!important;
+  padding:6px 13px!important;
+  background:#34271e!important;
+  border:1px solid #c29a68!important;
+  border-radius:20px!important;
+  font:600 11px/1.2 inherit!important;
+  white-space:nowrap!important;
+  color:#f5e2c8!important;
+  z-index:10!important;
+  cursor:pointer!important;
+  pointer-events:auto!important;
+}
+.shelf-category .petal-v6 {
+  flex:0 0 clamp(215px,23vw,260px)!important;
+  width:clamp(215px,23vw,260px)!important;
+  min-width:215px!important;
+  height:clamp(235px,25vw,280px)!important;
+  margin:0!important;
+  padding:0!important;
+  justify-content:flex-end!important;
+  align-self:flex-end!important;
+  position:relative!important;
+  z-index:3!important;
+}
+.shelf-category .petal-v6-stage {
+  width:100%!important;
+  height:auto!important;
+  aspect-ratio:1!important;
+  flex:none!important;
+  margin:0!important;
+  overflow:visible!important;
+}
+.shelf-category .petal-v6-art {
+  width:86%!important;
+  transform:translateX(0)!important;
+  transition:transform .75s cubic-bezier(.16,.75,.18,1)!important;
+}
+.shelf-category .petal-v6-state[id^="petal-out-"]:checked ~ .petal-v6-stage .petal-v6-art,
+.shelf-category .petal-v6-state[id^="petal-playing-"]:checked ~ .petal-v6-stage .petal-v6-art {
+  transform:translateX(-21%)!important;
+}
+.shelf-category .petal-v6-state[id^="petal-out-"]:checked ~ .petal-v6-stage .petal-v6-vinyl,
+.shelf-category .petal-v6-state[id^="petal-playing-"]:checked ~ .petal-v6-stage .petal-v6-vinyl {
+  transform:translateX(91%)!important;
+}
+.shelf-category .petal-v6-actions {
+  position:absolute!important;
+  bottom:calc(100% + 9px)!important;
+  left:50%!important;
+  width:300px!important;
+  max-width:90vw!important;
+  transform:translateX(-50%)!important;
+  justify-content:center!important;
+  gap:5px!important;
+  margin:0!important;
+  z-index:12!important;
+}
+.shelf-category .petal-v6-details { order:-1; background:#34271e!important; border-color:#c29a68!important; color:#f5e2c8!important; font-weight:600!important; border-radius:20px!important; }
+.shelf-category .petal-v6-action { background:#34271e!important; color:#f5e2c8!important; border-color:#87694b!important; border-radius:20px!important; }
+.shelf-category .petal-v6-hotspot { left:66%!important; width:31%!important; }
+@media(max-width:600px) {
+  .shelf-category .shelf-rail { padding:58px 30px 25px!important; gap:42px!important; min-height:300px!important; }
+  .shelf-category .shelf-record:not(.petal-v6) { flex-basis:185px!important; width:185px!important; }
+  .shelf-category .petal-v6 { flex-basis:220px!important; width:220px!important; height:240px!important; }
+}
