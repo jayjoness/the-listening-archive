@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'jays_vinyl_recovered_site/**'
+      - 'scripts/recover_artwork.py'
       - '.github/workflows/pages.yml'
   workflow_dispatch:
 
@@ -28,10 +29,12 @@ jobs:
         uses: actions/checkout@v4
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
+      - name: Recover official-store artwork where available
+        run: python3 scripts/recover_artwork.py
       - name: Upload website files
         uses: actions/upload-pages-artifact@v3
         with:
-          path: jays_vinyl_recovered_site
+          path: _site
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
