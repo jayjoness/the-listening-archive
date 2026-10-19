@@ -3439,3 +3439,15 @@ body.modal-open .now-spinning-bar { display:none; }
   .shelf-category .shelf-record { width:128px; height:auto; margin-right:-19px; }
   .modal-listening-disc .pressing-disc--listening { width:100%; }
 }
+
+/* Listening Archive shelf restoration: display the full uploaded sleeve image. */
+.shelf-rail { min-height:260px; padding-bottom:24px; }
+.shelf-record { flex:0 0 clamp(152px,17vw,202px); width:clamp(152px,17vw,202px); margin-right:-9px; padding:0; overflow:visible; }
+.shelf-object { aspect-ratio:1; overflow:visible; }
+.shelf-sleeve { inset:0; width:100%; height:100%; display:grid; place-items:center; overflow:hidden; background:#f7f3ec; border-radius:2px; }
+.shelf-sleeve img { display:block; width:100%; height:100%; max-width:100%; object-fit:contain; object-position:center; transform:none; }
+.shelf-caption { display:none!important; }
+.shelf-disc { top:8%; right:0; width:84%; height:84%; z-index:0; }
+.shelf-record:hover,.shelf-record:focus-visible { z-index:5; transform:translateY(-15px) scale(1.06); }
+.shelf-record:hover .shelf-disc,.shelf-record:focus-visible .shelf-disc { transform:translateX(45%); }
+.shelf-rail::after { z-index:6; pointer-events:none; }
