@@ -709,7 +709,7 @@
     positions: { title: "positions", artist: "Ariana Grande", url: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/2e/42/3a/2e423aa9-ca58-fabd-0c6f-dd7ae46f70d3/mzaf_15267168538994108138.plus.aac.p.m4a" },
     maybe: { title: "MAYBE.", artist: "Sienna Spiro", url: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/cf/10/3c/cf103cc7-a954-6efc-0340-b16bfece1186/mzaf_5273616044899205901.plus.aac.p.m4a" },
     passenger: { title: "PASSENGER", artist: "Alex Warren", url: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/41/6b/aa/416baaf6-4543-066a-c85a-f6962e3f5f40/mzaf_13993125136814345728.plus.aac.p.m4a" },
-    petal: { title: "petal", artist: "Ariana Grande", url: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/f8/e7/49/f8e7493f-646b-032d-70b2-c3097a0d18c6/mzaf_1782513975775586053.plus.aac.p.m4a" },
+    petal: { title: "petal", artist: "Ariana Grande", url: "" }, // Clean-only preview removed until explicit preview can be verified.
     noTears: { title: "no tears left to cry", artist: "Ariana Grande", url: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/f5/08/c7/f508c718-1958-46de-1092-5ff9dab86bdf/mzaf_2451337165221190709.plus.aac.p.m4a" },
     intoYou: { title: "Into You", artist: "Ariana Grande", url: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/19/f9/b4/19f9b4d7-3d53-13c8-ad81-5403e37ccc27/mzaf_4997590237151828626.plus.aac.p.m4a" },
     weCantBeFriends: { title: "we can’t be friends (wait for your love)", artist: "Ariana Grande", url: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/50/40/98/504098b5-c008-d726-334d-e90b94574d71/mzaf_15598331648080030139.plus.aac.p.m4a" },
