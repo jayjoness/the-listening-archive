@@ -102,8 +102,8 @@
       edition: "Eternal Sunshine Tour exclusive · Pink & Cream",
       priceText: "£25.00",
       price: 25,
-      image: "assets/tour-yours-truly-final.jpeg",
-      imageSource: "assets/tour-yours-truly-final.jpeg",
+      image: "assets/tour-yours-truly-white-background-2026.jpeg",
+      imageSource: "assets/tour-yours-truly-white-background-2026.jpeg",
       source: "https://www.recordsetplay.com/product-detail/ariana-grande-yours-truly-eternal-sunshine-tour-exclusive-pink-and-cream-vinyl-lp",
       description: "The 2026 Eternal Sunshine Tour pop-up edition of Yours Truly, pressed as a single LP on Pink & Cream vinyl.",
       facts: [
@@ -116,8 +116,8 @@
       edition: "Eternal Sunshine Tour exclusive · Baby Pink Black Wave",
       priceText: "£25.00",
       price: 25,
-      image: "assets/tour-my-everything-final.jpeg",
-      imageSource: "assets/tour-my-everything-final.jpeg",
+      image: "assets/tour-my-everything-white-background-2026.jpeg",
+      imageSource: "assets/tour-my-everything-white-background-2026.jpeg",
       source: "https://www.recordsetplay.com/product-detail/ariana-grande-my-everything-eternal-sunshine-tour-exclusive-baby-pink-and-black-wave-vinyl-lp",
       description: "The 2026 Eternal Sunshine Tour exclusive single-LP pressing of My Everything on Baby Pink Black Wave vinyl.",
       facts: [
@@ -128,8 +128,8 @@
     },
     "Ariana Grande — Dangerous Woman": {
       edition: "Eternal Sunshine Tour exclusive · Milky Black Marble",
-      image: "assets/tour-dangerous-woman-final.jpeg",
-      imageSource: "assets/tour-dangerous-woman-final.jpeg",
+      image: "assets/tour-dangerous-woman-white-background-2026.jpeg",
+      imageSource: "assets/tour-dangerous-woman-white-background-2026.jpeg",
       source: "https://www.recordsetplay.com/product-detail/ariana-grande-dangerous-woman-eternal-sunshine-tour-exclusive-milky-black-marble-vinyl-2lp",
       description: "The 2026 Eternal Sunshine Tour exclusive 2LP pressing of Dangerous Woman on Milky Black Marble vinyl.",
       facts: [
@@ -142,8 +142,8 @@
       edition: "Eternal Sunshine Tour exclusive · Pink & Orange Burst",
       priceText: "£32.00",
       price: 32,
-      image: "assets/tour-sweetener-final.jpeg",
-      imageSource: "assets/tour-sweetener-final.jpeg",
+      image: "assets/tour-sweetener-white-background-2026.jpeg",
+      imageSource: "assets/tour-sweetener-white-background-2026.jpeg",
       source: "https://www.recordsetplay.com/product-detail/ariana-grande-sweetener-eternal-sunshine-tour-exclusive-pink-and-orange-burst-vinyl-2lp",
       description: "The 2026 Eternal Sunshine Tour pop-up edition of Sweetener, pressed as a 2LP on Pink & Orange Burst vinyl.",
       facts: [
@@ -154,8 +154,8 @@
     },
     "Ariana Grande — thank u, next": {
       edition: "Eternal Sunshine Tour exclusive · Pink & Clear Marble",
-      image: "assets/tour-thank-u-next-final.jpeg",
-      imageSource: "assets/tour-thank-u-next-final.jpeg",
+      image: "assets/tour-thank-u-next-white-background-2026.jpeg",
+      imageSource: "assets/tour-thank-u-next-white-background-2026.jpeg",
       source: "https://www.recordsetplay.com/product-detail/ariana-grande-thank-u-next-eternal-sunshine-tour-exclusive-pink-and-clear-marble-vinyl-2lp",
       description: "The 2026 Eternal Sunshine Tour pop-up edition of thank u, next, pressed as a 2LP on Pink & Clear Marble vinyl.",
       facts: [
@@ -166,8 +166,8 @@
     },
     "Ariana Grande — Positions": {
       edition: "Eternal Sunshine Tour exclusive · Pink & Mint Green Splatter",
-      image: "assets/tour-positions-final.jpeg",
-      imageSource: "assets/tour-positions-final.jpeg",
+      image: "assets/tour-positions-white-background-2026.jpeg",
+      imageSource: "assets/tour-positions-white-background-2026.jpeg",
       source: "https://www.recordsetplay.com/product-detail/ariana-grande-positions-eternal-sunshine-tour-exclusive-pink-and-mint-green-splatter-vinyl-lp",
       description: "The 2026 Eternal Sunshine Tour pop-up edition of Positions, pressed as a single LP on Pink & Mint Green Splatter vinyl.",
       facts: [
@@ -178,8 +178,8 @@
     },
     "Ariana Grande — Brighter Days Ahead": {
       edition: "Eternal Sunshine Tour exclusive · Opaque Blue Marble · lenticular cover",
-      image: "assets/tour-brighter-days-ahead-final.jpeg",
-      imageSource: "assets/tour-brighter-days-ahead-final.jpeg",
+      image: "assets/tour-brighter-days-ahead-white-background-2026.jpeg",
+      imageSource: "assets/tour-brighter-days-ahead-white-background-2026.jpeg",
       source: "https://www.recordsetplay.com/product-detail/ariana-grande-eternal-sunshine-deluxe-brighter-days-ahead-eternal-sunshine-tour-exclusive-lenticular",
       description: "The Eternal Sunshine Tour exclusive 2LP edition of Brighter Days Ahead on Opaque Blue Marble vinyl, finished with the lenticular cover.",
       facts: [
