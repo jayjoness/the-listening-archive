@@ -4950,3 +4950,13 @@ body.modal-open .now-spinning-bar { display:none; }
   left: 50% !important;
   transform: translate(-50%, 26px) !important;
 }
+
+/* Pepper Yellow 7-inch: match the approved Dandelion White shelf contact.
+   Keep each pressing's own artwork and disc unchanged. */
+.record-modal .modal-visual.archive-view-cover[data-record-id="email-purchase-petal-pepper-yellow"] > .modal-image-frame {
+  position: absolute !important;
+  top: auto !important;
+  bottom: 31.9% !important;
+  left: 50% !important;
+  transform: translate(-50%, 26px) !important;
+}
