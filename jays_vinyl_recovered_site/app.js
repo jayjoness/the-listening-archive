@@ -24,7 +24,7 @@
 
   const stylesheet = document.createElement("link");
   stylesheet.rel = "stylesheet";
-  stylesheet.href = "studio.css?v=petal-cover-contact-20261020i";
+  stylesheet.href = "studio.css?v=petal-cover-explicit-20261020j";
   document.head.appendChild(stylesheet);
 
   const clean = (value) => (value || "").replace(/\s+/g, " ").trim();
@@ -4000,7 +4000,7 @@
         <p class="modal-edition">${escapeHTML(record.edition)}</p>
         ${modalTags.length ? `<div class="modal-badges">${modalTags.map((tag) => `<span>${escapeHTML(tag)}</span>`).join("")}</div>` : ""}
       </header>
-      <div class="modal-visual">
+      <div class="modal-visual archive-view-cover" data-record-id="${escapeAttr(record.id)}">
         <div class="archive-gallery-ceiling" aria-hidden="true"></div>
         <div class="archive-gallery-grain" aria-hidden="true"></div>
         <div class="archive-gallery-lamp" aria-hidden="true"></div>
@@ -4049,7 +4049,7 @@
       galleryIndex = (index + galleryViews.length) % galleryViews.length;
       const view = galleryViews[galleryIndex];
       const scene = modalPanel.querySelector(".modal-visual");
-      if (scene) scene.classList.toggle("archive-view-disc", view.label === "Vinyl disc");
+      if (scene) { const isDisc = view.label === "Vinyl disc"; scene.classList.toggle("archive-view-disc", isDisc); scene.classList.toggle("archive-view-cover", !isDisc); }
       const image = modalPanel.querySelector("[data-gallery-image]");
       if (image) { image.src = view.image; image.alt = displayTitle(record) + " — " + view.label; image.classList.toggle("archive-gallery-disc-image", view.label === "Vinyl disc"); }
       const count = modalPanel.querySelector("[data-gallery-count]");
