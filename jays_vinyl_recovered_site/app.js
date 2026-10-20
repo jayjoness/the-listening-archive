@@ -4001,6 +4001,10 @@
         ${modalTags.length ? `<div class="modal-badges">${modalTags.map((tag) => `<span>${escapeHTML(tag)}</span>`).join("")}</div>` : ""}
       </header>
       <div class="modal-visual">
+        <div class="archive-gallery-grain" aria-hidden="true"></div>
+        <div class="archive-gallery-lamp" aria-hidden="true"></div>
+        <div class="archive-gallery-wallwash" aria-hidden="true"></div>
+        <div class="archive-gallery-shelf" aria-hidden="true"></div>
         <div class="modal-image-frame">
           <span class="modal-fallback">${escapeHTML(displayTitle(record))}</span>
           ${gallery[0] ? `<img class="modal-image" data-gallery-image src="${escapeAttr(gallery[0])}" alt="${escapeAttr(`${displayTitle(record)} — exact pressing product image`)}">` : "<span class=\"modal-no-photo\">No pressing image documented</span>"}
