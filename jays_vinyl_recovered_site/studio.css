@@ -4068,3 +4068,39 @@ body.modal-open .now-spinning-bar { display:none; }
   border:0!important;
   font-size:24px!important;
 }
+
+/* Continuous shelf edge: paint the rail itself, not a scrolling pseudo-element. */
+.shelf-category .shelf-rail {
+  width:100%!important;
+  max-width:100%!important;
+  box-sizing:border-box!important;
+  background:
+    linear-gradient(to bottom,#c99a62 0%,#8d633c 23%,#593820 65%,#2b1b11 100%) bottom / 100% 25px no-repeat,
+    linear-gradient(180deg,#32271f 0%,#211914 88%,#1b1410 100%)!important;
+  border-bottom:3px solid #2d1b0f!important;
+}
+.shelf-category .shelf-rail::after {
+  display:none!important;
+  content:none!important;
+}
+/* Each sleeve is an intact square. A selected sleeve stays above neighbours,
+   while its own disc remains behind the sleeve. */
+.shelf-category .shelf-record--has-disc:not(.petal-v6) {
+  isolation:isolate!important;
+  overflow:visible!important;
+}
+.shelf-category .shelf-record--has-disc:not(.petal-v6):hover,
+.shelf-category .shelf-record--has-disc:not(.petal-v6).is-pulled,
+.shelf-category .shelf-record--has-disc:not(.petal-v6).is-spinning {
+  z-index:30!important;
+}
+.shelf-category .shelf-record--has-disc:not(.petal-v6) > .shelf-object {
+  aspect-ratio:1 / 1!important;
+  overflow:visible!important;
+}
+.shelf-category .shelf-record--has-disc:not(.petal-v6) .shelf-sleeve,
+.shelf-category .shelf-record--has-disc:not(.petal-v6) .shelf-sleeve img {
+  aspect-ratio:1 / 1!important;
+  object-fit:contain!important;
+  object-position:center!important;
+}
