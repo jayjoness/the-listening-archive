@@ -24,7 +24,7 @@
 
   const stylesheet = document.createElement("link");
   stylesheet.rel = "stylesheet";
-  stylesheet.href = "studio.css?v=petal-shelf-contact-20261020k";
+  stylesheet.href = "studio.css?v=petal-typography-20261020a";
   document.head.appendChild(stylesheet);
 
   const clean = (value) => (value || "").replace(/\s+/g, " ").trim();
@@ -884,7 +884,7 @@
     },
     {
       match: (record) => record.title === "Ariana Grande — Petal" && /Dandelion White|Pepper Yellow/.test(record.edition),
-      date: "October 2026",
+      date: "8 October 2026",
       place: "Ariana Grande official store",
       note: "The two Petal 7-inch colourways were ordered together as a matching pair, with the shared delivered total divided accurately between them."
     }
@@ -3154,7 +3154,7 @@
     const id = escapeAttr(record.id);
     return `<div class="record-preview record-preview--${escapeAttr(context)}" data-player-id="${id}">
       <div class="archive-player-head">
-        <div class="archive-player-copy"><small>SELECTED CUT · AUDIO PREVIEW</small><strong>${escapeHTML(record.nowPlaying.title)}</strong><span>${escapeHTML(record.nowPlaying.artist)}</span></div>
+        <div class="archive-player-copy"><strong>${escapeHTML(record.nowPlaying.title)}</strong><span>${escapeHTML(record.nowPlaying.artist)}</span></div>
         <span class="preview-status" data-preview-status aria-live="polite">${loading ? "Loading audio…" : active ? "Playing now" : previewRecordId === record.id && previewState === "paused" ? "Paused" : "Tap play to hear the record"}</span>
       </div>
       <div class="archive-player-timeline">
@@ -3994,7 +3994,7 @@
 
     modalPanel.innerHTML = `
       <button class="modal-close" type="button" aria-label="Close record details" data-close-modal>×</button>
-      <header class="modal-head">
+      <header class="modal-head${record.title === "Ariana Grande — Petal" ? " modal-head--petal" : ""}">
         <div class="modal-overline"><span class="modal-category">${escapeHTML(record.artist)}</span><span class="modal-position">${activeIndex >= 0 ? `${activeIndex + 1} of ${modalRecords.length}` : "Archive detail"}</span></div>
         <h2 class="modal-title" id="modal-record-title">${escapeHTML(displayTitle(record))}</h2>
         <p class="modal-edition">${escapeHTML(record.edition)}</p>
@@ -4021,7 +4021,7 @@
           <div><dt>${escapeHTML(fact.label)}</dt><dd>${escapeHTML(fact.value)}</dd></div>
         `).join("")}</dl>` : ""}
         ${!record.wishlist && !record.setup ? `<section class="modal-listening"><div class="modal-listening-disc${previewRecordId === record.id && previewAudio && !previewAudio.paused ? " is-playing" : ""}" data-preview-disc="${escapeAttr(record.id)}" aria-hidden="true">${discMarkup(record, "pressing-disc pressing-disc--listening")}</div>${previewControlMarkup(record, "modal")}</section>` : ""}
-        ${record.journal ? `<section class="collection-story"><span>My copy · ${escapeHTML(record.journal.date.replace(" · date not recorded", ""))}</span><h3>${escapeHTML(record.journal.place)}</h3><p>${escapeHTML(record.journal.note)}</p></section>` : ""}
+        ${record.journal ? `<section class="collection-story"><span>${escapeHTML(record.journal.date.replace(" · date not recorded", ""))}</span><h3>${escapeHTML(record.journal.place)}</h3><p>${escapeHTML(record.journal.note)}</p></section>` : ""}
         ${record.description ? `<section class="modal-notes"><span>${escapeHTML(notesHeading)}</span><p class="modal-description">${escapeHTML(record.description)}</p></section>` : ""}
         ${archiveRows.length ? `<details class="archive-record-details"><summary>Archive record <span>pressing facts & provenance</span></summary><dl>${archiveRows.map(([label, value]) => `<div><dt>${escapeHTML(label)}</dt><dd>${escapeHTML(value)}</dd></div>`).join("")}</dl></details>` : ""}
         ${marketMarkup}
