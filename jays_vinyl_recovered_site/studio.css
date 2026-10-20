@@ -4164,3 +4164,42 @@ body.modal-open .now-spinning-bar { display:none; }
   }
   .record-preview .archive-player-head .preview-status { max-width:95px!important; }
 }
+
+/* Petal details: remove the legacy padded white product-photo mat.
+   Keep the artwork a true square with clean edges and no forced zoom. */
+.modal-visual:has(.modal-image[src*="petal_white_sleeve"]) .modal-image-frame,
+.modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) .modal-image-frame {
+  display:grid!important;
+  place-items:center!important;
+  aspect-ratio:1 / 1!important;
+  width:min(100%,620px)!important;
+  height:auto!important;
+  max-height:none!important;
+  padding:0!important;
+  margin:auto!important;
+  overflow:hidden!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+.modal-visual:has(.modal-image[src*="petal_white_sleeve"]) .modal-image,
+.modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) .modal-image {
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  max-height:none!important;
+  padding:0!important;
+  margin:0!important;
+  aspect-ratio:1 / 1!important;
+  object-fit:cover!important;
+  object-position:center!important;
+  transform:none!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+.modal-visual:has(.modal-image[src*="petal_white_sleeve"]),
+.modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) {
+  padding:0!important;
+  background:transparent!important;
+}
