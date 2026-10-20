@@ -3881,3 +3881,17 @@ body.modal-open .now-spinning-bar { display:none; }
     transform:translateX(45%)!important;
   }
 }
+
+/* The hover filter creates an offscreen compositing surface clipped to the
+   original sleeve button bounds. Never filter/transform the outer record card;
+   animate only the independently positioned disc. */
+@media (hover:hover) and (pointer:fine) {
+  .shelf-category .shelf-record--has-disc:not(.petal-v6):hover,
+  .shelf-category .shelf-record--has-disc:not(.petal-v6):focus-visible {
+    filter:none!important;
+    transform:none!important;
+    contain:none!important;
+    overflow:visible!important;
+    z-index:20!important;
+  }
+}
