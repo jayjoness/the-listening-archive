@@ -14,6 +14,27 @@ out = Path("_site")
 if out.exists():
     shutil.rmtree(out)
 shutil.copytree(root, out)
+
+# Repair the supplied Pepper Yellow sleeve at build time.
+# Its 1200x1200 PNG contains artwork only in the top 960px; the bottom
+# transparent band made it appear undersized on the physical shelf.
+# Preserve the entire artwork width, restore a filled 1200px square and
+# write only to _site so the original uploaded source stays untouched.
+yellow_sleeve = out / "assets/petal_yellow_sleeve.png"
+if yellow_sleeve.exists():
+    try:
+        with Image.open(yellow_sleeve) as source:
+            image = source.convert("RGBA")
+            alpha_bounds = image.getchannel("A").getbbox()
+            if alpha_bounds and alpha_bounds[3] <= int(image.height * .84):
+                artwork = image.crop((0, 0, image.width, alpha_bounds[3]))
+                artwork = artwork.resize((1200, 1200), Image.Resampling.LANCZOS)
+                fixed = Image.new("RGB", (1200, 1200), "#161513")
+                fixed.paste(artwork, mask=artwork.getchannel("A"))
+                fixed.save(yellow_sleeve, optimize=True)
+                print("Restored Pepper Yellow sleeve to full 1200x1200 artwork")
+    except Exception as exc:
+        print(f"Pepper Yellow artwork repair skipped: {exc}")
 app = (root / "app.js").read_text(encoding="utf-8")
 
 class Metadata(HTMLParser):
