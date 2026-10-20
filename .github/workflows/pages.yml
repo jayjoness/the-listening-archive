@@ -2,7 +2,7 @@ name: Deploy vinyl website to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [main, vinyl-artwork-rebuild-20261019]
     paths:
       - 'jays_vinyl_recovered_site/**'
       - 'scripts/recover_artwork.py'
@@ -26,8 +26,15 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout published main website
         uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Checkout development preview separately
+        uses: actions/checkout@v4
+        with:
+          ref: vinyl-artwork-rebuild-20261019
+          path: _preview_source
       - name: Validate JavaScript before publishing
         run: node --check jays_vinyl_recovered_site/app.js
       - name: Validate artwork recovery script
@@ -40,6 +47,11 @@ jobs:
         run: python3 scripts/recover_artwork.py
       - name: Extract photographed pressings where verified
         run: python3 scripts/extract_verified_pressings.py
+      - name: Publish isolated development preview
+        run: |
+          mkdir -p _site/preview
+          cp -a _preview_source/jays_vinyl_recovered_site/. _site/preview/
+          node --check _site/preview/app.js
       - name: Validate built website JavaScript
         run: node --check _site/app.js
       - name: Upload website files
