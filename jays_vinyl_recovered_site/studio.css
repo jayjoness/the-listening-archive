@@ -4538,3 +4538,34 @@ body.modal-open .now-spinning-bar { display:none; }
   .record-modal .archive-gallery-thumbnails button {width:60px!important;max-width:60px!important;min-height:69px!important;padding:3px!important;}
   .record-modal .archive-gallery-thumbnails img {width:44px!important;height:44px!important;}
 }
+
+/* Approved showroom photo: one physical scene, no CSS imitation. */
+.record-modal .modal-visual,
+.record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve"]),
+.record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) {
+ background:#160e0b url("listening_archive_showroom.webp") center / 100% 100% no-repeat!important;
+ box-shadow:none!important;
+}
+.record-modal .modal-visual .archive-gallery-ceiling,
+.record-modal .modal-visual .archive-gallery-grain,
+.record-modal .modal-visual .archive-gallery-lamp,
+.record-modal .modal-visual .archive-gallery-wallwash,
+.record-modal .modal-visual .archive-gallery-shelf {display:none!important;}
+.record-modal .modal-visual .modal-image-frame,
+.record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve"]) .modal-image-frame,
+.record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) .modal-image-frame {
+ bottom:32%!important;width:min(56%,350px)!important;max-width:350px!important;
+ box-shadow:2px 2px 3px #0009,12px 12px 18px #000b,22px 22px 30px #0005!important;
+}
+.record-modal .modal-visual .modal-image-frame:has(.archive-gallery-disc-image) {
+ box-shadow:none!important;filter:drop-shadow(12px 9px 7px #000b)!important;
+}
+.record-modal .modal-visual .modal-image-frame:has(.archive-gallery-disc-image)::after {display:none!important;}
+@media(max-width:720px) {
+ .record-modal .modal-visual {height:clamp(350px,104vw,460px)!important;max-height:460px!important;}
+ .record-modal .modal-visual .modal-image-frame,
+ .record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve"]) .modal-image-frame,
+ .record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) .modal-image-frame {
+  bottom:32%!important;width:min(56%,225px)!important;max-width:225px!important;
+ }
+}
