@@ -4659,3 +4659,35 @@ body.modal-open .now-spinning-bar { display:none; }
     bottom:29.15%!important;
   }
 }
+
+/* Final sleeve contact correction.
+   The "bronze border" was the photographed shelf top still visible beneath the sleeve.
+   Seat the object on the front edge and overfill its frame to eliminate edge bleed. */
+.record-modal .modal-visual .modal-image-frame:not(:has(.archive-gallery-disc-image)),
+.record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve"]) .modal-image-frame:not(:has(.archive-gallery-disc-image)),
+.record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) .modal-image-frame:not(:has(.archive-gallery-disc-image)) {
+  bottom:27.45%!important;
+  overflow:hidden!important;
+  background:#090807!important;
+  border:0!important;
+  outline:0!important;
+  box-shadow:6px 8px 12px rgba(0,0,0,.42),16px 16px 24px rgba(0,0,0,.30)!important;
+}
+.record-modal .modal-visual .modal-image-frame:not(:has(.archive-gallery-disc-image)) .modal-image {
+  width:calc(100% + 4px)!important;
+  height:calc(100% + 4px)!important;
+  max-width:none!important;
+  margin:-2px!important;
+  object-fit:cover!important;
+  transform:none!important;
+  border:0!important;
+  outline:0!important;
+}
+.record-modal .modal-visual .modal-image-frame:has(.archive-gallery-disc-image) {
+  bottom:27.45%!important;
+}
+@media(max-width:720px) {
+  .record-modal .modal-visual .modal-image-frame {
+    bottom:27.45%!important;
+  }
+}
