@@ -4327,3 +4327,34 @@ body.modal-open .now-spinning-bar { display:none; }
     transform:translateX(-50%)!important;
   }
 }
+
+
+/* Premium museum detail panel: dark alcove, warm spotlight, deeper material shadows. */
+.record-modal .modal-visual {
+ background:radial-gradient(ellipse at 50% 30%,rgba(160,92,41,.36),transparent 49%),radial-gradient(ellipse at 50% 80%,rgba(86,48,25,.24),transparent 65%),linear-gradient(130deg,#17110e,#2b1c14 54%,#110e0c)!important;
+ box-shadow:inset 0 0 90px rgba(0,0,0,.42),inset -1px 0 rgba(199,147,95,.26)!important;
+ border-right:1px solid #66452c!important;
+}
+.record-modal .modal-visual::before {
+ left:16%!important;right:16%!important;bottom:15%!important;height:13px!important;
+ background:linear-gradient(#d6a66d 0%,#ac7447 24%,#624026 75%,#28180f 100%)!important;
+ box-shadow:0 3px 0 #24150d,0 12px 18px rgba(0,0,0,.58),0 -3px 18px rgba(218,141,66,.2)!important;
+}
+.record-modal .modal-visual .modal-image-frame,
+.record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve"]) .modal-image-frame,
+.record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) .modal-image-frame {
+ width:min(64%,310px)!important;max-width:310px!important;
+ bottom:calc(15% + 13px)!important;
+ border:1px solid rgba(230,194,153,.22)!important;
+ box-shadow:3px 4px 3px rgba(0,0,0,.3),12px 19px 25px rgba(0,0,0,.55),0 0 45px rgba(188,113,51,.1)!important;
+}
+.record-modal .modal-visual .modal-image {filter:drop-shadow(0 2px 2px rgba(0,0,0,.22));}
+@media(max-width:720px) {
+ .record-modal .modal-visual {height:clamp(230px,70vw,345px)!important;max-height:345px!important;}
+ .record-modal .modal-visual::before {bottom:9%!important;left:19%!important;right:19%!important;height:8px!important;}
+ .record-modal .modal-visual .modal-image-frame,
+ .record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve"]) .modal-image-frame,
+ .record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) .modal-image-frame {
+  width:min(53%,205px)!important;max-width:205px!important;bottom:calc(9% + 8px)!important;
+ }
+}
