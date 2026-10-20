@@ -4305,3 +4305,25 @@ body.modal-open .now-spinning-bar { display:none; }
     transform:translateY(-4%)!important;
   }
 }
+
+/* Anchor sleeve base precisely to the bronze shelf instead of optical centering. */
+@media(min-width:721px) {
+  .record-modal .modal-visual .modal-image-frame,
+  .record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve"]) .modal-image-frame,
+  .record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) .modal-image-frame {
+    position:absolute!important;
+    left:50%!important;
+    bottom:calc(17% + 12px)!important;
+    transform:translateX(-50%)!important;
+  }
+}
+@media(max-width:720px) {
+  .record-modal .modal-visual .modal-image-frame,
+  .record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve"]) .modal-image-frame,
+  .record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) .modal-image-frame {
+    position:absolute!important;
+    left:50%!important;
+    bottom:calc(9% + 8px)!important;
+    transform:translateX(-50%)!important;
+  }
+}
