@@ -3195,7 +3195,9 @@
     });
     document.querySelectorAll(".now-deck, .now-spinning-bar").forEach((node) => node.classList.toggle("is-playing", playing));
     document.querySelectorAll(".shelf-record--has-disc.is-spinning").forEach((card) => {
-      if (card.dataset.recordId !== previewRecordId || !playing) {
+      const isCurrent = card.dataset.recordId === previewRecordId;
+      const waitingForAudio = isCurrent && previewState === "loading";
+      if (!isCurrent || (!playing && !waitingForAudio)) {
         card.classList.remove("is-spinning");
         card.dataset.vinylState = card.matches(":hover") ? "pulled" : "sleeved";
         card.classList.toggle("is-pulled", card.dataset.vinylState === "pulled");
@@ -3772,6 +3774,9 @@
             }
           }
         } else {
+          if (current !== "sleeved" && previewRecordId === card.dataset.recordId && previewAudio && !previewAudio.paused) {
+            previewAudio.pause();
+          }
           setState(current === "sleeved" ? "pulled" : "sleeved");
         }
       });
