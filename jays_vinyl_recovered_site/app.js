@@ -550,9 +550,9 @@
       priceText: "£15.47",
       price: 15.47,
       description: "Official-store 7-inch edition of Petal, pressed on Pepper Yellow vinyl. The paid order total, including delivery, has been divided across the two Petal 7-inch colour variants in the same order.",
-      image: "assets/petal_yellow_sleeve.png",
-      imageSource: "assets/petal_yellow_sleeve.png",
-      sleeveImage: "assets/petal_yellow_sleeve.png",
+      image: "assets/petal_yellow_sleeve_clean.jpg",
+      imageSource: "assets/petal_yellow_sleeve_clean.jpg",
+      sleeveImage: "assets/petal_yellow_sleeve_clean.jpg",
       discImage: "assets/petal_yellow_disc.png",
       source: "https://shopuk.arianagrande.com/products/petal-pepper-yellow-7",
       facts: [
