@@ -4994,3 +4994,28 @@ body.modal-open .now-spinning-bar { display:none; }
   content: none !important;
   display: none !important;
 }
+
+/* Petal editorial typography: echo the silver serif wordmark and handwritten
+   artist signature without replacing the actual sleeve art or other records. */
+.record-modal .modal-head--petal .modal-title {
+  font-family: "Bodoni MT", "Didot", "Times New Roman", Georgia, serif !important;
+  font-weight: 400 !important;
+  font-size: clamp(3.1rem, 5.6vw, 5rem) !important;
+  line-height: .98 !important;
+  letter-spacing: -.075em !important;
+  text-transform: lowercase !important;
+  color: #817b76 !important;
+}
+.record-modal .modal-head--petal .modal-category {
+  font-family: "Brush Script MT", "Segoe Script", "Apple Chancery", cursive !important;
+  font-style: italic !important;
+  font-weight: 400 !important;
+  text-transform: lowercase !important;
+  letter-spacing: -.025em !important;
+  font-size: .95rem !important;
+}
+@media (max-width: 650px) {
+  .record-modal .modal-head--petal .modal-title {
+    font-size: clamp(2.7rem, 11vw, 4.1rem) !important;
+  }
+}
