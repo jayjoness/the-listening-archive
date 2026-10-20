@@ -4874,3 +4874,66 @@ body.modal-open .now-spinning-bar { display:none; }
     transform:translateY(1.8%) scale(1.05)!important;
   }
 }
+
+/* Petal square-asset + photographed shelf calibration.
+   The corrected sleeve asset is genuinely square, so stop compensating for the old photographed border. */
+.record-modal .modal-visual .modal-image-frame,
+.record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve_square"]) .modal-image-frame,
+.record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) .modal-image-frame {
+  bottom:30.30%!important;
+  border:0!important;
+  outline:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  filter:none!important;
+}
+.record-modal .modal-visual .modal-image-frame::before,
+.record-modal .modal-visual .modal-image-frame::after {
+  display:none!important;
+  content:none!important;
+}
+.record-modal .modal-visual .modal-image-frame:not(:has(.archive-gallery-disc-image)) {
+  overflow:visible!important;
+}
+.record-modal .modal-visual .modal-image-frame:not(:has(.archive-gallery-disc-image)) .modal-image {
+  width:100%!important;
+  height:100%!important;
+  max-width:100%!important;
+  margin:0!important;
+  padding:0!important;
+  object-fit:cover!important;
+  object-position:center!important;
+  transform:none!important;
+  clip-path:none!important;
+  border:0!important;
+  outline:0!important;
+  box-shadow:6px 8px 14px rgba(0,0,0,.34)!important;
+}
+.record-modal .modal-visual .modal-image-frame:has(.archive-gallery-disc-image) {
+  bottom:30.30%!important;
+  overflow:visible!important;
+  box-shadow:none!important;
+  filter:none!important;
+}
+.record-modal .modal-visual .modal-image.archive-gallery-disc-image {
+  width:100%!important;
+  height:100%!important;
+  margin:0!important;
+  padding:0!important;
+  object-fit:contain!important;
+  transform:none!important;
+  clip-path:none!important;
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+  filter:drop-shadow(0 8px 7px rgba(0,0,0,.44))!important;
+}
+@media(max-width:720px) {
+  .record-modal .modal-visual .modal-image-frame,
+  .record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve_square"]) .modal-image-frame,
+  .record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) .modal-image-frame,
+  .record-modal .modal-visual .modal-image-frame:has(.archive-gallery-disc-image) {
+    bottom:30.30%!important;
+  }
+}
