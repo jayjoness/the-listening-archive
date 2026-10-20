@@ -24,7 +24,7 @@
 
   const stylesheet = document.createElement("link");
   stylesheet.rel = "stylesheet";
-  stylesheet.href = "studio.css?v=showroom-contact-20261020d";
+  stylesheet.href = "studio.css?v=petal-square-contact-20261020e";
   document.head.appendChild(stylesheet);
 
   const clean = (value) => (value || "").replace(/\s+/g, " ").trim();
@@ -532,9 +532,9 @@
       priceText: "£15.46",
       price: 15.46,
       description: "Official-store 7-inch edition of Petal, pressed on Dandelion White vinyl. The paid order total, including delivery, has been divided across the two Petal 7-inch colour variants in the same order.",
-      image: "assets/petal_white_sleeve.png",
-      imageSource: "assets/petal_white_sleeve.png",
-      sleeveImage: "assets/petal_white_sleeve.png",
+      image: "assets/petal_white_sleeve_square.png",
+      imageSource: "assets/petal_white_sleeve_square.png",
+      sleeveImage: "assets/petal_white_sleeve_square.png",
       discImage: "assets/petal_white_disc.png",
       source: "https://shopuk.arianagrande.com/products/petal-dandelion-white-7",
       facts: [
