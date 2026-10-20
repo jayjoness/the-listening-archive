@@ -4948,5 +4948,5 @@ body.modal-open .now-spinning-bar { display:none; }
   top: auto !important;
   bottom: 31.9% !important;
   left: 50% !important;
-  transform: translateX(-50%) !important;
+  transform: translate(-50%, 26px) !important;
 }
