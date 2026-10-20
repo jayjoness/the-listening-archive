@@ -4641,3 +4641,85 @@ body.modal-open .now-spinning-bar { display:none; }
  }
  .record-modal .archive-gallery-lamp {width:39px;height:9px;}
 }
+
+
+/* Exhibit v6: dimensional display and fully visible round vinyl. */
+.record-modal .modal-visual {
+  perspective:1000px!important;
+}
+.record-modal .archive-gallery-shelf {
+  z-index:3!important;
+  height:17px!important;
+  bottom:28.4%!important;
+  left:15%!important;right:15%!important;
+  border-radius:2px 2px 5px 5px!important;
+  background:
+    repeating-linear-gradient(94deg,transparent 0 7px,rgba(255,228,179,.035) 8px,rgba(44,22,10,.08) 9px,transparent 11px 19px),
+    linear-gradient(180deg,#edc18c 0%,#a46b40 12%,#6a4028 38%,#3a2117 78%,#1b100c 100%)!important;
+  box-shadow:0 3px 1px #140b07,0 10px 10px rgba(0,0,0,.7),0 23px 21px rgba(0,0,0,.5),0 39px 32px rgba(0,0,0,.26),inset 0 1px rgba(255,231,189,.65)!important;
+}
+.record-modal .archive-gallery-shelf::before {
+  top:-13px!important;height:14px!important;
+  left:0!important;right:0!important;
+  transform:perspective(240px) rotateX(53deg)!important;
+  transform-origin:bottom center!important;
+  background:
+    repeating-linear-gradient(90deg,transparent 0 12px,rgba(56,29,15,.12) 13px,transparent 15px 29px),
+    linear-gradient(180deg,#61402a,#9e6840 48%,#f3c28b 100%)!important;
+  border-top:1px solid rgba(255,222,169,.38)!important;
+  box-shadow:0 -2px 6px rgba(0,0,0,.28),inset 0 2px rgba(255,211,155,.3)!important;
+}
+.record-modal .archive-gallery-shelf::after {
+  top:100%!important;height:64px!important;
+  left:-10%!important;right:-10%!important;
+  background:radial-gradient(ellipse at 50% 0%,rgba(0,0,0,.73),rgba(0,0,0,.24) 43%,transparent 76%)!important;
+  filter:blur(9px)!important;
+}
+.record-modal .archive-gallery-lamp {
+  top:4.8%!important;
+  width:62px!important;height:14px!important;
+  border-radius:60% 60% 18% 18%!important;
+  background:linear-gradient(180deg,#090706 0%,#342318 22%,#a56b3a 56%,#eab477 79%,#432819 100%)!important;
+  box-shadow:0 3px 3px rgba(0,0,0,.9),0 9px 11px rgba(252,179,96,.34),0 0 2px rgba(255,224,169,.6)!important;
+}
+.record-modal .archive-gallery-lamp::before {
+  content:"";position:absolute;top:-5px;left:5px;right:5px;height:5px;
+  border-radius:50%;background:linear-gradient(#1c120d,#654128);
+  box-shadow:0 -1px 2px #0b0807;
+}
+.record-modal .archive-gallery-wallwash {
+  inset:6% 3% 20%!important;
+  background:
+    radial-gradient(ellipse 29% 60% at 50% 0%,rgba(252,190,119,.25),rgba(207,123,67,.1) 48%,transparent 85%),
+    radial-gradient(ellipse 58% 52% at 50% 56%,rgba(186,115,64,.18),transparent 90%)!important;
+  filter:blur(24px)!important;
+}
+.record-modal .modal-visual .modal-image-frame,
+.record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve"]) .modal-image-frame,
+.record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) .modal-image-frame {
+  bottom:calc(28.4% + 17px)!important;
+  box-shadow:4px 5px 2px rgba(0,0,0,.35),11px 14px 10px rgba(0,0,0,.56),20px 23px 28px rgba(0,0,0,.5),0 0 2px rgba(242,207,165,.22)!important;
+}
+.record-modal .modal-visual .modal-image-frame:has(.archive-gallery-disc-image) {
+  background:transparent!important;border:0!important;
+  box-shadow:none!important;
+  filter:drop-shadow(3px 5px 2px rgba(0,0,0,.35)) drop-shadow(14px 18px 13px rgba(0,0,0,.68))!important;
+}
+.record-modal .modal-visual .modal-image.archive-gallery-disc-image {
+  display:block!important;
+  width:100%!important;height:100%!important;
+  object-fit:contain!important;
+  clip-path:circle(48% at 50% 50%)!important;
+  transform:translateY(-9px) scale(.91)!important;
+  transform-origin:center center!important;
+  filter:none!important;
+}
+@media(max-width:720px) {
+ .record-modal .archive-gallery-shelf {bottom:33.6%!important;height:11px!important;left:15%!important;right:15%!important;}
+ .record-modal .archive-gallery-shelf::before {top:-9px!important;height:10px!important;}
+ .record-modal .modal-visual .modal-image-frame,
+ .record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve"]) .modal-image-frame,
+ .record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) .modal-image-frame {bottom:calc(33.6% + 11px)!important;}
+ .record-modal .archive-gallery-lamp {width:44px!important;height:10px!important;}
+ .record-modal .modal-visual .modal-image.archive-gallery-disc-image {transform:translateY(-5px) scale(.9)!important;}
+}
