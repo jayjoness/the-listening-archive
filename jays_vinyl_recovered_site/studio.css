@@ -4835,3 +4835,42 @@ body.modal-open .now-spinning-bar { display:none; }
     bottom:31.9%!important;
   }
 }
+
+/* Mobile/desktop shelf-contact calibration 2026-10-20.
+   Cover and disc need different offsets because the disc PNG has transparent breathing room. */
+.record-modal .modal-visual .modal-image-frame:not(:has(.archive-gallery-disc-image)),
+.record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve"]) .modal-image-frame:not(:has(.archive-gallery-disc-image)),
+.record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) .modal-image-frame:not(:has(.archive-gallery-disc-image)) {
+  bottom:31.15%!important;
+  overflow:hidden!important;
+  box-shadow:none!important;
+}
+.record-modal .modal-visual .modal-image-frame:not(:has(.archive-gallery-disc-image)) .modal-image {
+  transform:scale(1.018)!important;
+  transform-origin:center bottom!important;
+}
+.record-modal .modal-visual .modal-image-frame:has(.archive-gallery-disc-image) {
+  bottom:29.55%!important;
+  overflow:visible!important;
+  box-shadow:none!important;
+  filter:none!important;
+}
+.record-modal .modal-visual .modal-image.archive-gallery-disc-image {
+  transform:translateY(1.4%) scale(1.045)!important;
+  transform-origin:center bottom!important;
+  clip-path:circle(49.7% at 50% 50%)!important;
+  filter:drop-shadow(0 7px 7px rgba(0,0,0,.46))!important;
+}
+@media(max-width:720px) {
+  .record-modal .modal-visual .modal-image-frame:not(:has(.archive-gallery-disc-image)),
+  .record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve"]) .modal-image-frame:not(:has(.archive-gallery-disc-image)),
+  .record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) .modal-image-frame:not(:has(.archive-gallery-disc-image)) {
+    bottom:31.05%!important;
+  }
+  .record-modal .modal-visual .modal-image-frame:has(.archive-gallery-disc-image) {
+    bottom:29.25%!important;
+  }
+  .record-modal .modal-visual .modal-image.archive-gallery-disc-image {
+    transform:translateY(1.8%) scale(1.05)!important;
+  }
+}
