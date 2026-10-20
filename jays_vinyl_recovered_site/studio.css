@@ -3967,3 +3967,25 @@ body.modal-open .now-spinning-bar { display:none; }
 @media(max-width:600px) {
   .now-spinning-bar { left:13px!important; right:13px!important; width:auto!important; }
 }
+
+/* Compact full-featured preview transport. */
+.record-preview { display:grid!important; grid-template-columns:minmax(0,1fr)!important; gap:13px!important; padding:17px!important; border:1px solid rgba(203,154,113,.4); border-radius:15px; background:linear-gradient(130deg,#30231e,#201915); color:#f6e9dc; }
+.archive-player-head { display:flex; align-items:start; justify-content:space-between; gap:12px; min-width:0; }
+.archive-player-copy { display:grid; gap:3px; min-width:0; }
+.archive-player-copy small { font-size:10px; letter-spacing:.12em; color:#cda57f; }
+.archive-player-copy strong { font-family:Georgia,serif; font-size:21px; font-weight:500; overflow:hidden; text-overflow:ellipsis; }
+.archive-player-copy span,.archive-player-head .preview-status { font-size:12px; color:#c6afa0; }
+.archive-player-head .preview-status { text-align:right; max-width:100px; flex-shrink:0; }
+.archive-player-timeline { display:grid; gap:4px; min-width:0; }
+.archive-player-timeline input[type=range] { appearance:none; -webkit-appearance:none; width:100%; height:5px; margin:8px 0; border-radius:10px; cursor:pointer; background:linear-gradient(to right,#e4b48c var(--preview-progress,0%),rgba(255,255,255,.18) var(--preview-progress,0%)); }
+.archive-player-timeline input[type=range]::-webkit-slider-thumb { appearance:none; -webkit-appearance:none; width:13px; height:13px; border:2px solid #f5e3d0; border-radius:50%; background:#a97450; }
+.archive-player-timeline input[type=range]::-moz-range-thumb { width:11px; height:11px; border:2px solid #f5e3d0; border-radius:50%; background:#a97450; }
+.archive-player-times { display:flex; justify-content:space-between; color:#c6afa0; font-size:11px; font-variant-numeric:tabular-nums; }
+.archive-player-actions { display:flex; align-items:center; justify-content:space-between; gap:5px; }
+.archive-player-actions button { display:inline-flex; align-items:center; justify-content:center; gap:2px; min-width:37px; min-height:37px; padding:6px; border:1px solid transparent; border-radius:50%; color:#e8d2c1; background:transparent; cursor:pointer; font-size:23px; line-height:1; }
+.archive-player-actions button small { font-size:9px; }
+.archive-player-actions button:hover,.archive-player-actions button[aria-pressed=true]:not(.preview-toggle) { color:#f4c69c; background:rgba(233,176,124,.12); }
+.archive-player-actions .preview-toggle { display:inline-flex!important; width:48px!important; height:48px!important; min-width:48px!important; min-height:48px!important; padding:0!important; border:1px solid #c79870!important; background:#c79870!important; color:#201712!important; border-radius:50%!important; }
+.archive-player-actions .preview-toggle [data-preview-label] { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+.archive-player-actions .preview-icon { display:block!important; font-size:19px; line-height:1; }
+@media(max-width:420px) { .record-preview { padding:12px!important; } .archive-player-head .preview-status { max-width:80px; } .archive-player-actions button { min-width:32px; } }
