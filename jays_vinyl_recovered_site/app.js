@@ -3162,7 +3162,7 @@
         <div class="archive-player-times"><time data-preview-current>0:00</time><time data-preview-duration>0:30</time></div>
       </div>
       <div class="archive-player-actions">
-        <button type="button" data-preview-repeat data-record-id="${id}" aria-label="Repeat audio" aria-pressed="false" title="Repeat">↻</button>
+        <button type="button" data-preview-repeat data-record-id="${id}" aria-label="Repeat audio" aria-pressed="false" title="Repeat"><span aria-hidden="true">↻</span><small data-repeat-label>OFF</small></button>
         <button type="button" data-preview-jump="-15" data-record-id="${id}" aria-label="Rewind 15 seconds" title="Rewind 15 seconds">↶<small>15</small></button>
         <button class="preview-toggle" type="button" data-preview-toggle data-record-id="${id}" aria-label="${escapeAttr(label)}" aria-pressed="${active}">
           <span class="preview-icon" data-preview-icon aria-hidden="true">${loading ? "◌" : active ? "Ⅱ" : "▶"}</span><span data-preview-label>${label}</span>
@@ -3194,7 +3194,12 @@
       if (now) now.textContent = previewTime(elapsed);
       if (total) total.textContent = previewTime(duration);
       const repeat = player.querySelector("[data-preview-repeat]");
-      if (repeat) repeat.setAttribute("aria-pressed", String(previewRepeat));
+      if (repeat) {
+        repeat.setAttribute("aria-pressed", String(previewRepeat));
+        repeat.setAttribute("aria-label", previewRepeat ? "Turn repeat off" : "Turn repeat on");
+        const repeatLabel = repeat.querySelector("[data-repeat-label]");
+        if (repeatLabel) repeatLabel.textContent = previewRepeat ? "ON" : "OFF";
+      }
     });
   }
   document.addEventListener("click", (event) => {
@@ -3212,7 +3217,10 @@
     const duration = Number.isFinite(previewAudio.duration) ? previewAudio.duration : 30;
     previewAudio.currentTime = control.hasAttribute("data-preview-restart") ? 0 : Math.max(0, Math.min(duration, previewAudio.currentTime + Number(control.dataset.previewJump)));
     syncPreviewTimeline();
-  });
+  }, true);
+  document.addEventListener("click", (event) => {
+    if (event.target.closest("[data-preview-seek]")) event.stopPropagation();
+  }, true);
   document.addEventListener("input", (event) => {
     const seek = event.target.closest("[data-preview-seek]");
     if (!seek || !previewAudio || previewRecordId !== seek.dataset.recordId) return;
