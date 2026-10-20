@@ -4960,3 +4960,14 @@ body.modal-open .now-spinning-bar { display:none; }
   left: 50% !important;
   transform: translate(-50%, 26px) !important;
 }
+
+/* Remove the Pepper Yellow disc asset's visible rectangular right edge.
+   Mask only the disc image to its circular silhouette; leave the cover untouched. */
+.record-modal .modal-visual.archive-view-disc[data-record-id="email-purchase-petal-pepper-yellow"] .modal-image.archive-gallery-disc-image {
+  clip-path: circle(49.3% at 50% 50%) !important;
+}
+.record-modal .modal-visual.archive-view-disc[data-record-id="email-purchase-petal-pepper-yellow"] .modal-image-frame::before,
+.record-modal .modal-visual.archive-view-disc[data-record-id="email-purchase-petal-pepper-yellow"] .modal-image-frame::after {
+  content: none !important;
+  display: none !important;
+}
