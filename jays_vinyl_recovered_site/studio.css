@@ -4938,64 +4938,15 @@ body.modal-open .now-spinning-bar { display:none; }
   }
 }
 
-/* Tiny approved cover nudge only. Preserve current size, crop, borders and shadows exactly. */
-.record-modal .modal-visual .modal-image-frame:not(:has(.archive-gallery-disc-image)) {
-  bottom:29.80%!important;
-}
-@media(max-width:720px) {
-  .record-modal .modal-visual .modal-image-frame:not(:has(.archive-gallery-disc-image)) {
-    bottom:29.80%!important;
-  }
-}
-
-/* Visible Petal cover nudge: move the whole cover object down 8px.
-   Do not alter its size, crop, border treatment, shadow, or the vinyl-disc view. */
-.record-modal .modal-visual .modal-image-frame:not(:has(.archive-gallery-disc-image)) {
-  transform:translateX(-50%) translateY(8px)!important;
-}
-@media(max-width:720px) {
-  .record-modal .modal-visual .modal-image-frame:not(:has(.archive-gallery-disc-image)) {
-    transform:translateX(-50%) translateY(8px)!important;
-  }
-}
-
-/* Showroom alignment fix: leave the record exactly as approved and crop the photographed room instead.
-   Slight zoom + upward background shift raises the physical shelf under the unchanged artwork. */
-.record-modal .modal-visual,
-.record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve_square"]),
-.record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) {
-  background-size:102% 102%!important;
-  background-position:center calc(50% - 7px)!important;
-}
-@media(max-width:720px) {
-  .record-modal .modal-visual,
-  .record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve_square"]),
-  .record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) {
-    background-size:102% 102%!important;
-    background-position:center calc(50% - 6px)!important;
-  }
-}
-
-/* Petal cover contact adjustment 2026-10-20.
-   Move ONLY the sleeve object down to the shelf line indicated in the latest screenshot.
-   Preserve showroom crop, artwork size/crop, borders, shadow, controls, and disc position. */
-.record-modal .modal-visual .modal-image-frame:not(:has(.archive-gallery-disc-image)) {
-  transform:translateX(-50%) translateY(20px)!important;
-}
-@media(max-width:720px) {
-  .record-modal .modal-visual .modal-image-frame:not(:has(.archive-gallery-disc-image)) {
-    transform:translateX(-50%) translateY(20px)!important;
-  }
-}
-
-/* Explicit Petal cover positioning.
-   Use view-state + record-id instead of :has() so Safari cannot ignore the nudge.
-   Only the Dandelion White cover moves. Nothing else changes. */
-.record-modal .modal-visual.archive-view-cover[data-record-id="email-purchase-petal-dandelion-white"] .modal-image-frame {
-  transform:translateX(-50%) translateY(32px)!important;
-}
-@media(max-width:720px) {
-  .record-modal .modal-visual.archive-view-cover[data-record-id="email-purchase-petal-dandelion-white"] .modal-image-frame {
-    transform:translateX(-50%) translateY(32px)!important;
-  }
+/* Petal Dandelion White cover: single shelf-contact anchor.
+   The former 8/20/32px transforms and background adjustments were competing
+   with percentage positioning and made the actual contact point untestable.
+   Keep the approved artwork, frame dimensions, crop and showroom unchanged.
+   This selector intentionally excludes the vinyl-disc view. */
+.record-modal .modal-visual.archive-view-cover[data-record-id="email-purchase-petal-dandelion-white"] > .modal-image-frame {
+  position: absolute !important;
+  top: auto !important;
+  bottom: 31.9% !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
 }
