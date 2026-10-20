@@ -4203,3 +4203,105 @@ body.modal-open .now-spinning-bar { display:none; }
   padding:0!important;
   background:transparent!important;
 }
+
+/* Collector's Gallery | shared record-details display
+   Physical sleeves on a restrained bronze ledge; the editorial information
+   panel stays cream. Works for all pressings, not only Petal. */
+.record-modal .modal-visual {
+  position:relative!important;
+  isolation:isolate;
+  background:
+    radial-gradient(ellipse at 50% 33%,rgba(195,144,91,.16) 0%,rgba(195,144,91,0) 58%),
+    linear-gradient(150deg,#322720 0%,#231b18 48%,#171312 100%)!important;
+  border-right:1px solid rgba(183,132,83,.34)!important;
+}
+.record-modal .modal-visual::before {
+  content:"";
+  position:absolute;
+  z-index:0;
+  left:9%;
+  right:9%;
+  bottom:17%;
+  height:12px;
+  background:linear-gradient(180deg,#e1b786 0%,#a7774d 21%,#70482e 57%,#352116 100%);
+  border-top:1px solid rgba(255,222,168,.72);
+  box-shadow:0 6px 13px rgba(0,0,0,.38),0 1px 13px rgba(220,153,80,.2);
+  border-radius:1px 1px 4px 4px;
+  pointer-events:none;
+}
+.record-modal .modal-visual::after {
+  content:"";
+  position:absolute;
+  z-index:0;
+  left:12%;
+  right:12%;
+  bottom:calc(17% + 12px);
+  height:36%;
+  background:radial-gradient(ellipse at bottom,rgba(226,170,103,.09),transparent 70%);
+  pointer-events:none;
+}
+.record-modal .modal-visual .modal-image-frame,
+.record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve"]) .modal-image-frame,
+.record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) .modal-image-frame {
+  position:relative!important;
+  z-index:1!important;
+  width:min(78%,390px)!important;
+  height:auto!important;
+  max-width:390px!important;
+  max-height:none!important;
+  aspect-ratio:1/1!important;
+  padding:0!important;
+  margin:0 auto!important;
+  overflow:visible!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:2px!important;
+  box-shadow:0 16px 32px rgba(0,0,0,.48),0 2px 7px rgba(0,0,0,.25)!important;
+}
+.record-modal .modal-visual .modal-image,
+.record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve"]) .modal-image,
+.record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) .modal-image {
+  width:100%!important;
+  height:100%!important;
+  max-width:100%!important;
+  max-height:100%!important;
+  aspect-ratio:1/1!important;
+  display:block!important;
+  padding:0!important;
+  margin:0!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  transform:none!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+.record-modal .modal-visual .modal-fallback { color:#ead5bc!important; background:#2a211c!important; }
+.record-modal .modal-visual .modal-gallery-controls { z-index:3!important; }
+@media(min-width:721px) {
+  .record-modal .modal-visual { min-height:560px!important; }
+  .record-modal .modal-visual .modal-image-frame,
+  .record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve"]) .modal-image-frame,
+  .record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) .modal-image-frame {
+    /* Shelf top is 17% + 12px from the bottom; place sleeve directly above it. */
+    transform:translateY(-10%)!important;
+  }
+}
+@media(max-width:720px) {
+  .record-modal .modal-visual {
+    min-height:0!important;
+    height:clamp(225px,62vw,330px)!important;
+    max-height:330px!important;
+    padding:16px!important;
+  }
+  .record-modal .modal-visual::before { bottom:9%!important; left:15%; right:15%; height:8px; }
+  .record-modal .modal-visual::after { bottom:calc(9% + 8px)!important; }
+  .record-modal .modal-visual .modal-image-frame,
+  .record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve"]) .modal-image-frame,
+  .record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) .modal-image-frame {
+    width:min(63%,240px)!important;
+    max-width:240px!important;
+    height:auto!important;
+    transform:translateY(-4%)!important;
+  }
+}
