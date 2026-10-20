@@ -4569,3 +4569,30 @@ body.modal-open .now-spinning-bar { display:none; }
   bottom:32%!important;width:min(56%,225px)!important;max-width:225px!important;
  }
 }
+
+/* Exhibition finish: physical contact, no picture-frame outline.
+   Match the photographed bronze shelf's top surface rather than hovering above it. */
+.record-modal .modal-visual .modal-image-frame,
+.record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve"]) .modal-image-frame,
+.record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) .modal-image-frame {
+  bottom:30.5%!important;
+  border:0!important;border-radius:0!important;outline:0!important;
+  box-shadow:2px 5px 5px rgba(0,0,0,.38),10px 12px 16px rgba(0,0,0,.45)!important;
+}
+.record-modal .modal-visual .modal-image-frame::before {
+  display:none!important;content:none!important;
+}
+.record-modal .modal-visual .modal-image {
+  border:0!important;outline:0!important;border-radius:0!important;
+}
+.record-modal .modal-visual .modal-image-frame:has(.archive-gallery-disc-image) {
+  box-shadow:none!important;
+  filter:drop-shadow(5px 5px 5px rgba(0,0,0,.53))!important;
+}
+@media(max-width:720px) {
+  .record-modal .modal-visual .modal-image-frame,
+  .record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve"]) .modal-image-frame,
+  .record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) .modal-image-frame {
+    bottom:30.5%!important;
+  }
+}
