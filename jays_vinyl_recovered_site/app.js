@@ -3709,6 +3709,13 @@
           if (card.dataset.vinylState === "sleeved") setState("pulled");
         });
       }
+      // Retract automatically after leaving the entire sleeve/disc interaction.
+      // Keep an actively spinning record displayed until the user stops it.
+      if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+        card.addEventListener("mouseleave", () => {
+          if (card.dataset.vinylState === "pulled") setState("sleeved");
+        });
+      }
       // The pulled-out disc extends beyond the sleeve button's original box.
       // Listen on the disc itself so its whole exposed surface can start/stop rotation.
       if (disc) {
