@@ -1,62 +1,13 @@
-# Preview refresh: explicit Petal cover position hook 2026-10-20
-# Preview refresh: Petal cover moved to shelf contact point 2026-10-20
-# Preview refresh: slight showroom crop to raise shelf 2026-10-20
-# Preview refresh: visible 8px Petal cover nudge 2026-10-20
-# Preview refresh: tiny Petal cover nudge 2026-10-20
-# Preview refresh: corrected square Petal artwork and exact shelf contact 2026-10-20
-# Preview refresh: separate cover and disc shelf contact 2026-10-20
-# Preview refresh: cache-busted showroom border fix 2026-10-20
-# Preview refresh: geometry-based shelf alignment 2026-10-20
-# Preview refresh: shelf contact recalibration 2026-10-20
-# Preview refresh: flush record contact and seam removal 2026-10-20
-# Preview refresh: remove bronze seam under sleeve 2026-10-20
-# Preview refresh: sleeve edge and shelf grounding 2026-10-20
-# Preview refresh: record shelf contact and border cleanup 2026-10-20
-# Refresh development preview: approved showroom photo 2026-10-20
-# Preview refresh: rebuilt unified exhibition scene 2026-10-20
-# Preview refresh: dimensional shelf and unclipped disc 2026-10-20
-# Preview refresh: textured showroom and 3D shelf 2026-10-20
-# Preview refresh: Petal shelf edge trim 2026-10-20
-# Preview refresh: Petal gallery background fix and lighting 2026-10-20
-# Preview refresh: corrected premium gallery positioning 2026-10-20
-# Preview refresh: premium gallery and view switcher 2026-10-20
-# Preview refresh: collector gallery modal redesign 2026-10-20
-# Preview refresh: clean Petal detail image framing 2026-10-20
-# Preview refresh: clean uploaded Pepper Yellow artwork 2026-10-20
-# Preview refresh: repair Pepper Yellow sleeve source transparency 2026-10-20
-# Preview refresh: modal playback status sync and text wrapping 2026-10-20
-# Preview refresh: full-size aligned Petal sleeves 2026-10-20
-# Preview refresh: full shelf and Petal sleeve visibility 2026-10-20
-# Preview refresh: clean play icon without filled circle 2026-10-20
-# Preview refresh: compact player and repeat fix 2026-10-20
-# Preview refresh: audio transport controls and seek timeline 2026-10-20
-# Preview refresh: synchronize sleeve closing and first-click audio 2026-10-20
-# Preview refresh: Petal audio and synchronized vinyl playback 2026-10-20
-# Preview refresh: auto retract vinyl on mouseleave 2026-10-20
-# Preview refresh: sleeve overlays extracted disc 2026-10-20
-# Preview refresh: hovered vinyl stacking layer 2026-10-20
-# Preview refresh: remove hover compositing clipping 2026-10-20
-# Preview refresh: disc moved outside sleeve clipping container 2026-10-20
-# Refresh preview: two-stage vinyl hover interaction 2026-10-20
-# Refresh preview: expanded vinyl clipping correction 2026-10-20
-# Refresh preview: full exposed disc click target 2026-10-20
-# Refresh preview: full vinyl hover visibility 2026-10-20
-# Preview refresh: supplied Petal white/yellow 7-inch artwork 2026-10-20
-# Manual preview refresh: prevent open vinyl overlap V3
-# Rebuild preview with cache-busted Petal shelf layout V2
-# Manual preview refresh: shelf spacing and brass rail refinement
-# Manual preview refresh: 2026-10-19 Petal V6 integration
 name: Deploy vinyl website to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [main, vinyl-artwork-rebuild-20261019]
     paths:
       - 'jays_vinyl_recovered_site/**'
       - 'scripts/recover_artwork.py'
+      - 'scripts/extract_verified_pressings.py'
       - '.github/workflows/pages.yml'
-  schedule:
-    - cron: '17,47 * * * *'
   workflow_dispatch:
 
 permissions:
@@ -75,8 +26,15 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout published main website
         uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Checkout development preview separately
+        uses: actions/checkout@v4
+        with:
+          ref: vinyl-artwork-rebuild-20261019
+          path: _preview_source
       - name: Validate JavaScript before publishing
         run: node --check jays_vinyl_recovered_site/app.js
       - name: Validate artwork recovery script
@@ -87,21 +45,15 @@ jobs:
         run: python3 -m pip install --quiet Pillow
       - name: Recover official-store artwork where available
         run: python3 scripts/recover_artwork.py
-      - name: Checkout development preview separately
-        uses: actions/checkout@v4
-        with:
-          ref: vinyl-artwork-rebuild-20261019
-          path: preview-source
-      - name: Build development preview
+      - name: Extract photographed pressings where verified
+        run: python3 scripts/extract_verified_pressings.py
+      - name: Publish isolated development preview
         run: |
-          cd preview-source
-          node --check jays_vinyl_recovered_site/app.js
-          python3 scripts/recover_artwork.py
-          python3 scripts/extract_verified_pressings.py
-          node --check _site/app.js
-          mkdir -p ../_site/preview
-          cp -a _site/. ../_site/preview/
-          echo "Preview prepared at /preview/"
+          mkdir -p _site/preview
+          cp -a _preview_source/jays_vinyl_recovered_site/. _site/preview/
+          node --check _site/preview/app.js
+      - name: Validate built website JavaScript
+        run: node --check _site/app.js
       - name: Upload website files
         uses: actions/upload-pages-artifact@v3
         with:
