@@ -3150,15 +3150,75 @@
     if (!record?.nowPlaying?.url) return "";
     const active = previewRecordId === record.id && previewAudio && !previewAudio.paused;
     const loading = previewRecordId === record.id && previewState === "loading";
-    const label = loading ? "Loading preview…" : active ? `Pause “${record.nowPlaying.title}”` : `Play “${record.nowPlaying.title}”`;
-    return `<div class="record-preview record-preview--${escapeAttr(context)}">
-      <button class="preview-toggle" type="button" data-preview-toggle data-record-id="${escapeAttr(record.id)}" aria-label="${escapeAttr(label)}" aria-pressed="${active}">
-        <span class="preview-icon" data-preview-icon aria-hidden="true">${loading ? "◌" : active ? "Ⅱ" : "▶"}</span>
-        <span><small>Selected cut · official 30-second preview</small><strong data-preview-label>${escapeHTML(label)}</strong><em>${escapeHTML(record.nowPlaying.artist)}</em></span>
-      </button>
-      <span class="preview-status" data-preview-status aria-live="polite">${loading ? "Loading audio…" : active ? "Playing now" : "Tap play to hear the record"}</span>
+    const label = loading ? "Loading preview…" : active ? "Pause" : "Play";
+    const id = escapeAttr(record.id);
+    return `<div class="record-preview record-preview--${escapeAttr(context)}" data-player-id="${id}">
+      <div class="archive-player-head">
+        <div class="archive-player-copy"><small>SELECTED CUT · AUDIO PREVIEW</small><strong>${escapeHTML(record.nowPlaying.title)}</strong><span>${escapeHTML(record.nowPlaying.artist)}</span></div>
+        <span class="preview-status" data-preview-status aria-live="polite">Tap play to hear the record</span>
+      </div>
+      <div class="archive-player-timeline">
+        <input type="range" min="0" max="30" step=".1" value="0" data-preview-seek data-record-id="${id}" aria-label="Seek through audio preview" />
+        <div class="archive-player-times"><time data-preview-current>0:00</time><time data-preview-duration>0:30</time></div>
+      </div>
+      <div class="archive-player-actions">
+        <button type="button" data-preview-repeat data-record-id="${id}" aria-label="Repeat audio" aria-pressed="false" title="Repeat">↻</button>
+        <button type="button" data-preview-jump="-15" data-record-id="${id}" aria-label="Rewind 15 seconds" title="Rewind 15 seconds">↶<small>15</small></button>
+        <button class="preview-toggle" type="button" data-preview-toggle data-record-id="${id}" aria-label="${escapeAttr(label)}" aria-pressed="${active}">
+          <span class="preview-icon" data-preview-icon aria-hidden="true">${loading ? "◌" : active ? "Ⅱ" : "▶"}</span><span data-preview-label>${label}</span>
+        </button>
+        <button type="button" data-preview-jump="15" data-record-id="${id}" aria-label="Forward 15 seconds" title="Forward 15 seconds">↷<small>15</small></button>
+        <button type="button" data-preview-restart data-record-id="${id}" aria-label="Restart audio" title="Restart">⟲</button>
+      </div>
     </div>`;
   }
+
+  function previewTime(seconds) {
+    const n = Math.max(0, Math.floor(Number(seconds) || 0));
+    return `${Math.floor(n / 60)}:${String(n % 60).padStart(2, "0")}`;
+  }
+  let previewRepeat = false;
+  function syncPreviewTimeline() {
+    document.querySelectorAll("[data-player-id]").forEach((player) => {
+      const current = previewAudio && previewRecordId === player.dataset.playerId;
+      const duration = current && Number.isFinite(previewAudio.duration) ? previewAudio.duration : 30;
+      const elapsed = current ? previewAudio.currentTime || 0 : 0;
+      const range = player.querySelector("[data-preview-seek]");
+      if (range) {
+        range.max = String(duration);
+        if (!range.matches(":active")) range.value = String(Math.min(elapsed, duration));
+        range.style.setProperty("--preview-progress", `${duration ? (elapsed / duration) * 100 : 0}%`);
+      }
+      const now = player.querySelector("[data-preview-current]");
+      const total = player.querySelector("[data-preview-duration]");
+      if (now) now.textContent = previewTime(elapsed);
+      if (total) total.textContent = previewTime(duration);
+      const repeat = player.querySelector("[data-preview-repeat]");
+      if (repeat) repeat.setAttribute("aria-pressed", String(previewRepeat));
+    });
+  }
+  document.addEventListener("click", (event) => {
+    const control = event.target.closest("[data-preview-jump], [data-preview-repeat], [data-preview-restart]");
+    if (!control) return;
+    event.preventDefault();
+    event.stopPropagation();
+    if (control.hasAttribute("data-preview-repeat")) {
+      previewRepeat = !previewRepeat;
+      if (previewAudio) previewAudio.loop = previewRepeat;
+      syncPreviewTimeline();
+      return;
+    }
+    if (!previewAudio || previewRecordId !== control.dataset.recordId) return;
+    const duration = Number.isFinite(previewAudio.duration) ? previewAudio.duration : 30;
+    previewAudio.currentTime = control.hasAttribute("data-preview-restart") ? 0 : Math.max(0, Math.min(duration, previewAudio.currentTime + Number(control.dataset.previewJump)));
+    syncPreviewTimeline();
+  });
+  document.addEventListener("input", (event) => {
+    const seek = event.target.closest("[data-preview-seek]");
+    if (!seek || !previewAudio || previewRecordId !== seek.dataset.recordId) return;
+    previewAudio.currentTime = Number(seek.value);
+    syncPreviewTimeline();
+  });
 
   function refreshHomeDashboard() {
     if (!homeVault || state.page !== "home") return;
@@ -3203,6 +3263,7 @@
         card.classList.toggle("is-pulled", card.dataset.vinylState === "pulled");
       }
     });
+    syncPreviewTimeline();
     document.querySelectorAll("[data-preview-disc]").forEach((node) => node.classList.toggle("is-playing", playing && node.dataset.previewDisc === previewRecordId));
   }
 
@@ -3242,6 +3303,9 @@
     setNowSpinning(record.id);
     previewAudio = new Audio(record.nowPlaying.url);
     previewAudio.preload = "auto";
+    previewAudio.loop = previewRepeat;
+    previewAudio.addEventListener("timeupdate", syncPreviewTimeline);
+    previewAudio.addEventListener("loadedmetadata", syncPreviewTimeline);
     previewAudio.addEventListener("playing", () => { previewState = "playing"; syncPreviewUI(); });
     previewAudio.addEventListener("pause", () => { if (!previewAudio.ended && previewState !== "loading") previewState = "paused"; syncPreviewUI(); });
     previewAudio.addEventListener("ended", () => { previewState = "idle"; syncPreviewUI(); });
