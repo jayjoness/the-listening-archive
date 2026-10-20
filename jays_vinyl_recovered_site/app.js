@@ -3155,7 +3155,7 @@
     return `<div class="record-preview record-preview--${escapeAttr(context)}" data-player-id="${id}">
       <div class="archive-player-head">
         <div class="archive-player-copy"><small>SELECTED CUT · AUDIO PREVIEW</small><strong>${escapeHTML(record.nowPlaying.title)}</strong><span>${escapeHTML(record.nowPlaying.artist)}</span></div>
-        <span class="preview-status" data-preview-status aria-live="polite">Tap play to hear the record</span>
+        <span class="preview-status" data-preview-status aria-live="polite">${loading ? "Loading audio…" : active ? "Playing now" : previewRecordId === record.id && previewState === "paused" ? "Paused" : "Tap play to hear the record"}</span>
       </div>
       <div class="archive-player-timeline">
         <input type="range" min="0" max="30" step=".1" value="0" data-preview-seek data-record-id="${id}" aria-label="Seek through audio preview" />
@@ -4059,6 +4059,8 @@
       if (Math.abs(delta) > 45) setGalleryImage(delta < 0 ? 1 : -1);
       touchStartX = null;
     }, { passive: true });
+    // The modal is inserted after the shelf may have started playback: sync its player immediately.
+    syncPreviewUI();
     modalPanel.querySelector("[data-share-record]")?.addEventListener("click", () => shareRecord(record));
     modalPanel.querySelector("[data-preview-toggle]")?.addEventListener("click", (event) => {
       event.preventDefault();
