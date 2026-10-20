@@ -4975,3 +4975,15 @@ body.modal-open .now-spinning-bar { display:none; }
     background-position:center calc(50% - 6px)!important;
   }
 }
+
+/* Petal cover contact adjustment 2026-10-20.
+   Move ONLY the sleeve object down to the shelf line indicated in the latest screenshot.
+   Preserve showroom crop, artwork size/crop, borders, shadow, controls, and disc position. */
+.record-modal .modal-visual .modal-image-frame:not(:has(.archive-gallery-disc-image)) {
+  transform:translateX(-50%) translateY(20px)!important;
+}
+@media(max-width:720px) {
+  .record-modal .modal-visual .modal-image-frame:not(:has(.archive-gallery-disc-image)) {
+    transform:translateX(-50%) translateY(20px)!important;
+  }
+}
