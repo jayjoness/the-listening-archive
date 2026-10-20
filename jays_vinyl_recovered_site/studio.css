@@ -4725,3 +4725,50 @@ body.modal-open .now-spinning-bar { display:none; }
     bottom:28.55%!important;
   }
 }
+
+/* Shelf geometry correction: use the photographed shelf's real top edge.
+   Source showroom shelf top is ~68.1% from the top, so the object base is 31.9% from bottom. */
+.record-modal .modal-visual .modal-image-frame,
+.record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve"]) .modal-image-frame,
+.record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) .modal-image-frame {
+  bottom:31.9%!important;
+  border:0!important;
+  outline:0!important;
+  background:transparent!important;
+}
+.record-modal .modal-visual .modal-image-frame::before,
+.record-modal .modal-visual .modal-image-frame::after {
+  display:none!important;
+  content:none!important;
+}
+.record-modal .modal-visual .modal-image-frame:not(:has(.archive-gallery-disc-image)) {
+  overflow:visible!important;
+  box-shadow:7px 9px 14px rgba(0,0,0,.34),16px 15px 24px rgba(0,0,0,.20)!important;
+}
+.record-modal .modal-visual .modal-image-frame:not(:has(.archive-gallery-disc-image)) .modal-image {
+  width:100%!important;
+  height:100%!important;
+  margin:0!important;
+  max-width:100%!important;
+  object-fit:cover!important;
+  transform:translateY(2px) scale(1.008)!important;
+  transform-origin:center bottom!important;
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+}
+.record-modal .modal-visual .modal-image-frame:has(.archive-gallery-disc-image) {
+  bottom:31.9%!important;
+  box-shadow:none!important;
+  filter:drop-shadow(7px 8px 8px rgba(0,0,0,.52))!important;
+}
+.record-modal .modal-visual .modal-image.archive-gallery-disc-image {
+  clip-path:circle(50% at 50% 50%)!important;
+}
+@media(max-width:720px) {
+  .record-modal .modal-visual .modal-image-frame,
+  .record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve"]) .modal-image-frame,
+  .record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) .modal-image-frame {
+    bottom:31.9%!important;
+  }
+}
