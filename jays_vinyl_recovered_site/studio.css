@@ -3989,3 +3989,56 @@ body.modal-open .now-spinning-bar { display:none; }
 .archive-player-actions .preview-toggle [data-preview-label] { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
 .archive-player-actions .preview-icon { display:block!important; font-size:19px; line-height:1; }
 @media(max-width:420px) { .record-preview { padding:12px!important; } .archive-player-head .preview-status { max-width:80px; } .archive-player-actions button { min-width:32px; } }
+
+/* Refined audio transport: quieter hierarchy, slimmer copper trim, centred play icon. */
+.record-preview {
+  gap:10px!important;
+  padding:13px 15px!important;
+  border-color:rgba(203,154,113,.28)!important;
+  border-radius:12px!important;
+  box-shadow:none!important;
+}
+.archive-player-head { align-items:center; gap:9px; }
+.archive-player-copy { gap:2px; }
+.archive-player-copy small { font-size:9px; letter-spacing:.1em; }
+.archive-player-copy strong { font-size:19px; line-height:1.2; }
+.archive-player-copy span { font-size:11px; }
+.archive-player-head .preview-status { font-size:10px; white-space:nowrap; }
+.archive-player-timeline { gap:1px; }
+.archive-player-actions { justify-content:center; gap:clamp(7px,2vw,17px); }
+.archive-player-actions button:not(.preview-toggle) {
+  position:relative; flex:0 0 36px; width:36px; height:36px;
+  min-width:36px; min-height:36px; font-size:20px;
+  padding:0; display:flex; align-items:center; justify-content:center;
+}
+.archive-player-actions .preview-toggle {
+  position:relative!important;
+  flex:0 0 44px!important; width:44px!important; height:44px!important;
+  min-width:44px!important; min-height:44px!important;
+  display:flex!important; align-items:center!important; justify-content:center!important;
+  grid-template-columns:none!important; gap:0!important; line-height:1!important;
+}
+.archive-player-actions .preview-toggle .preview-icon {
+  position:static!important; inset:auto!important; margin:0!important;
+  padding:0!important; border:0!important; background:none!important;
+  width:auto!important; height:auto!important; min-width:0!important;
+  display:block!important; transform:none!important; font-size:19px!important;
+  line-height:1!important; text-align:center!important;
+}
+.archive-player-actions [data-preview-repeat] { flex-direction:column; gap:0; }
+.archive-player-actions [data-preview-repeat] span { line-height:1; }
+.archive-player-actions [data-repeat-label] {
+  display:block; font-size:8px!important; font-weight:750;
+  letter-spacing:.04em; line-height:1;
+}
+.archive-player-actions [data-preview-repeat][aria-pressed=true] {
+  color:#e8b588!important;
+  background:rgba(220,156,99,.18)!important;
+  box-shadow:inset 0 -2px 0 #dfaa7e;
+}
+.archive-player-actions [data-preview-jump] small { font-size:8px; }
+@media(max-width:420px) {
+  .record-preview { padding:11px!important; }
+  .archive-player-actions { gap:5px; justify-content:space-between; }
+  .archive-player-actions button:not(.preview-toggle) { width:32px; min-width:32px; flex-basis:32px; }
+}
