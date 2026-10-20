@@ -4971,3 +4971,9 @@ body.modal-open .now-spinning-bar { display:none; }
   content: none !important;
   display: none !important;
 }
+
+/* Pepper Yellow disc: lower just the circular vinyl 7px to meet the bronze shelf.
+   No change to the sleeve, showroom, or other pressings. */
+.record-modal .modal-visual.archive-view-disc[data-record-id="email-purchase-petal-pepper-yellow"] > .modal-image-frame {
+  transform: translate(-50%, 7px) !important;
+}
