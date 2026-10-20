@@ -4001,6 +4001,7 @@
         ${modalTags.length ? `<div class="modal-badges">${modalTags.map((tag) => `<span>${escapeHTML(tag)}</span>`).join("")}</div>` : ""}
       </header>
       <div class="modal-visual">
+        <div class="archive-gallery-ceiling" aria-hidden="true"></div>
         <div class="archive-gallery-grain" aria-hidden="true"></div>
         <div class="archive-gallery-lamp" aria-hidden="true"></div>
         <div class="archive-gallery-wallwash" aria-hidden="true"></div>
@@ -4047,6 +4048,8 @@
       if (!galleryViews.length) return;
       galleryIndex = (index + galleryViews.length) % galleryViews.length;
       const view = galleryViews[galleryIndex];
+      const scene = modalPanel.querySelector(".modal-visual");
+      if (scene) scene.classList.toggle("archive-view-disc", view.label === "Vinyl disc");
       const image = modalPanel.querySelector("[data-gallery-image]");
       if (image) { image.src = view.image; image.alt = displayTitle(record) + " — " + view.label; image.classList.toggle("archive-gallery-disc-image", view.label === "Vinyl disc"); }
       const count = modalPanel.querySelector("[data-gallery-count]");
