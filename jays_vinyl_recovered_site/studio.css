@@ -4937,3 +4937,13 @@ body.modal-open .now-spinning-bar { display:none; }
     bottom:30.30%!important;
   }
 }
+
+/* Tiny approved cover nudge only. Preserve current size, crop, borders and shadows exactly. */
+.record-modal .modal-visual .modal-image-frame:not(:has(.archive-gallery-disc-image)) {
+  bottom:29.80%!important;
+}
+@media(max-width:720px) {
+  .record-modal .modal-visual .modal-image-frame:not(:has(.archive-gallery-disc-image)) {
+    bottom:29.80%!important;
+  }
+}
