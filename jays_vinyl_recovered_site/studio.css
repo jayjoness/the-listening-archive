@@ -4640,3 +4640,22 @@ body.modal-open .now-spinning-bar { display:none; }
     bottom:29.65%!important;
   }
 }
+
+/* Remove the thin bronze seam under cover art.
+   Overlap the physical sleeve onto the photographed shelf top by a few pixels. */
+.record-modal .modal-visual .modal-image-frame:not(:has(.archive-gallery-disc-image)),
+.record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve"]) .modal-image-frame:not(:has(.archive-gallery-disc-image)),
+.record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) .modal-image-frame:not(:has(.archive-gallery-disc-image)) {
+  bottom:29.15%!important;
+}
+.record-modal .modal-visual .modal-image-frame:not(:has(.archive-gallery-disc-image))::after {
+  display:none!important;
+  content:none!important;
+}
+@media(max-width:720px) {
+  .record-modal .modal-visual .modal-image-frame:not(:has(.archive-gallery-disc-image)),
+  .record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve"]) .modal-image-frame:not(:has(.archive-gallery-disc-image)),
+  .record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) .modal-image-frame:not(:has(.archive-gallery-disc-image)) {
+    bottom:29.15%!important;
+  }
+}
