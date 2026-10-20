@@ -2,7 +2,7 @@ name: Deploy vinyl website to GitHub Pages
 
 on:
   push:
-    branches: [main, vinyl-artwork-rebuild-20261019]
+    branches: [main]
     paths:
       - 'jays_vinyl_recovered_site/**'
       - 'scripts/recover_artwork.py'
