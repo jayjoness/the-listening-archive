@@ -5012,15 +5012,15 @@ body.modal-open .now-spinning-bar { display:none; }
   letter-spacing: .025em !important;
   text-transform: none !important;
 }
-/* Official Petal wordmark from the artwork uploaded to main.
-   Source has white margins, so crop via a centered CSS background.
-   Keep accessible title text in the DOM for screen readers. */
+/* Transparent Petal logo supplied by the collector. Display without
+   cropping, stretching or a painted white rectangle. The title text stays
+   accessible in the markup, while its visual appearance is replaced. */
 .record-modal .modal-head--petal .modal-title {
   position: relative !important;
-  width: min(100%, 390px) !important;
-  height: clamp(108px, 12vw, 150px) !important;
-  margin-top: 2px !important;
-  overflow: hidden !important;
+  width: min(100%, 320px) !important;
+  height: 150px !important;
+  margin: 8px 0 2px !important;
+  overflow: visible !important;
   color: transparent !important;
   font-size: 0 !important;
   line-height: 0 !important;
@@ -5029,14 +5029,14 @@ body.modal-open .now-spinning-bar { display:none; }
   content: "" !important;
   position: absolute !important;
   inset: 0 !important;
-  background-image: url("/the-listening-archive/assets/ChatGPT%20Image%20Oct%2020%2C%202026%20at%2003_13_28%20PM.jpg") !important;
+  background-image: url("/the-listening-archive/assets/Petal%20Ariana%20Grande%20Logo.png") !important;
   background-repeat: no-repeat !important;
-  background-position: center center !important;
-  background-size: 260% auto !important;
+  background-position: left center !important;
+  background-size: contain !important;
 }
 @media (max-width: 650px) {
   .record-modal .modal-head--petal .modal-title {
     width: min(100%, 290px) !important;
-    height: 115px !important;
+    height: 135px !important;
   }
 }
