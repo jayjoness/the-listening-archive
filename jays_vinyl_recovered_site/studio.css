@@ -4516,3 +4516,27 @@ body.modal-open .now-spinning-bar { display:none; }
 @media(max-width:720px) {
   .record-modal .archive-gallery-controls {top:32%!important;left:4%!important;right:4%!important;}
 }
+
+
+/* Petal shelf sleeve: trim the thin photographed edge without resizing its square slot.
+   The clipping stays inside the sleeve, preserving the physical record interactions. */
+.shelf-category .shelf-record--has-disc:has(.shelf-sleeve img[src*="petal_white_sleeve"]) .shelf-sleeve,
+.shelf-category .shelf-record--has-disc:has(.shelf-sleeve img[src*="petal_yellow_sleeve"]) .shelf-sleeve {
+  overflow:hidden!important;
+  border:0!important;
+  padding:0!important;
+  background:#16120f!important;
+}
+.shelf-category .shelf-record--has-disc:has(.shelf-sleeve img[src*="petal_white_sleeve"]) .shelf-sleeve img,
+.shelf-category .shelf-record--has-disc:has(.shelf-sleeve img[src*="petal_yellow_sleeve"]) .shelf-sleeve img {
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  object-position:center!important;
+  transform:scale(1.035)!important;
+  transform-origin:center!important;
+  border:0!important;
+  padding:0!important;
+  box-shadow:none!important;
+}
