@@ -4772,3 +4772,66 @@ body.modal-open .now-spinning-bar { display:none; }
     bottom:31.9%!important;
   }
 }
+
+/* SHOWROOM FINAL OVERRIDE 2026-10-20c
+   No frame borders. No all-around shadow pretending to be a sleeve edge.
+   The real artwork/disc sits directly on the photographed shelf. */
+.record-modal .modal-visual .modal-image-frame,
+.record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve"]) .modal-image-frame,
+.record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) .modal-image-frame {
+  bottom:31.9%!important;
+  overflow:hidden!important;
+  background:transparent!important;
+  border:0!important;
+  outline:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  filter:none!important;
+}
+.record-modal .modal-visual .modal-image-frame::before,
+.record-modal .modal-visual .modal-image-frame::after {
+  display:none!important;
+  content:none!important;
+  border:0!important;
+  box-shadow:none!important;
+  background:none!important;
+}
+.record-modal .modal-visual .modal-image {
+  border:0!important;
+  outline:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  filter:none!important;
+  margin:0!important;
+}
+.record-modal .modal-visual .modal-image-frame:not(:has(.archive-gallery-disc-image)) .modal-image {
+  width:100%!important;
+  height:100%!important;
+  max-width:100%!important;
+  object-fit:cover!important;
+  transform:scale(1.018)!important;
+  transform-origin:center center!important;
+}
+.record-modal .modal-visual .modal-image-frame:has(.archive-gallery-disc-image) {
+  overflow:visible!important;
+  box-shadow:none!important;
+  filter:none!important;
+}
+.record-modal .modal-visual .modal-image.archive-gallery-disc-image {
+  width:100%!important;
+  height:100%!important;
+  object-fit:contain!important;
+  clip-path:circle(49.7% at 50% 50%)!important;
+  transform:none!important;
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+  filter:drop-shadow(7px 7px 8px rgba(0,0,0,.42))!important;
+}
+@media(max-width:720px) {
+  .record-modal .modal-visual .modal-image-frame,
+  .record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve"]) .modal-image-frame,
+  .record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) .modal-image-frame {
+    bottom:31.9%!important;
+  }
+}
