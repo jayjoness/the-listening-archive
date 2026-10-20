@@ -4104,3 +4104,38 @@ body.modal-open .now-spinning-bar { display:none; }
   object-fit:contain!important;
   object-position:center!important;
 }
+
+/* Petal 7-inch: restore full-size square artwork and seat it on the shelf.
+   Scope only to the verified Petal artwork; other pressings remain untouched. */
+.shelf-category .shelf-record--has-disc:not(.petal-v6):has(.shelf-sleeve img[src*="petal_white_sleeve"]),
+.shelf-category .shelf-record--has-disc:not(.petal-v6):has(.shelf-sleeve img[src*="petal_yellow_sleeve"]) {
+  height:auto!important;
+  aspect-ratio:1 / 1!important;
+  align-self:flex-end!important;
+  margin-bottom:0!important;
+  padding-bottom:0!important;
+}
+.shelf-category .shelf-record--has-disc:has(.shelf-sleeve img[src*="petal_white_sleeve"]) > .shelf-object,
+.shelf-category .shelf-record--has-disc:has(.shelf-sleeve img[src*="petal_yellow_sleeve"]) > .shelf-object {
+  width:100%!important;
+  height:auto!important;
+  aspect-ratio:1 / 1!important;
+  flex:none!important;
+}
+.shelf-category .shelf-record--has-disc:has(.shelf-sleeve img[src*="petal_white_sleeve"]) .shelf-sleeve,
+.shelf-category .shelf-record--has-disc:has(.shelf-sleeve img[src*="petal_yellow_sleeve"]) .shelf-sleeve {
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  overflow:hidden!important;
+}
+.shelf-category .shelf-record--has-disc:has(.shelf-sleeve img[src*="petal_white_sleeve"]) .shelf-sleeve img,
+.shelf-category .shelf-record--has-disc:has(.shelf-sleeve img[src*="petal_yellow_sleeve"]) .shelf-sleeve img {
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  object-fit:cover!important;
+  object-position:center!important;
+  transform:none!important;
+}
