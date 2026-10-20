@@ -4958,3 +4958,20 @@ body.modal-open .now-spinning-bar { display:none; }
     transform:translateX(-50%) translateY(8px)!important;
   }
 }
+
+/* Showroom alignment fix: leave the record exactly as approved and crop the photographed room instead.
+   Slight zoom + upward background shift raises the physical shelf under the unchanged artwork. */
+.record-modal .modal-visual,
+.record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve_square"]),
+.record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) {
+  background-size:102% 102%!important;
+  background-position:center calc(50% - 7px)!important;
+}
+@media(max-width:720px) {
+  .record-modal .modal-visual,
+  .record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve_square"]),
+  .record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) {
+    background-size:102% 102%!important;
+    background-position:center calc(50% - 6px)!important;
+  }
+}
