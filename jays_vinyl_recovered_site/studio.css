@@ -4995,27 +4995,48 @@ body.modal-open .now-spinning-bar { display:none; }
   display: none !important;
 }
 
-/* Petal editorial typography: echo the silver serif wordmark and handwritten
-   artist signature without replacing the actual sleeve art or other records. */
-.record-modal .modal-head--petal .modal-title {
-  font-family: "Bodoni MT", "Didot", "Times New Roman", Georgia, serif !important;
-  font-weight: 400 !important;
-  font-size: clamp(3.1rem, 5.6vw, 5rem) !important;
-  line-height: .98 !important;
-  letter-spacing: -.075em !important;
-  text-transform: lowercase !important;
-  color: #817b76 !important;
+/* Artist names are editorial metadata, never coloured badges. */
+.record-modal .modal-head .modal-category {
+  display: inline !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #77716e !important;
+  font-family: inherit !important;
+  font-size: .74rem !important;
+  font-weight: 600 !important;
+  font-style: normal !important;
+  letter-spacing: .025em !important;
+  text-transform: none !important;
 }
-.record-modal .modal-head--petal .modal-category {
-  font-family: "Brush Script MT", "Segoe Script", "Apple Chancery", cursive !important;
-  font-style: italic !important;
-  font-weight: 400 !important;
-  text-transform: lowercase !important;
-  letter-spacing: -.025em !important;
-  font-size: .95rem !important;
+/* Official Petal wordmark from the artwork uploaded to main.
+   Source has white margins, so crop via a centered CSS background.
+   Keep accessible title text in the DOM for screen readers. */
+.record-modal .modal-head--petal .modal-title {
+  position: relative !important;
+  width: min(100%, 390px) !important;
+  height: clamp(108px, 12vw, 150px) !important;
+  margin-top: 2px !important;
+  overflow: hidden !important;
+  color: transparent !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+}
+.record-modal .modal-head--petal .modal-title::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background-image: url("/the-listening-archive/assets/ChatGPT%20Image%20Oct%2020%2C%202026%20at%2003_13_28%20PM.jpg") !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: 260% auto !important;
 }
 @media (max-width: 650px) {
   .record-modal .modal-head--petal .modal-title {
-    font-size: clamp(2.7rem, 11vw, 4.1rem) !important;
+    width: min(100%, 290px) !important;
+    height: 115px !important;
   }
 }
