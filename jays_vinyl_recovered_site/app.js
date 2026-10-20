@@ -24,7 +24,7 @@
 
   const stylesheet = document.createElement("link");
   stylesheet.rel = "stylesheet";
-  stylesheet.href = "studio.css?v=petal-shelf-layout-20261019b";
+  stylesheet.href = "studio.css?v=showroom-20261020c";
   document.head.appendChild(stylesheet);
 
   const clean = (value) => (value || "").replace(/\s+/g, " ").trim();
