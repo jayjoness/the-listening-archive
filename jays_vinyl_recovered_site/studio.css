@@ -3921,3 +3921,49 @@ body.modal-open .now-spinning-bar { display:none; }
 .shelf-category .shelf-record--has-disc:not(.petal-v6) > .shelf-disc-photo:hover {
   z-index:10!important;
 }
+
+/* Now Playing: compact, readable floating deck with real rotating artwork. */
+.now-spinning-bar {
+  width:min(360px,calc(100vw - 26px))!important;
+  max-width:calc(100vw - 26px)!important;
+  overflow:visible!important;
+}
+.now-spinning-bar .now-spinning-main {
+  min-width:0!important;
+  grid-template-columns:38px minmax(0,1fr) 14px!important;
+  gap:10px!important;
+}
+.now-spinning-bar .now-spinning-main > span:nth-child(2) {
+  overflow:hidden;
+}
+.now-spinning-bar [data-now-spinning-title] {
+  display:block;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.now-spinning-disc-slot {
+  display:grid;
+  width:36px;
+  height:36px;
+  place-items:center;
+  overflow:visible;
+}
+.now-spinning-disc-slot > .pressing-disc--mini,
+.now-spinning-disc-slot > .pressing-disc {
+  display:block;
+  width:34px!important;
+  height:34px!important;
+  aspect-ratio:1;
+  border-radius:50%;
+  transform-origin:50% 50%;
+  animation:archive-disc-spin 2.1s linear infinite!important;
+  animation-play-state:paused!important;
+}
+.now-spinning-bar.is-playing .now-spinning-disc-slot > .pressing-disc--mini,
+.now-spinning-bar.is-playing .now-spinning-disc-slot > .pressing-disc {
+  animation-play-state:running!important;
+}
+@media(max-width:600px) {
+  .now-spinning-bar { left:13px!important; right:13px!important; width:auto!important; }
+}
