@@ -4198,11 +4198,7 @@ body.modal-open .now-spinning-bar { display:none; }
   border:0!important;
   box-shadow:none!important;
 }
-.modal-visual:has(.modal-image[src*="petal_white_sleeve"]),
-.modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) {
-  padding:0!important;
-  background:transparent!important;
-}
+/* Gallery background is shared across cover, disc and pressing-photo views. */
 
 /* Collector's Gallery | shared record-details display
    Physical sleeves on a restrained bronze ledge; the editorial information
@@ -4468,4 +4464,55 @@ body.modal-open .now-spinning-bar { display:none; }
  .record-modal .archive-gallery-thumbnails {bottom:3%!important;gap:8px!important;}
  .record-modal .archive-gallery-thumbnails button {width:61px!important;max-width:61px!important;min-height:70px!important;padding:4px!important;}
  .record-modal .archive-gallery-thumbnails img {width:44px!important;height:44px!important;}
+}
+
+
+/* Exhibit v4: remove legacy Petal background conflict and cartoon beam. */
+.record-modal .modal-visual,
+.record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve"]),
+.record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) {
+  padding:0!important;
+  background:
+    radial-gradient(ellipse 42% 45% at 50% 39%,rgba(174,108,59,.24) 0%,rgba(101,60,38,.14) 46%,transparent 100%),
+    radial-gradient(ellipse 70% 85% at 50% 45%,rgba(111,67,43,.17),transparent 76%),
+    linear-gradient(105deg,#120e0d 0%,#241913 47%,#17110f 100%)!important;
+  box-shadow:inset 0 0 85px rgba(0,0,0,.44)!important;
+}
+.record-modal .modal-visual::after {
+  content:""!important;
+  position:absolute!important;
+  top:7%!important;left:29%!important;right:29%!important;
+  width:auto!important;height:58%!important;
+  background:radial-gradient(ellipse at 50% 0%,rgba(237,176,109,.19),rgba(187,119,63,.055) 47%,transparent 75%)!important;
+  clip-path:none!important;
+  filter:blur(27px)!important;
+  pointer-events:none!important;
+}
+.record-modal .modal-visual .modal-image-frame,
+.record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve"]) .modal-image-frame,
+.record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) .modal-image-frame {
+  box-shadow:3px 5px 4px rgba(0,0,0,.27),12px 18px 26px rgba(0,0,0,.63),0 0 38px rgba(207,143,82,.065)!important;
+}
+.record-modal .modal-visual .modal-image-frame:has(.archive-gallery-disc-image) {
+  box-shadow:none!important;
+}
+.record-modal .archive-gallery-controls {
+  top:39%!important;left:7%!important;right:7%!important;
+}
+.record-modal .archive-gallery-controls [data-gallery-count] {
+  top:auto!important;bottom:auto!important;
+  position:fixed!important;left:-9999px!important;
+}
+.record-modal .archive-gallery-thumbnails {
+  bottom:3.5%!important;
+}
+.record-modal .archive-gallery-thumbnails button {
+  background:rgba(20,14,12,.9)!important;
+  border-color:rgba(174,122,79,.4)!important;
+}
+.record-modal .archive-gallery-thumbnails button.is-selected {
+  background:#493022!important;border-color:#e0ab78!important;
+}
+@media(max-width:720px) {
+  .record-modal .archive-gallery-controls {top:32%!important;left:4%!important;right:4%!important;}
 }
