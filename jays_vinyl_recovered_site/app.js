@@ -4006,7 +4006,6 @@
           ${gallery[0] ? `<img class="modal-image" data-gallery-image src="${escapeAttr(gallery[0])}" alt="${escapeAttr(`${displayTitle(record)} — exact pressing product image`)}">` : "<span class=\"modal-no-photo\">No pressing image documented</span>"}
         </div>
           ${galleryViews.length > 1 ? `<div class="archive-gallery-controls"><button type="button" data-gallery-prev aria-label="Previous view">‹</button><span data-gallery-count>Cover · 1 of ${galleryViews.length}</span><button type="button" data-gallery-next aria-label="Next view">›</button></div><div class="archive-gallery-thumbnails">${galleryViews.map((view, index) => `<button type="button" data-gallery-select="${index}" class="${index === 0 ? "is-selected" : ""}" aria-label="${escapeAttr(view.label)}" aria-pressed="${index === 0}"><img src="${escapeAttr(view.image)}" alt="" loading="lazy"><span>${escapeHTML(view.label)}</span></button>`).join("")}</div>` : ""}
-        </div>
       </div>
       <div class="modal-body">
         <div class="modal-price-row">
