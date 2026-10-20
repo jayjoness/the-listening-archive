@@ -4972,8 +4972,22 @@ body.modal-open .now-spinning-bar { display:none; }
   display: none !important;
 }
 
-/* Pepper Yellow disc: lower just the circular vinyl 7px to meet the bronze shelf.
-   No change to the sleeve, showroom, or other pressings. */
+/* Pepper Yellow disc: clean circular object with a natural shelf contact.
+   Clip the WHOLE disc frame, not just the img (which left a browser-painted
+   rectangular seam on the right). Raise 3px from the previous over-low position
+   so the bottom arc remains round rather than appearing cut off by the shelf. */
 .record-modal .modal-visual.archive-view-disc[data-record-id="email-purchase-petal-pepper-yellow"] > .modal-image-frame {
-  transform: translate(-50%, 7px) !important;
+  transform: translate(-50%, 4px) !important;
+  border-radius: 50% !important;
+  overflow: hidden !important;
+  clip-path: circle(49.7% at 50% 50%) !important;
+  filter: none !important;
+  isolation: isolate !important;
+  box-shadow: none !important;
+}
+.record-modal .modal-visual.archive-view-disc[data-record-id="email-purchase-petal-pepper-yellow"] .modal-image.archive-gallery-disc-image {
+  clip-path: none !important;
+  border-radius: 50% !important;
+  filter: none !important;
+  backface-visibility: hidden !important;
 }
