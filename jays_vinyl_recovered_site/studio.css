@@ -4987,3 +4987,15 @@ body.modal-open .now-spinning-bar { display:none; }
     transform:translateX(-50%) translateY(20px)!important;
   }
 }
+
+/* Explicit Petal cover positioning.
+   Use view-state + record-id instead of :has() so Safari cannot ignore the nudge.
+   Only the Dandelion White cover moves. Nothing else changes. */
+.record-modal .modal-visual.archive-view-cover[data-record-id="email-purchase-petal-dandelion-white"] .modal-image-frame {
+  transform:translateX(-50%) translateY(32px)!important;
+}
+@media(max-width:720px) {
+  .record-modal .modal-visual.archive-view-cover[data-record-id="email-purchase-petal-dandelion-white"] .modal-image-frame {
+    transform:translateX(-50%) translateY(32px)!important;
+  }
+}
