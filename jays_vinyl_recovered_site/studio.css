@@ -5040,3 +5040,6 @@ body.modal-open .now-spinning-bar { display:none; }
     height: 135px !important;
   }
 }
+
+/* Petal's official logo already contains Ariana Grande's name. */
+.record-modal .modal-head--petal .modal-category { display: none !important; }
