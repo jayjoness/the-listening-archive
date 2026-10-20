@@ -3895,3 +3895,17 @@ body.modal-open .now-spinning-bar { display:none; }
     z-index:20!important;
   }
 }
+
+/* When the pointer moves onto the exposed vinyl, keep its complete image in
+   front of the sleeve's isolated stacking context instead of masking its right half. */
+@media (hover:hover) and (pointer:fine) {
+  .shelf-category .shelf-record--has-disc:not(.petal-v6) > .shelf-disc-photo:hover {
+    z-index:10!important;
+    overflow:visible!important;
+    clip-path:none!important;
+  }
+  .shelf-category .shelf-record--has-disc:not(.petal-v6) > .shelf-disc-photo:hover > img {
+    clip-path:none!important;
+    overflow:visible!important;
+  }
+}
