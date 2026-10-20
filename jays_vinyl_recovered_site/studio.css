@@ -4691,3 +4691,37 @@ body.modal-open .now-spinning-bar { display:none; }
     bottom:27.45%!important;
   }
 }
+
+/* Shelf contact calibration: previous pass sat too far onto the front lip.
+   Lift the sleeve/disc just enough to sit on the shelf top without revealing a bronze seam. */
+.record-modal .modal-visual .modal-image-frame,
+.record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve"]) .modal-image-frame,
+.record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) .modal-image-frame {
+  bottom:28.55%!important;
+}
+.record-modal .modal-visual .modal-image-frame:not(:has(.archive-gallery-disc-image)) {
+  box-shadow:
+    2px 3px 3px rgba(0,0,0,.30),
+    8px 10px 13px rgba(0,0,0,.38),
+    16px 16px 22px rgba(0,0,0,.24)!important;
+}
+.record-modal .modal-visual .modal-image-frame:not(:has(.archive-gallery-disc-image))::after {
+  content:""!important;
+  display:block!important;
+  position:absolute!important;
+  left:3%!important;right:3%!important;
+  bottom:-2px!important;height:5px!important;
+  border-radius:50%!important;
+  background:rgba(7,4,3,.58)!important;
+  filter:blur(2.5px)!important;
+  box-shadow:none!important;
+  pointer-events:none!important;
+  z-index:-1!important;
+}
+@media(max-width:720px) {
+  .record-modal .modal-visual .modal-image-frame,
+  .record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve"]) .modal-image-frame,
+  .record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) .modal-image-frame {
+    bottom:28.55%!important;
+  }
+}
