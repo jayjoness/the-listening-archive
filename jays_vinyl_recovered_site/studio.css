@@ -3909,3 +3909,15 @@ body.modal-open .now-spinning-bar { display:none; }
     overflow:visible!important;
   }
 }
+
+/* Keep the vinyl fully visible, but let the physical sleeve conceal its left edge.
+   Both are siblings: the sleeve must paint above the disc on hover and at rest. */
+.shelf-category .shelf-record--has-disc:not(.petal-v6) > .shelf-object,
+.shelf-category .shelf-record--has-disc:not(.petal-v6):hover > .shelf-object {
+  z-index:12!important;
+}
+.shelf-category .shelf-record--has-disc:not(.petal-v6) > .shelf-disc-photo,
+.shelf-category .shelf-record--has-disc:not(.petal-v6):hover > .shelf-disc-photo,
+.shelf-category .shelf-record--has-disc:not(.petal-v6) > .shelf-disc-photo:hover {
+  z-index:10!important;
+}
