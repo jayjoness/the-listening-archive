@@ -3735,8 +3735,16 @@
             if (previewRecordId === card.dataset.recordId && previewAudio && !previewAudio.paused) previewAudio.pause();
             setState("pulled");
           } else {
-            setState("spinning");
-            togglePreview(card.dataset.recordId);
+            const record = allRecords.find((item) => item.id === card.dataset.recordId);
+            if (!record?.nowPlaying?.url) {
+              showArchiveToast("No audio preview is available for this pressing yet");
+              setState("pulled");
+            } else {
+              setState("spinning");
+              if (!(previewRecordId === card.dataset.recordId && previewAudio && !previewAudio.paused)) {
+                togglePreview(card.dataset.recordId);
+              }
+            }
           }
         });
       }
@@ -3752,8 +3760,16 @@
             if (previewRecordId === card.dataset.recordId && previewAudio && !previewAudio.paused) previewAudio.pause();
             setState("pulled");
           } else {
-            setState("spinning");
-            togglePreview(card.dataset.recordId);
+            const record = allRecords.find((item) => item.id === card.dataset.recordId);
+            if (!record?.nowPlaying?.url) {
+              showArchiveToast("No audio preview is available for this pressing yet");
+              setState("pulled");
+            } else {
+              setState("spinning");
+              if (!(previewRecordId === card.dataset.recordId && previewAudio && !previewAudio.paused)) {
+                togglePreview(card.dataset.recordId);
+              }
+            }
           }
         } else {
           setState(current === "sleeved" ? "pulled" : "sleeved");
