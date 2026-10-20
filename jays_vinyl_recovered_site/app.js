@@ -3938,6 +3938,9 @@
     const nextRecord = activeIndex >= 0 && activeIndex < modalRecords.length - 1 ? modalRecords[activeIndex + 1] : null;
     const gallery = Array.from(new Set([record.image, ...(record.gallery || [])].filter(Boolean)));
     let galleryIndex = 0;
+    const galleryViews = [{ label: "Cover", image: gallery[0] }];
+    if (record.discImage && /^assets\/[a-z0-9_./-]+\.(?:png|webp|jpe?g)$/i.test(record.discImage)) galleryViews.push({ label: "Vinyl disc", image: record.discImage });
+    gallery.slice(1).forEach((image, index) => galleryViews.push({ label: "Photo " + (index + 2), image }));
     const notesHeading = record.setup ? "Why it belongs in the setup" : record.wishlist ? "Release notes" : "Pressing notes";
     const identity = record.wishlist ? {
       catalogue: market?.catalogueNumber || "Not added yet",
@@ -4001,7 +4004,7 @@
         <div class="modal-image-frame">
           <span class="modal-fallback">${escapeHTML(displayTitle(record))}</span>
           ${gallery[0] ? `<img class="modal-image" data-gallery-image src="${escapeAttr(gallery[0])}" alt="${escapeAttr(`${displayTitle(record)} — exact pressing product image`)}">` : "<span class=\"modal-no-photo\">No pressing image documented</span>"}
-          ${gallery.length > 1 ? `<div class="modal-gallery-controls"><span data-gallery-count>Pressing photo · 1 of ${gallery.length}</span><div><button type="button" data-gallery-prev aria-label="Previous pressing photo">‹</button><button type="button" data-gallery-next aria-label="Next pressing photo">›</button></div></div>` : ""}
+          ${galleryViews.length > 1 ? `<div class="archive-gallery-controls"><button type="button" data-gallery-prev aria-label="Previous view">‹</button><span data-gallery-count>Cover · 1 of ${galleryViews.length}</span><button type="button" data-gallery-next aria-label="Next view">›</button></div><div class="archive-gallery-thumbnails">${galleryViews.map((view, index) => `<button type="button" data-gallery-select="${index}" class="${index === 0 ? "is-selected" : ""}" aria-label="${escapeAttr(view.label)}" aria-pressed="${index === 0}"><img src="${escapeAttr(view.image)}" alt="" loading="lazy"><span>${escapeHTML(view.label)}</span></button>`).join("")}</div>` : ""}
         </div>
       </div>
       <div class="modal-body">
@@ -4036,25 +4039,29 @@
     modalPanel.querySelector(".modal-image")?.addEventListener("error", (event) => {
       event.currentTarget.closest(".modal-visual")?.classList.add("is-missing");
     }, { once: true });
-    const setGalleryImage = (offset) => {
-      if (gallery.length < 2) return;
-      galleryIndex = (galleryIndex + offset + gallery.length) % gallery.length;
+    const selectGalleryView = (index) => {
+      if (!galleryViews.length) return;
+      galleryIndex = (index + galleryViews.length) % galleryViews.length;
+      const view = galleryViews[galleryIndex];
       const image = modalPanel.querySelector("[data-gallery-image]");
-      if (image) {
-        image.src = gallery[galleryIndex];
-        image.alt = `${displayTitle(record)} — documented pressing photo ${galleryIndex + 1}`;
-      }
+      if (image) { image.src = view.image; image.alt = displayTitle(record) + " — " + view.label; image.classList.toggle("archive-gallery-disc-image", view.label === "Vinyl disc"); }
       const count = modalPanel.querySelector("[data-gallery-count]");
-      if (count) count.textContent = `Pressing photo · ${galleryIndex + 1} of ${gallery.length}`;
+      if (count) count.textContent = view.label + " · " + (galleryIndex + 1) + " of " + galleryViews.length;
+      modalPanel.querySelectorAll("[data-gallery-select]").forEach((button) => {
+        const selected = Number(button.dataset.gallerySelect) === galleryIndex;
+        button.classList.toggle("is-selected", selected); button.setAttribute("aria-pressed", String(selected));
+      });
     };
+    const setGalleryImage = (offset) => selectGalleryView(galleryIndex + offset);
     modalPanel.querySelector("[data-gallery-prev]")?.addEventListener("click", (event) => { event.stopPropagation(); setGalleryImage(-1); });
     modalPanel.querySelector("[data-gallery-next]")?.addEventListener("click", (event) => { event.stopPropagation(); setGalleryImage(1); });
+    modalPanel.querySelectorAll("[data-gallery-select]").forEach((button) => button.addEventListener("click", (event) => { event.stopPropagation(); selectGalleryView(Number(button.dataset.gallerySelect)); }));
     const galleryFrame = modalPanel.querySelector(".modal-image-frame");
     let touchStartX = null;
     galleryFrame?.addEventListener("touchstart", (event) => { touchStartX = event.changedTouches[0]?.clientX ?? null; }, { passive: true });
     galleryFrame?.addEventListener("touchend", (event) => {
       const endX = event.changedTouches[0]?.clientX;
-      if (touchStartX == null || endX == null || gallery.length < 2) return;
+      if (touchStartX == null || endX == null || galleryViews.length < 2) return;
       const delta = endX - touchStartX;
       if (Math.abs(delta) > 45) setGalleryImage(delta < 0 ? 1 : -1);
       touchStartX = null;
