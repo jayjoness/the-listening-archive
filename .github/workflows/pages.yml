@@ -46,7 +46,12 @@ jobs:
       - name: Recover official-store artwork where available
         run: python3 scripts/recover_artwork.py
       - name: Extract photographed pressings where verified
-        run: python3 scripts/extract_verified_pressings.py
+        run: |
+          if [ -f scripts/extract_verified_pressings.py ]; then
+            python3 scripts/extract_verified_pressings.py
+          else
+            echo 'Optional pressing extractor not present; skipping.'
+          fi
       - name: Publish isolated development preview
         run: |
           mkdir -p _site/preview
