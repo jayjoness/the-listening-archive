@@ -24,7 +24,7 @@
 
   const stylesheet = document.createElement("link");
   stylesheet.rel = "stylesheet";
-  stylesheet.href = "studio.css?v=petal-cover-explicit-20261020j";
+  stylesheet.href = "studio.css?v=petal-shelf-contact-20261020k";
   document.head.appendChild(stylesheet);
 
   const clean = (value) => (value || "").replace(/\s+/g, " ").trim();
