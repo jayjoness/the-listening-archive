@@ -4596,3 +4596,47 @@ body.modal-open .now-spinning-bar { display:none; }
     bottom:30.5%!important;
   }
 }
+
+/* Real sleeve edge: the artwork itself fills the object, with a contact footprint.
+   The background already contains the physical shelf; no second shelf is drawn. */
+.record-modal .modal-visual .modal-image-frame:not(:has(.archive-gallery-disc-image)),
+.record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve"]) .modal-image-frame:not(:has(.archive-gallery-disc-image)),
+.record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) .modal-image-frame:not(:has(.archive-gallery-disc-image)) {
+  bottom:29.65%!important;
+  overflow:visible!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:
+    1px 0 0 rgba(16,10,8,.85),
+    4px 2px 0 rgba(22,14,11,.92),
+    6px 6px 5px rgba(0,0,0,.38),
+    16px 14px 20px rgba(0,0,0,.38)!important;
+}
+.record-modal .modal-visual .modal-image-frame:not(:has(.archive-gallery-disc-image)) .modal-image {
+  width:100%!important;height:100%!important;
+  object-fit:cover!important;
+  clip-path:inset(0 0 0 0)!important;
+  /* Trim photographed edge inside the actual image, not by painting over it. */
+  transform:scale(1.016)!important;
+  transform-origin:center bottom!important;
+}
+.record-modal .modal-visual .modal-image-frame:not(:has(.archive-gallery-disc-image))::after {
+  content:""!important;display:block!important;
+  position:absolute!important;z-index:-1!important;
+  left:-2%!important;right:-3%!important;bottom:-4px!important;height:11px!important;
+  border-radius:50%!important;
+  background:rgba(9,5,3,.82)!important;
+  filter:blur(4px)!important;
+  box-shadow:0 4px 9px rgba(0,0,0,.65)!important;
+  pointer-events:none!important;
+}
+.record-modal .modal-visual .modal-image-frame:has(.archive-gallery-disc-image) {
+  bottom:29.65%!important;
+}
+@media(max-width:720px) {
+  .record-modal .modal-visual .modal-image-frame,
+  .record-modal .modal-visual:has(.modal-image[src*="petal_white_sleeve"]) .modal-image-frame,
+  .record-modal .modal-visual:has(.modal-image[src*="petal_yellow_sleeve"]) .modal-image-frame {
+    bottom:29.65%!important;
+  }
+}
