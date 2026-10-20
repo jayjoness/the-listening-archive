@@ -4947,3 +4947,14 @@ body.modal-open .now-spinning-bar { display:none; }
     bottom:29.80%!important;
   }
 }
+
+/* Visible Petal cover nudge: move the whole cover object down 8px.
+   Do not alter its size, crop, border treatment, shadow, or the vinyl-disc view. */
+.record-modal .modal-visual .modal-image-frame:not(:has(.archive-gallery-disc-image)) {
+  transform:translateX(-50%) translateY(8px)!important;
+}
+@media(max-width:720px) {
+  .record-modal .modal-visual .modal-image-frame:not(:has(.archive-gallery-disc-image)) {
+    transform:translateX(-50%) translateY(8px)!important;
+  }
+}
