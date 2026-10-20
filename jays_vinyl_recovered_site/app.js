@@ -3213,8 +3213,6 @@
       return;
     }
 
-    setNowSpinning(record.id);
-
     if (previewAudio && previewRecordId === record.id) {
       if (!previewAudio.paused) {
         previewAudio.pause();
@@ -3223,6 +3221,7 @@
         return;
       }
       previewState = "loading";
+      setNowSpinning(record.id);
       syncPreviewUI();
       try {
         await previewAudio.play();
@@ -3240,6 +3239,7 @@
     }
     previewRecordId = record.id;
     previewState = "loading";
+    setNowSpinning(record.id);
     previewAudio = new Audio(record.nowPlaying.url);
     previewAudio.preload = "auto";
     previewAudio.addEventListener("playing", () => { previewState = "playing"; syncPreviewUI(); });
