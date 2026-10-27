@@ -24,7 +24,7 @@
 
   const stylesheet = document.createElement("link");
   stylesheet.rel = "stylesheet";
-  stylesheet.href = "studio.css?v=petal-label-cleanup-20261020d";
+  stylesheet.href = "studio.css?v=mobile-modal-scroll-20261027a";
   document.head.appendChild(stylesheet);
 
   const clean = (value) => (value || "").replace(/\s+/g, " ").trim();
