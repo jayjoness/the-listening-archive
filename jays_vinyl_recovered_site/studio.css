@@ -5043,3 +5043,33 @@ body.modal-open .now-spinning-bar { display:none; }
 
 /* Petal's official logo already contains Ariana Grande's name. */
 .record-modal .modal-head--petal .modal-category { display: none !important; }
+
+/* Mobile modal: one scroll surface for the entire record, including the
+   brown showroom. Previously overflow:hidden on the panel and an independently
+   scrolling white body trapped swipes over the artwork. */
+@media (max-width: 840px) {
+  .record-modal .modal-panel {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-rows: auto auto auto !important;
+    grid-template-areas: "head" "visual" "body" !important;
+    height: auto !important;
+    max-height: 96dvh !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+    touch-action: pan-y !important;
+  }
+  .record-modal .modal-head,
+  .record-modal .modal-visual,
+  .record-modal .modal-body {
+    min-height: 0 !important;
+    overflow-y: visible !important;
+    overscroll-behavior-y: auto !important;
+    touch-action: pan-y !important;
+  }
+  .record-modal .modal-visual {
+    overflow-x: clip !important;
+  }
+}
